@@ -1,1 +1,1 @@
-# qecannon.github.io
+# quanacannon.github.io
