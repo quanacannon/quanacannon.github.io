@@ -140,7 +140,7 @@ p { text-transform: none !important; line-height: 1.65; font-weight: 500; }
   <!-- DESIGN -->
   <section id="page-design" class="page-view hidden max-w-6xl mx-auto space-y-10 pb-16">
     <div class="space-y-2"><span class="text-xs text-studio-muted uppercase tracking-widest block">DESIGN</span>
-    <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">OBJECTS, SPACES & IDENTITY</h1></div>
+    <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">DESIGN PROJECTS</h1></div>
     <div id="grid-design" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
   </section>
 
@@ -348,9 +348,15 @@ const works = [
   { id: 13, sec: 'fineart', cat: 'sketchbook', title: 'KILN NOTES SKETCHBOOK', badge: 'SKETCHBOOK', sub: 'SKETCHBOOK 2025', img: U('photo-1541701494587-cb58502866ab'), story: 'PLACEHOLDER: PAGES FROM A WORKING SKETCHBOOK.' },
   { id: 14, sec: 'fineart', cat: 'sketchbook', title: 'FIELD SKETCHBOOK', badge: 'SKETCHBOOK', sub: 'SKETCHBOOK 2024', img: U('photo-1618005182384-a83a8bd57fbe'), story: 'PLACEHOLDER: TRAVEL AND FIELDWORK STUDIES.' },
   /* DESIGN: placeholder entries, replace with your own */
-  { id: 7, sec: 'design', title: 'STUDIO IDENTITY SYSTEM', badge: 'BRANDING', sub: 'VISUAL IDENTITY', img: U('photo-1561070791-2526d30994b8'), story: 'LOGOTYPE, COLOR AND PRINT SYSTEM FOR THE MULTIMEDIA STUDIO.' },
-  { id: 8, sec: 'design', title: 'ACOUSTIC LAMP SERIES', badge: 'OBJECT', sub: 'PRODUCT DESIGN', img: U('photo-1507473885765-e6ed057f782c'), story: 'LIGHTING OBJECTS WITH INTEGRATED CERAMIC RESONATORS.' },
-  { id: 9, sec: 'design', title: 'EXHIBITION ARCHITECTURE', badge: 'SPACE', sub: 'SPATIAL DESIGN', img: U('photo-1545987796-200677ee1011'), story: 'MODULAR DISPLAY SYSTEM FOR TRAVELING INSTALLATIONS.' },
+  { id: 7, sec: 'design', title: 'SPAM', badge: 'DESIGN', sub: 'DESIGN PROJECT', img: U('photo-1541701494587-cb58502866ab'), story: 'PLACEHOLDER: ADD A DESCRIPTION OF THIS PROJECT.' },
+  { id: 8, sec: 'design', title: 'ZINES', badge: 'PRINT', sub: 'DESIGN PROJECT', img: U('photo-1579783900882-c0d3dad7b119'), story: 'PLACEHOLDER: ADD A DESCRIPTION OF THIS PROJECT.' },
+  { id: 9, sec: 'design', title: 'WEAVING', badge: 'TEXTILE', sub: 'DESIGN PROJECT', img: U('photo-1596422846543-75c6fc197f07'), story: 'PLACEHOLDER: ADD A DESCRIPTION OF THIS PROJECT.' },
+  { id: 20, sec: 'design', title: 'FA’ASAMOA', badge: 'CULTURAL', sub: 'DESIGN PROJECT', img: U('photo-1518770660439-4636190af475'), story: 'PLACEHOLDER: ADD A DESCRIPTION OF THIS PROJECT.' },
+  { id: 21, sec: 'design', title: 'SEWING', badge: 'TEXTILE', sub: 'DESIGN PROJECT', img: U('photo-1537996194471-e657df975ab4'), story: 'PLACEHOLDER: ADD A DESCRIPTION OF THIS PROJECT.' },
+  { id: 22, sec: 'design', title: 'GAME DESIGN PROJECT 1', badge: 'GAME', sub: 'DESIGN PROJECT', img: U('photo-1550684848-fac1c5b4e853'), story: 'PLACEHOLDER: ADD A DESCRIPTION OF THIS PROJECT.' },
+  { id: 23, sec: 'design', title: 'GAME DESIGN PROJECT 2', badge: 'GAME', sub: 'DESIGN PROJECT', img: U('photo-1635070041078-e363dbe005cb'), story: 'PLACEHOLDER: ADD A DESCRIPTION OF THIS PROJECT.' },
+  { id: 24, sec: 'design', title: 'VERTIGO LITERARY MAGAZINE LAYOUT', badge: 'EDITORIAL', sub: 'DESIGN PROJECT', img: U('photo-1507676184212-d03ab07a01bf'), story: 'PLACEHOLDER: ADD A DESCRIPTION OF THIS PROJECT.' },
+  { id: 25, sec: 'design', title: 'LOGO DESIGN', badge: 'BRANDING', sub: 'DESIGN PROJECT', img: U('photo-1561070791-2526d30994b8'), story: 'PLACEHOLDER: ADD A DESCRIPTION OF THIS PROJECT.' },
   { id: 4, sec: 'ceramics', title: 'CRYSTALLINE URN', badge: 'PORCELAIN', sub: 'PORCELAIN / ZINC GLAZE', img: U('photo-1578749556568-bc2c40e68b61'), story: 'HIGH-ALUMINA PORCELAIN WITH ZINC SILICATE CRYSTALLINE GLAZE.' },
   { id: 5, sec: 'ceramics', title: 'SHIGARAKI ASH VESSEL', badge: 'ANAGAMA', sub: 'ANAGAMA WOOD FIRE', img: U('photo-1565193566173-7a0ee3dbe261'), story: 'WOOD-FIRED FOR 7 DAYS AT SHIGARAKI CERAMIC CULTURAL PARK JAPAN.' },
   { id: 6, sec: 'ceramics', title: 'RESONANT SPEAKER', badge: 'ACOUSTIC CLAY', sub: 'ACOUSTIC CLAY CHAMBER', img: U('photo-1579783902614-a3fb3927b675'), story: 'PORCELAIN ACOUSTIC RESONANCE CHAMBER FOR ANALOG SYNTHESIZER OSCILLATIONS.' }
@@ -754,14 +760,19 @@ function init3DGlobe() {
     return new THREE.Vector3(-r * Math.sin(phi) * Math.cos(th), r * Math.cos(phi), r * Math.sin(phi) * Math.sin(th));
   };
   gPins = new THREE.Group();
-  // Deeper versions of the site's accent colors so the dots stand out on the light globe
+  // Deep accent colors, larger dots, white halo, and a pulsing ring so they read clearly
   const pinColors = [0xDB2777, 0x7C3AED, 0x0284C7, 0xE8590C, 0x8CAB00, 0xCA8A04];
+  const pulses = [];
   globeLocations.forEach((loc, i) => {
-    const pos = toVec(loc.lat, loc.lon, R + 0.6);
-    const halo = new THREE.Mesh(new THREE.SphereGeometry(3.5, 16, 16), new THREE.MeshBasicMaterial({ color: 0xFFFFFF }));
-    const dot = new THREE.Mesh(new THREE.SphereGeometry(2.7, 16, 16), new THREE.MeshBasicMaterial({ color: pinColors[i % pinColors.length] }));
-    const core = new THREE.Mesh(new THREE.SphereGeometry(1, 12, 12), new THREE.MeshBasicMaterial({ color: 0x1C1C1A }));
-    [halo, dot, core].forEach(m => { m.position.copy(pos); m.userData = loc; gPins.add(m); });
+    const col = pinColors[i % pinColors.length], pos = toVec(loc.lat, loc.lon, R + 1.2);
+    const halo = new THREE.Mesh(new THREE.SphereGeometry(5.2, 20, 20), new THREE.MeshBasicMaterial({ color: 0xFFFFFF }));
+    const dot = new THREE.Mesh(new THREE.SphereGeometry(4, 20, 20), new THREE.MeshBasicMaterial({ color: col }));
+    const core = new THREE.Mesh(new THREE.SphereGeometry(1.5, 12, 12), new THREE.MeshBasicMaterial({ color: 0x1C1C1A }));
+    const ring = new THREE.Mesh(new THREE.RingGeometry(5.5, 6.6, 40), new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: 0.8, side: THREE.DoubleSide, depthWrite: false }));
+    ring.position.copy(pos.clone().multiplyScalar(1.01)); ring.lookAt(pos.clone().multiplyScalar(2)); // faces outward
+    [halo, dot, core].forEach(m => m.position.copy(pos));
+    [halo, dot, core, ring].forEach(m => { m.userData = loc; gPins.add(m); });
+    pulses.push({ ring, offset: i * 0.13 });
   });
   gGroup.add(gPins);
   gGroup.rotation.y = 0.2; gGroup.rotation.x = 0.35;
@@ -809,6 +820,8 @@ function init3DGlobe() {
       // pause the spin briefly while a dot is hovered so the blurb stays readable
       if (Date.now() > hoverUntil) { gGroup.rotation.y += vel.y; vel.y *= 0.95; if (Math.abs(vel.y) < 0.002) vel.y = 0.0025; }
     }
+    const now = Date.now();
+    pulses.forEach(p => { const t = ((now / 1800) + p.offset) % 1; p.ring.scale.setScalar(1 + t * 1.1); p.ring.material.opacity = 0.8 * (1 - t); });
     gRenderer.render(gScene, gCamera);
   })();
 }
