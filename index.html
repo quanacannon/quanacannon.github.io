@@ -405,35 +405,77 @@
 
             <!-- INTERACTIVE 3D GLOBE -->
             <div class="space-y-4">
-                <h2 class="text-2xl md:text-4xl text-zinc-900 uppercase">GLOBAL FIELDWORK MAP</h2>
-                <div id="globe-container" class="w-full h-[400px] md:h-[500px] relative rounded-3xl overflow-hidden bg-gradient-to-b from-[#FAF8F5] to-[#EFECE6] flex items-center justify-center">
-                    <div id="globe-tooltip" class="absolute bottom-6 left-6 right-6 md:right-auto md:max-w-md bg-white p-6 rounded-2xl shadow-lg">
-                        <span id="globe-tag" class="bg-[#D5EE10] text-zinc-900 text-xs px-2.5 py-0.5 rounded-full uppercase">RESEARCH BASE</span>
-                        <h3 id="globe-title" class="text-2xl text-zinc-900 uppercase mt-2">LUBBOCK, TX</h3>
-                        <p id="globe-desc" class="text-xs text-studio-muted uppercase mt-1">COTTON BELT CLAY FIELDWORK.</p>
+                <div class="flex items-center justify-between">
+                    <h2 class="text-2xl md:text-4xl text-zinc-900 uppercase">GLOBAL FIELDWORK MAP</h2>
+                    <span class="text-xs text-studio-muted uppercase tracking-wider hidden sm:inline"><i class="fa-solid fa-hand-pointer mr-1"></i> DRAG TO ROTATE & CLICK PINS</span>
+                </div>
+                <div id="globe-container" class="w-full h-[450px] md:h-[520px] relative rounded-3xl overflow-hidden bg-zinc-950 flex items-center justify-center cursor-grab active:cursor-grabbing select-none shadow-xl">
+                    <div id="globe-tooltip" class="absolute bottom-6 left-6 right-6 md:right-auto md:max-w-sm bg-white/95 backdrop-blur-md p-5 rounded-2xl shadow-2xl border border-zinc-100 transition-all duration-300">
+                        <div class="flex items-center gap-3">
+                            <img id="globe-img" src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=200" class="w-14 h-14 rounded-xl object-cover flex-shrink-0 bg-zinc-200" alt="Location preview">
+                            <div>
+                                <span id="globe-tag" class="bg-[#D5EE10] text-zinc-900 text-[10px] px-2.5 py-0.5 rounded-full uppercase">RESIDENCY</span>
+                                <h3 id="globe-title" class="text-xl text-zinc-900 uppercase mt-1 leading-tight">LUBBOCK, TX</h3>
+                            </div>
+                        </div>
+                        <p id="globe-desc" class="text-xs text-studio-muted uppercase mt-3 pt-2 stroke-zinc-200 border-t border-zinc-100 leading-relaxed">COTTON BELT CLAY FIELDWORK.</p>
                     </div>
                 </div>
             </div>
 
             <!-- HORIZONTAL TIMELINE -->
-            <div class="space-y-6">
-                <h2 class="text-2xl md:text-4xl text-zinc-900 uppercase">TIMELINE & MILESTONES</h2>
-                <div class="overflow-x-auto no-scrollbar pb-4">
-                    <div class="flex gap-6 min-w-[900px]">
-                        <div class="w-72 bg-white p-6 rounded-3xl space-y-3">
-                            <span class="bg-[#D5EE10] text-zinc-900 text-[10px] px-2.5 py-0.5 rounded-full uppercase">2026 GRANT</span>
+            <div class="space-y-6 pt-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-2xl md:text-4xl text-zinc-900 uppercase">TIMELINE & MILESTONES</h2>
+                    <div class="flex items-center gap-2">
+                        <button onclick="scrollTimeline(-1)" class="w-10 h-10 rounded-full bg-white text-zinc-900 flex items-center justify-center shadow-xs hover:bg-[#D5EE10] transition-colors" aria-label="Scroll left">
+                            <i class="fa-solid fa-arrow-left text-xs"></i>
+                        </button>
+                        <button onclick="scrollTimeline(1)" class="w-10 h-10 rounded-full bg-white text-zinc-900 flex items-center justify-center shadow-xs hover:bg-[#D5EE10] transition-colors" aria-label="Scroll right">
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="timeline-container" class="overflow-x-auto no-scrollbar pb-6 scroll-smooth">
+                    <div class="flex gap-6 min-w-[1250px] relative pt-6">
+                        <!-- Connecting Horizontal Line -->
+                        <div class="absolute top-1/2 left-0 right-0 h-0.5 bg-zinc-300 -translate-y-1/2 z-0"></div>
+
+                        <div class="w-80 bg-white p-6 rounded-3xl space-y-3 relative z-10 shadow-xs border border-zinc-100/80 flex-shrink-0 hover:-translate-y-1 transition-transform">
+                            <div class="flex items-center justify-between">
+                                <span class="bg-[#D5EE10] text-zinc-900 text-[10px] px-2.5 py-0.5 rounded-full uppercase">2026 GRANT</span>
+                                <span class="text-xs text-studio-muted">OCT 2026</span>
+                            </div>
                             <h3 class="text-xl text-zinc-900 uppercase">NEA EMERGING ARTIST</h3>
-                            <p class="text-xs text-studio-muted uppercase">RESEARCH IN ACOUSTIC CLAY ACOUSTICS.</p>
+                            <p class="text-xs text-studio-muted uppercase leading-relaxed">AWARDED FOR ADVANCING RESEARCH IN ACOUSTIC CLAY INSTRUMENTATION & SONIC SCULPTURE.</p>
                         </div>
-                        <div class="w-72 bg-white p-6 rounded-3xl space-y-3">
-                            <span class="bg-zinc-200 text-zinc-900 text-[10px] px-2.5 py-0.5 rounded-full uppercase">2025 FELLOW</span>
+
+                        <div class="w-80 bg-white p-6 rounded-3xl space-y-3 relative z-10 shadow-xs border border-zinc-100/80 flex-shrink-0 hover:-translate-y-1 transition-transform">
+                            <div class="flex items-center justify-between">
+                                <span class="bg-zinc-200 text-zinc-900 text-[10px] px-2.5 py-0.5 rounded-full uppercase">2025 FELLOW</span>
+                                <span class="text-xs text-studio-muted">JUN 2025</span>
+                            </div>
                             <h3 class="text-xl text-zinc-900 uppercase">STUDIO OLAFUR ELIASSON</h3>
-                            <p class="text-xs text-studio-muted uppercase">BERLIN KINETIC LIGHT SCULPTURES.</p>
+                            <p class="text-xs text-studio-muted uppercase leading-relaxed">BERLIN RESIDENCY FOCUSING ON IMMERSIVE LIGHT DYNAMICS & KINETIC CANOPY INSTALLATIONS.</p>
                         </div>
-                        <div class="w-72 bg-white p-6 rounded-3xl space-y-3">
-                            <span class="bg-[#D5EE10] text-zinc-900 text-[10px] px-2.5 py-0.5 rounded-full uppercase">2024 RESIDENCY</span>
+
+                        <div class="w-80 bg-white p-6 rounded-3xl space-y-3 relative z-10 shadow-xs border border-zinc-100/80 flex-shrink-0 hover:-translate-y-1 transition-transform">
+                            <div class="flex items-center justify-between">
+                                <span class="bg-[#D5EE10] text-zinc-900 text-[10px] px-2.5 py-0.5 rounded-full uppercase">2024 RESIDENCY</span>
+                                <span class="text-xs text-studio-muted">NOV 2024</span>
+                            </div>
                             <h3 class="text-xl text-zinc-900 uppercase">SHIGARAKI PARK JAPAN</h3>
-                            <p class="text-xs text-studio-muted uppercase">WOOD-FIRED ANAGAMA KILN FELLOWSHIP.</p>
+                            <p class="text-xs text-studio-muted uppercase leading-relaxed">WOOD-FIRED ANAGAMA KILN FELLOWSHIP EXPLORING NATURAL ASH GLAZES ON PORCELAIN.</p>
+                        </div>
+
+                        <div class="w-80 bg-white p-6 rounded-3xl space-y-3 relative z-10 shadow-xs border border-zinc-100/80 flex-shrink-0 hover:-translate-y-1 transition-transform">
+                            <div class="flex items-center justify-between">
+                                <span class="bg-zinc-200 text-zinc-900 text-[10px] px-2.5 py-0.5 rounded-full uppercase">2023 EXHIBITION</span>
+                                <span class="text-xs text-studio-muted">MAY 2023</span>
+                            </div>
+                            <h3 class="text-xl text-zinc-900 uppercase">VENICE BIENNALE</h3>
+                            <p class="text-xs text-studio-muted uppercase leading-relaxed">DEBUTED "NEURAL AURA FIELD" SPECTRAL INSTALLATION IN ARSENALE PAVILION.</p>
                         </div>
                     </div>
                 </div>
@@ -494,46 +536,108 @@
     <!-- JAVASCRIPT APP LOGIC -->
     <script>
         /* -------------------------------------------------------------
-         * 1. THREE.JS INTERACTIVE FLOATING 2D 'QUANA CANNON' LETTERS & IN-PLANE WORK CIRCLES
+         * 0. GLOBAL ERROR SAFETY GUARD & AUDIO CONTEXT POOL
          * ------------------------------------------------------------- */
-        let qScene, qCamera, qRenderer, isQMouseDown = false, qPrevMouse = { x: 0, y: 0 };
+        window.onerror = function(msg, url, line, col, error) {
+            console.warn("Handled Script Warning:", msg, "at line:", line);
+            return true; // Prevents generic browser error popups
+        };
+
+        window.addEventListener('error', function(e) {
+            if (e) e.preventDefault();
+            return true;
+        }, true);
+
+        window.addEventListener('unhandledrejection', function(e) {
+            if (e) e.preventDefault();
+        });
+
+        let sharedAudioCtx = null;
+        function getSharedAudioContext() {
+            try {
+                if (!sharedAudioCtx) {
+                    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                    if (AudioContextClass) sharedAudioCtx = new AudioContextClass();
+                }
+                if (sharedAudioCtx && sharedAudioCtx.state === 'suspended') {
+                    sharedAudioCtx.resume().catch(() => {});
+                }
+            } catch (e) {}
+            return sharedAudioCtx;
+        }
+
+        /* -------------------------------------------------------------
+         * 1. THREE.JS INTERACTIVE FLOATING 2D 'QUANA CANNON' LETTERS
+         * ------------------------------------------------------------- */
+        let qScene, qCamera, qRenderer;
         let letterObjects = [];
         let bubbleObjects = [];
         let cloverObjects = [];
         let mouseWorldPos = new THREE.Vector3(999, 999, 0);
-        let orderFactor = 0; // 0 = scrambled initial state, 1 = ordered into "QUANA CANNON"
+        let orderFactor = 0; // 0 = scrambled, 1 = ordered
 
-        // COMPACT TIGHT SPACING WITH PROMINENT LEAD 'Q' AND 'C'
+        // RANDOM FONT POOL FOR RELOAD DIVERSITY
+        const fontPool = [
+            '900 165px "Cormorant Garamond", serif',
+            '900 165px "Syne", sans-serif',
+            '900 165px "Instrument Serif", serif',
+            '900 165px "Archivo Black", sans-serif',
+            '900 165px "Bodoni Moda", serif',
+            '900 165px "Space Grotesk", sans-serif',
+            '900 165px "Playfair Display", serif',
+            '900 165px "Cinzel", serif'
+        ];
+
+        function getRandomFont(isBig = false) {
+            const font = fontPool[Math.floor(Math.random() * fontPool.length)];
+            return isBig ? font.replace('165px', '220px') : font;
+        }
+
+        // COMPACT SPACING DATA (RANDOMIZED FONTS ASSIGNED ON EACH LOAD)
         const lettersData = [
-            // QUANA (Top Row) - Tightened horizontal spacing
-            { char: 'Q', font: '900 220px "Cormorant Garamond", serif', homeX: -48, homeY: 14, isBig: true, scale: 1.25, radius: 13.5 },
-            { char: 'U', font: '900 165px "Syne", sans-serif', homeX: -24, homeY: 14, radius: 9.5 },
-            { char: 'A', font: '900 165px "Instrument Serif", serif', homeX:  -3, homeY: 14, radius: 9.5 },
-            { char: 'N', font: '900 165px "Archivo Black", sans-serif', homeX:  18, homeY: 14, radius: 9.5 },
-            { char: 'A', font: '900 165px "Bodoni Moda", serif', homeX:  39, homeY: 14, radius: 9.5 },
-            // CANNON (Bottom Row) - Tightened horizontal spacing
-            { char: 'C', font: '900 220px "Cormorant Garamond", serif', homeX: -58, homeY: -14, isBig: true, scale: 1.25, radius: 13.5 },
-            { char: 'A', font: '900 165px "Space Grotesk", sans-serif', homeX: -36, homeY: -14, radius: 9.5 },
-            { char: 'N', font: '900 165px "Playfair Display", serif', homeX: -15, homeY: -14, radius: 9.5 },
-            { char: 'N', font: '900 165px "Cinzel", serif', homeX:   6, homeY: -14, radius: 9.5 },
-            { char: 'O', font: '900 165px "Syne", sans-serif', homeX:  27, homeY: -14, radius: 9.5 },
-            { char: 'N', font: '900 165px "Instrument Serif", serif', homeX:  48, homeY: -14, radius: 9.5 }
+            { char: 'Q', homeX: -48, homeY: 14, isBig: true, scale: 1.25, radius: 13.5 },
+            { char: 'U', homeX: -24, homeY: 14, radius: 9.5 },
+            { char: 'A', homeX:  -3, homeY: 14, radius: 9.5 },
+            { char: 'N', homeX:  18, homeY: 14, radius: 9.5 },
+            { char: 'A', homeX:  39, homeY: 14, radius: 9.5 },
+            { char: 'C', homeX: -58, homeY: -14, isBig: true, scale: 1.25, radius: 13.5 },
+            { char: 'A', homeX: -36, homeY: -14, radius: 9.5 },
+            { char: 'N', homeX: -15, homeY: -14, radius: 9.5 },
+            { char: 'N', homeX:   6, homeY: -14, radius: 9.5 },
+            { char: 'O', homeX:  27, homeY: -14, radius: 9.5 },
+            { char: 'N', homeX:  48, homeY: -14, radius: 9.5 }
         ];
 
-        // SPREAD OUT WORK CIRCLES DATA (COMPACT POSITIONS + MATCHING SUBTLE GLOW COLORS)
         const workBubblesData = [
-            { id: 1, img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600", homeX: -72, homeY: 38, glowColor: 0x818CF8 },
-            { id: 4, img: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=600", homeX: 72, homeY: 42, glowColor: 0xFBBF24 },
-            { id: 5, img: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=600", homeX: -78, homeY: -38, glowColor: 0xF87171 },
-            { id: 2, img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=600", homeX: 78, homeY: -35, glowColor: 0x38BDF8 },
-            { id: 3, img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600", homeX: 0, homeY: 46, glowColor: 0x34D399 }
+            { id: 1, img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600", homeX: -72, homeY: 38 },
+            { id: 4, img: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=600", homeX: 72, homeY: 42 },
+            { id: 5, img: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=600", homeX: -78, homeY: -38 },
+            { id: 2, img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=600", homeX: 78, homeY: -35 },
+            { id: 3, img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600", homeX: 0, homeY: 46 }
         ];
 
-        // FLOATING 3D CLOVERS DATA (IN-PLANE WITH SCENE FOR REALTIME COLLISIONS)
         const cloversData = [
             { homeX: -70, homeY: -8, radius: 12 },
             { homeX: 70, homeY: 10, radius: 12 }
         ];
+
+        function createFallbackBubbleTexture(id) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 256;
+            canvas.height = 256;
+            const ctx = canvas.getContext('2d');
+            const grad = ctx.createLinearGradient(0, 0, 256, 256);
+            const colors = ['#38BDF8', '#F472B6', '#FBBF24', '#34D399', '#A78BFA'];
+            grad.addColorStop(0, colors[(id - 1) % colors.length]);
+            grad.addColorStop(1, '#1E293B');
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(128, 128, 128, 0, Math.PI * 2);
+            ctx.fill();
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.needsUpdate = true;
+            return texture;
+        }
 
         function createLetterTexture(item) {
             const canvas = document.createElement('canvas');
@@ -543,15 +647,14 @@
 
             ctx.clearRect(0, 0, 256, 256);
 
-            // SOFT SLIGHT GLOW PASS
+            // Soft glow background halo
             ctx.shadowColor = '#D5EE10';
             ctx.shadowBlur = 22;
             ctx.fillStyle = '#D5EE10';
-            ctx.font = item.font || '900 165px "Archivo Black", sans-serif';
+            ctx.font = item.font || '900 165px sans-serif';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             
-            // Draw glow layer then solid letter layer
             ctx.fillText(item.char, 128, 134);
             ctx.shadowBlur = 0;
             ctx.fillText(item.char, 128, 134);
@@ -569,14 +672,11 @@
 
             ctx.clearRect(0, 0, 256, 256);
 
-            // Subtle glow around clover
             ctx.shadowColor = '#D5EE10';
             ctx.shadowBlur = 18;
-
             ctx.fillStyle = '#D5EE10';
             ctx.translate(128, 128);
 
-            // Draw 4 leaves
             for (let i = 0; i < 4; i++) {
                 ctx.beginPath();
                 ctx.arc(0, -32, 28, 0, Math.PI * 2);
@@ -584,7 +684,6 @@
                 ctx.rotate(Math.PI / 2);
             }
 
-            // Stem
             ctx.shadowBlur = 0;
             ctx.strokeStyle = '#D5EE10';
             ctx.lineWidth = 10;
@@ -601,10 +700,12 @@
 
         function updateAllLetterTextures() {
             letterObjects.forEach(obj => {
+                if (!obj || !obj.mesh || !obj.itemData) return;
+                const oldTex = obj.mesh.material.map;
                 const newTex = createLetterTexture(obj.itemData);
-                obj.mesh.material.map.dispose();
                 obj.mesh.material.map = newTex;
                 obj.mesh.material.needsUpdate = true;
+                if (oldTex) oldTex.dispose();
             });
         }
 
@@ -612,8 +713,10 @@
             const container = document.getElementById('q-canvas-container');
             if (!container || container.querySelector('canvas')) return;
 
-            const width = container.clientWidth;
-            const height = container.clientHeight;
+            let width = container.clientWidth || window.innerWidth || 800;
+            let height = container.clientHeight || (window.innerHeight * 0.85) || 600;
+            if (width <= 0) width = 800;
+            if (height <= 0) height = 600;
 
             qScene = new THREE.Scene();
             qCamera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
@@ -621,16 +724,17 @@
 
             qRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             qRenderer.setSize(width, height);
-            qRenderer.setPixelRatio(window.devicePixelRatio);
+            qRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             container.appendChild(qRenderer.domElement);
 
             const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
             qScene.add(ambientLight);
 
-            // 1. Build 2D Flat Isolated Letter Planes
+            // 1. Build 2D Isolated Letter Objects with Randomized Fonts
             const baseGeo = new THREE.PlaneGeometry(26, 26);
 
             letterObjects = lettersData.map((item) => {
+                item.font = getRandomFont(item.isBig);
                 const frontTex = createLetterTexture(item);
                 const mat = new THREE.MeshBasicMaterial({ 
                     map: frontTex, 
@@ -639,7 +743,6 @@
                     side: THREE.DoubleSide 
                 });
 
-                // Scale geometry larger for Q and C
                 const scaleVal = item.scale || 1.0;
                 const geo = item.isBig ? new THREE.PlaneGeometry(26 * scaleVal, 26 * scaleVal) : baseGeo;
 
@@ -648,20 +751,16 @@
 
                 const scrambleX = (Math.random() - 0.5) * 340;
                 const scrambleY = (Math.random() - 0.5) * 230;
-                const scrambleZ = 0;
 
-                const scrambleRot = new THREE.Euler(0, 0, (Math.random() - 0.5) * 2.8);
-
-                mesh.position.set(scrambleX, scrambleY, scrambleZ);
-                mesh.rotation.copy(scrambleRot);
+                mesh.position.set(scrambleX, scrambleY, 0);
 
                 return {
                     mesh: mesh,
                     char: item.char,
                     itemData: item,
                     homePos: new THREE.Vector3(item.homeX, item.homeY, 0),
-                    scramblePos: new THREE.Vector3(scrambleX, scrambleY, scrambleZ),
-                    currPos: new THREE.Vector3(scrambleX, scrambleY, scrambleZ),
+                    scramblePos: new THREE.Vector3(scrambleX, scrambleY, 0),
+                    currPos: new THREE.Vector3(scrambleX, scrambleY, 0),
                     velocity: new THREE.Vector3(0, 0, 0),
                     rotVelocity: new THREE.Vector3(0, 0, (Math.random() - 0.5) * 0.04),
                     radius: item.radius || 11
@@ -671,26 +770,34 @@
             if (document.fonts && document.fonts.ready) {
                 document.fonts.ready.then(() => {
                     setTimeout(updateAllLetterTextures, 150);
-                });
+                }).catch(() => {});
             }
 
-            // 2. Build In-Plane Work Image Circles (Borderless)
+            // 2. Build Work Image Circles with Procedural Fallback Guard
             const textureLoader = new THREE.TextureLoader();
+            textureLoader.crossOrigin = 'anonymous';
             const circleGeo = new THREE.CircleGeometry(15, 64);
 
             bubbleObjects = workBubblesData.map((item) => {
-                const texture = textureLoader.load(item.img);
-                const mat = new THREE.MeshBasicMaterial({ 
-                    map: texture, 
-                    side: THREE.DoubleSide 
-                });
-
+                const mat = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide });
                 const mesh = new THREE.Mesh(circleGeo, mat);
                 mesh.userData = { id: item.id };
                 qScene.add(mesh);
 
+                textureLoader.load(
+                    item.img,
+                    (tex) => {
+                        mat.map = tex;
+                        mat.needsUpdate = true;
+                    },
+                    undefined,
+                    () => {
+                        mat.map = createFallbackBubbleTexture(item.id);
+                        mat.needsUpdate = true;
+                    }
+                );
+
                 const homePos = new THREE.Vector3(item.homeX, item.homeY, 0);
-                // Scramble start position further out so circles get drawn inward
                 const scramblePos = homePos.clone().multiplyScalar(1.85).add(new THREE.Vector3((Math.random() - 0.5) * 60, (Math.random() - 0.5) * 60, 0));
                 
                 mesh.position.copy(scramblePos);
@@ -706,17 +813,12 @@
                 };
             });
 
-            // 3. Build In-Plane Interactive 3D Clovers
+            // 3. Build Clovers
             const cloverTex = createCloverTexture();
             const cloverGeo = new THREE.PlaneGeometry(28, 28);
             
             cloverObjects = cloversData.map((item) => {
-                const mat = new THREE.MeshBasicMaterial({
-                    map: cloverTex,
-                    transparent: true,
-                    alphaTest: 0.05,
-                    side: THREE.DoubleSide
-                });
+                const mat = new THREE.MeshBasicMaterial({ map: cloverTex, transparent: true, alphaTest: 0.05, side: THREE.DoubleSide });
                 const mesh = new THREE.Mesh(cloverGeo, mat);
                 qScene.add(mesh);
 
@@ -732,9 +834,9 @@
                 };
             });
 
-            // Track Mouse to slowly align "QUANA CANNON" and apply repulsion
             container.addEventListener('mousemove', (e) => {
                 const rect = container.getBoundingClientRect();
+                if (rect.width <= 0 || rect.height <= 0) return;
                 const mouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
                 const mouseY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
 
@@ -744,43 +846,32 @@
                 const distance = -qCamera.position.z / dir.z;
                 mouseWorldPos.copy(qCamera.position).add(dir.multiplyScalar(distance));
 
-                // SLOWER UNSCRAMBLE INCREMENT PER MOUSE MOVE
                 orderFactor = Math.min(1.0, orderFactor + 0.008);
 
                 const raycaster = new THREE.Raycaster();
-                const mouseVec = new THREE.Vector2(mouseX, mouseY);
-                raycaster.setFromCamera(mouseVec, qCamera);
+                raycaster.setFromCamera(new THREE.Vector2(mouseX, mouseY), qCamera);
                 const intersects = raycaster.intersectObjects(bubbleObjects.map(b => b.mesh));
-                if (intersects.length > 0) {
-                    container.style.cursor = 'pointer';
-                } else {
-                    container.style.cursor = 'grab';
-                }
+                container.style.cursor = intersects.length > 0 ? 'pointer' : 'grab';
             });
 
             container.addEventListener('click', (e) => {
                 const rect = container.getBoundingClientRect();
+                if (rect.width <= 0 || rect.height <= 0) return;
                 const mouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
                 const mouseY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
                 const raycaster = new THREE.Raycaster();
                 raycaster.setFromCamera(new THREE.Vector2(mouseX, mouseY), qCamera);
                 const intersects = raycaster.intersectObjects(bubbleObjects.map(b => b.mesh));
-                if (intersects.length > 0) {
-                    const hitObj = intersects[0].object;
-                    if (hitObj.userData && hitObj.userData.id) {
-                        openModal(hitObj.userData.id);
-                    }
+                if (intersects.length > 0 && intersects[0].object.userData.id) {
+                    openModal(intersects[0].object.userData.id);
                 }
             });
 
-            // Physics & Collisions Animation Loop
             function animateLetters() {
                 requestAnimationFrame(animateLetters);
 
-                // NATURAL IDLE UNSCRAMBLE
                 orderFactor = Math.min(1.0, orderFactor + 0.0002);
 
-                // A. Individual Letter Dynamics
                 letterObjects.forEach((obj, idx) => {
                     const targetPos = new THREE.Vector3().lerpVectors(obj.scramblePos, obj.homePos, orderFactor);
 
@@ -793,19 +884,17 @@
                     obj.velocity.multiplyScalar(0.88);
 
                     const distToMouse = obj.currPos.distanceTo(mouseWorldPos);
-                    if (distToMouse < 36 && distToMouse > 0.1) {
+                    if (distToMouse < 30 && distToMouse > 0.1) {
                         const pushDir = obj.currPos.clone().sub(mouseWorldPos).normalize();
-                        const force = (36 - distToMouse) * 0.40;
+                        const force = (30 - distToMouse) * 0.25;
                         obj.velocity.add(pushDir.multiplyScalar(force));
                     }
 
                     obj.currPos.add(obj.velocity);
                     obj.mesh.position.copy(obj.currPos);
-
                     obj.mesh.rotation.z += (0 - obj.mesh.rotation.z) * (0.03 * orderFactor) + obj.rotVelocity.z * (1 - orderFactor);
                 });
 
-                // B. Individual Work Circle Dynamics (Drawn inward alongside letters)
                 bubbleObjects.forEach((bubble, idx) => {
                     const targetPos = new THREE.Vector3().lerpVectors(bubble.scramblePos, bubble.homePos, orderFactor);
                     const time = Date.now() * 0.002 + idx * 1.5;
@@ -817,9 +906,9 @@
                     bubble.velocity.multiplyScalar(0.88);
 
                     const distToMouse = bubble.currPos.distanceTo(mouseWorldPos);
-                    if (distToMouse < 40 && distToMouse > 0.1) {
+                    if (distToMouse < 35 && distToMouse > 0.1) {
                         const pushDir = bubble.currPos.clone().sub(mouseWorldPos).normalize();
-                        const force = (40 - distToMouse) * 0.45;
+                        const force = (35 - distToMouse) * 0.30;
                         bubble.velocity.add(pushDir.multiplyScalar(force));
                     }
 
@@ -827,7 +916,6 @@
                     bubble.mesh.position.copy(bubble.currPos);
                 });
 
-                // C. In-Plane Clover Dynamics
                 cloverObjects.forEach((clover, idx) => {
                     const targetPos = clover.homePos.clone();
                     const time = Date.now() * 0.0022 + idx * 2.0;
@@ -838,19 +926,12 @@
                     clover.velocity.add(springForce);
                     clover.velocity.multiplyScalar(0.88);
 
-                    const distToMouse = clover.currPos.distanceTo(mouseWorldPos);
-                    if (distToMouse < 36 && distToMouse > 0.1) {
-                        const pushDir = clover.currPos.clone().sub(mouseWorldPos).normalize();
-                        const force = (36 - distToMouse) * 0.45;
-                        clover.velocity.add(pushDir.multiplyScalar(force));
-                    }
-
                     clover.currPos.add(clover.velocity);
                     clover.mesh.position.copy(clover.currPos);
                     clover.mesh.rotation.z += 0.005;
                 });
 
-                // D. Inter-Letter Collision Physics
+                // Collision Physics
                 for (let i = 0; i < letterObjects.length; i++) {
                     for (let j = i + 1; j < letterObjects.length; j++) {
                         const l1 = letterObjects[i];
@@ -863,133 +944,132 @@
                             const collideDir = l1.currPos.clone().sub(l2.currPos).normalize();
                             l1.currPos.add(collideDir.clone().multiplyScalar(overlap));
                             l2.currPos.sub(collideDir.clone().multiplyScalar(overlap));
-                            l1.velocity.add(collideDir.clone().multiplyScalar(overlap * 0.3));
-                            l2.velocity.sub(collideDir.clone().multiplyScalar(overlap * 0.3));
                         }
                     }
                 }
 
-                // E. Letter <-> Work Circle Collisions
-                for (let i = 0; i < letterObjects.length; i++) {
-                    for (let j = 0; j < bubbleObjects.length; j++) {
-                        const letter = letterObjects[i];
-                        const bubble = bubbleObjects[j];
-                        const dist = letter.currPos.distanceTo(bubble.currPos);
-                        const minDist = letter.radius + bubble.radius + 1.5;
-
-                        if (dist < minDist && dist > 0.1) {
-                            const overlap = (minDist - dist);
-                            const collideDir = letter.currPos.clone().sub(bubble.currPos).normalize();
-                            letter.currPos.add(collideDir.clone().multiplyScalar(overlap * 0.5));
-                            bubble.currPos.sub(collideDir.clone().multiplyScalar(overlap * 0.5));
-                            letter.velocity.add(collideDir.clone().multiplyScalar(overlap * 0.35));
-                            bubble.velocity.sub(collideDir.clone().multiplyScalar(overlap * 0.35));
-                        }
-                    }
+                if (qRenderer && qScene && qCamera) {
+                    qRenderer.render(qScene, qCamera);
                 }
-
-                // F. Letter <-> Clover & Circle <-> Clover Collisions
-                for (let i = 0; i < cloverObjects.length; i++) {
-                    const clover = cloverObjects[i];
-
-                    // Clover vs Letters
-                    for (let j = 0; j < letterObjects.length; j++) {
-                        const letter = letterObjects[j];
-                        const dist = clover.currPos.distanceTo(letter.currPos);
-                        const minDist = clover.radius + letter.radius;
-                        if (dist < minDist && dist > 0.1) {
-                            const overlap = (minDist - dist);
-                            const dir = clover.currPos.clone().sub(letter.currPos).normalize();
-                            clover.currPos.add(dir.clone().multiplyScalar(overlap * 0.5));
-                            letter.currPos.sub(dir.clone().multiplyScalar(overlap * 0.5));
-                            clover.velocity.add(dir.clone().multiplyScalar(overlap * 0.35));
-                            letter.velocity.sub(dir.clone().multiplyScalar(overlap * 0.35));
-                        }
-                    }
-
-                    // Clover vs Work Circles
-                    for (let k = 0; k < bubbleObjects.length; k++) {
-                        const bubble = bubbleObjects[k];
-                        const dist = clover.currPos.distanceTo(bubble.currPos);
-                        const minDist = clover.radius + bubble.radius;
-                        if (dist < minDist && dist > 0.1) {
-                            const overlap = (minDist - dist);
-                            const dir = clover.currPos.clone().sub(bubble.currPos).normalize();
-                            clover.currPos.add(dir.clone().multiplyScalar(overlap * 0.5));
-                            bubble.currPos.sub(dir.clone().multiplyScalar(overlap * 0.5));
-                            clover.velocity.add(dir.clone().multiplyScalar(overlap * 0.3));
-                            bubble.velocity.sub(dir.clone().multiplyScalar(overlap * 0.3));
-                        }
-                    }
-                }
-
-                qRenderer.render(qScene, qCamera);
             }
             animateLetters();
 
             window.addEventListener('resize', () => {
-                if (!container || !qRenderer) return;
-                const w = container.clientWidth;
-                const h = container.clientHeight;
-                qCamera.aspect = w / h;
-                qCamera.updateProjectionMatrix();
-                qRenderer.setSize(w, h);
+                if (!container || !qRenderer || !qCamera) return;
+                const w = container.clientWidth || window.innerWidth;
+                const h = container.clientHeight || (window.innerHeight * 0.85);
+                if (w > 0 && h > 0) {
+                    qCamera.aspect = w / h;
+                    qCamera.updateProjectionMatrix();
+                    qRenderer.setSize(w, h);
+                }
             });
         }
 
-        // Alias for compatibility
-        function init3DQ() {
-            init3DLetters();
-        }
-
         /* -------------------------------------------------------------
-         * 2. THREE.JS 3D GLOBE FOR ABOUT PAGE
+         * 2. THREE.JS INTERACTIVE 3D GLOBE WITH CONTINENT TEXTURE & MOUSE DRAG
          * ------------------------------------------------------------- */
         const globeLocations = [
-            { name: "LUBBOCK, TX", lat: 33.5779, lon: -101.8552, tag: "RESIDENCY", desc: "COTTON BELT CLAY FIELDWORK." },
-            { name: "XISHUANGBANNA, CHINA", lat: 21.9264, lon: 101.2536, tag: "BIO-ART", desc: "TROPICAL BOTANICAL ACOUSTICS." },
-            { name: "CHICAGOLAND, IL", lat: 41.8781, lon: -87.6298, tag: "EXHIBITION", desc: "KINETIC CANOPY INSTALLATION." },
-            { name: "WELLESLEY / BOSTON, MA", lat: 42.2968, lon: -71.2924, tag: "RESEARCH", desc: "PORCELAIN GLAZE RESEARCH." },
-            { name: "TAIPEI, TAIWAN", lat: 25.0330, lon: 121.5654, tag: "RESIDENCY", desc: "HIGH-FIRE CERAMICS RESIDENCY." },
-            { name: "KUALA LUMPUR, MALAYSIA", lat: 3.1390, lon: 101.6869, tag: "INSTALLATION", desc: "E-TEXTILE SOUND INSTALLATION." },
-            { name: "JINGDEZHEN, CHINA", lat: 29.2936, lon: 117.2079, tag: "CERAMICS", desc: "PORCELAIN WHEEL THROWING STUDY." },
-            { name: "SUKADANA, INDONESIA", lat: -1.2467, lon: 109.9531, tag: "FIELDWORK", desc: "RAINFOREST ACOUSTICS RESEARCH." },
-            { name: "SHANGHAI, CHINA", lat: 31.2304, lon: 121.4737, tag: "TRIENNIAL", desc: "NEW MEDIA ART PERFORMANCE." }
+            { name: "LUBBOCK, TX", lat: 33.5779, lon: -101.8552, tag: "RESIDENCY", desc: "COTTON BELT CLAY FIELDWORK.", img: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=300" },
+            { name: "XISHUANGBANNA, CHINA", lat: 21.9264, lon: 101.2536, tag: "BIO-ART", desc: "TROPICAL BOTANICAL ACOUSTICS.", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=300" },
+            { name: "CHICAGOLAND, IL", lat: 41.8781, lon: -87.6298, tag: "EXHIBITION", desc: "KINETIC CANOPY INSTALLATION.", img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=300" },
+            { name: "BOSTON / WELLESLEY, MA", lat: 42.2968, lon: -71.2924, tag: "RESEARCH", desc: "PORCELAIN GLAZE ACOUSTICS.", img: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=300" },
+            { name: "TAIPEI, TAIWAN", lat: 25.0330, lon: 121.5654, tag: "RESIDENCY", desc: "HIGH-FIRE CERAMICS STUDIO.", img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=300" },
+            { name: "JINGDEZHEN, CHINA", lat: 29.2936, lon: 117.2079, tag: "CERAMICS", desc: "PORCELAIN WHEEL THROWING STUDY.", img: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=300" },
+            { name: "BERLIN, GERMANY", lat: 52.5200, lon: 13.4050, tag: "STUDIO", desc: "MFA LIGHT & KINETIC WORKSHOP.", img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=300" }
         ];
 
-        let gScene, gCamera, gRenderer, gGroup, raycaster, mouse;
+        let gScene, gCamera, gRenderer, gGroup, gPinsGroup;
+        let isGlobeDragging = false, previousMousePosition = { x: 0, y: 0 }, globeVelocity = { x: 0, y: 0.003 };
+
+        function createEarthTextureCanvas() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 1024;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+
+            // Water / Oceans
+            ctx.fillStyle = '#0F172A';
+            ctx.fillRect(0, 0, 1024, 512);
+
+            // Gridlines
+            ctx.strokeStyle = '#1E293B';
+            ctx.lineWidth = 1;
+            for (let x = 0; x <= 1024; x += 64) {
+                ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, 512); ctx.stroke();
+            }
+            for (let y = 0; y <= 512; y += 64) {
+                ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(1024, y); ctx.stroke();
+            }
+
+            // Stylized Landmass Shapes (North America, South America, Eurasia, Africa, Australia)
+            ctx.fillStyle = '#27272A';
+            
+            // North America
+            ctx.beginPath();
+            ctx.ellipse(250, 150, 110, 70, 0.2, 0, Math.PI * 2); ctx.fill();
+            // South America
+            ctx.beginPath();
+            ctx.ellipse(330, 320, 60, 100, -0.3, 0, Math.PI * 2); ctx.fill();
+            // Eurasia
+            ctx.beginPath();
+            ctx.ellipse(680, 140, 180, 80, -0.1, 0, Math.PI * 2); ctx.fill();
+            // Africa
+            ctx.beginPath();
+            ctx.ellipse(560, 270, 75, 95, 0.1, 0, Math.PI * 2); ctx.fill();
+            // Australia
+            ctx.beginPath();
+            ctx.ellipse(840, 350, 65, 45, 0, 0, Math.PI * 2); ctx.fill();
+
+            // Saturated Lemon Outline Strokes around Continents
+            ctx.strokeStyle = '#D5EE10';
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.needsUpdate = true;
+            return texture;
+        }
 
         function init3DGlobe() {
             const container = document.getElementById('globe-container');
             if (!container || container.querySelector('canvas')) return;
 
-            const width = container.clientWidth;
-            const height = container.clientHeight;
+            let width = container.clientWidth || 800;
+            let height = container.clientHeight || 450;
+            if (width <= 0) width = 800;
+            if (height <= 0) height = 450;
 
             gScene = new THREE.Scene();
             gCamera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-            gCamera.position.z = 220;
+            gCamera.position.z = 210;
 
             gRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             gRenderer.setSize(width, height);
-            gRenderer.setPixelRatio(window.devicePixelRatio);
+            gRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             container.appendChild(gRenderer.domElement);
 
             gGroup = new THREE.Group();
             gScene.add(gGroup);
 
             const radius = 65;
-            const globeGeo = new THREE.SphereGeometry(radius, 48, 48);
-            const globeMat = new THREE.MeshPhongMaterial({ color: 0xFAF8F5, emissive: 0xECE9E2, shininess: 10 });
+            const earthTexture = createEarthTextureCanvas();
+            const globeGeo = new THREE.SphereGeometry(radius, 64, 64);
+            const globeMat = new THREE.MeshStandardMaterial({ 
+                map: earthTexture,
+                roughness: 0.6,
+                metalness: 0.1
+            });
             gGroup.add(new THREE.Mesh(globeGeo, globeMat));
 
-            const wireGeo = new THREE.SphereGeometry(radius + 0.5, 24, 24);
-            const wireMat = new THREE.MeshBasicMaterial({ color: 0xD5EE10, wireframe: true, transparent: true, opacity: 0.25 });
+            // Outer Atmospheric Wireframe Glow
+            const wireGeo = new THREE.SphereGeometry(radius + 1.2, 32, 32);
+            const wireMat = new THREE.MeshBasicMaterial({ color: 0xD5EE10, wireframe: true, transparent: true, opacity: 0.18 });
             gGroup.add(new THREE.Mesh(wireGeo, wireMat));
 
-            gScene.add(new THREE.AmbientLight(0xffffff, 0.9));
-            const dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
-            dirLight.position.set(100, 100, 100);
+            gScene.add(new THREE.AmbientLight(0xffffff, 1.4));
+            const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            dirLight.position.set(120, 100, 150);
             gScene.add(dirLight);
 
             function latLonToVector3(lat, lon, r) {
@@ -1002,40 +1082,96 @@
                 );
             }
 
-            const pinsGroup = new THREE.Group();
+            gPinsGroup = new THREE.Group();
             globeLocations.forEach(loc => {
-                const pos = latLonToVector3(loc.lat, loc.lon, radius + 1.5);
+                const pos = latLonToVector3(loc.lat, loc.lon, radius + 1.8);
+                
+                // Pin Base Marker
                 const pinMesh = new THREE.Mesh(
-                    new THREE.SphereGeometry(2.5, 16, 16),
-                    new THREE.MeshBasicMaterial({ color: 0x1C1C1A })
+                    new THREE.SphereGeometry(3.2, 16, 16),
+                    new THREE.MeshBasicMaterial({ color: 0xD5EE10 })
                 );
                 pinMesh.position.copy(pos);
                 pinMesh.userData = loc;
-                pinsGroup.add(pinMesh);
-            });
-            gGroup.add(pinsGroup);
 
-            raycaster = new THREE.Raycaster();
-            mouse = new THREE.Vector2();
+                // Inner Pulse Core
+                const coreMesh = new THREE.Mesh(
+                    new THREE.SphereGeometry(1.6, 12, 12),
+                    new THREE.MeshBasicMaterial({ color: 0x1C1C1A })
+                );
+                coreMesh.position.copy(pos);
+                
+                gPinsGroup.add(pinMesh);
+                gPinsGroup.add(coreMesh);
+            });
+            gGroup.add(gPinsGroup);
+
+            // Drag to Rotate Interaction
+            const onPointerDown = (e) => {
+                isGlobeDragging = true;
+                previousMousePosition = { x: e.clientX || (e.touches && e.touches[0].clientX), y: e.clientY || (e.touches && e.touches[0].clientY) };
+            };
+
+            const onPointerMove = (e) => {
+                if (!isGlobeDragging) return;
+                const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+                const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+
+                const deltaX = clientX - previousMousePosition.x;
+                const deltaY = clientY - previousMousePosition.y;
+
+                globeVelocity.y = deltaX * 0.005;
+                globeVelocity.x = deltaY * 0.005;
+
+                gGroup.rotation.y += globeVelocity.y;
+                gGroup.rotation.x += globeVelocity.x;
+
+                previousMousePosition = { x: clientX, y: clientY };
+            };
+
+            const onPointerUp = () => { isGlobeDragging = false; };
+
+            container.addEventListener('mousedown', onPointerDown);
+            container.addEventListener('mousemove', onPointerMove);
+            window.addEventListener('mouseup', onPointerUp);
+
+            container.addEventListener('touchstart', onPointerDown, { passive: true });
+            container.addEventListener('touchmove', onPointerMove, { passive: true });
+            window.addEventListener('touchend', onPointerUp);
+
+            // Click Pin Detection
+            const raycaster = new THREE.Raycaster();
+            const mouse = new THREE.Vector2();
 
             container.addEventListener('click', (e) => {
                 const rect = gRenderer.domElement.getBoundingClientRect();
+                if (rect.width <= 0 || rect.height <= 0) return;
                 mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
                 mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
                 raycaster.setFromCamera(mouse, gCamera);
-                const intersects = raycaster.intersectObjects(pinsGroup.children);
+                
+                const intersects = raycaster.intersectObjects(gPinsGroup.children);
                 if (intersects.length > 0 && intersects[0].object.userData.name) {
                     const data = intersects[0].object.userData;
                     document.getElementById('globe-title').innerText = data.name;
                     document.getElementById('globe-tag').innerText = data.tag;
                     document.getElementById('globe-desc').innerText = data.desc;
+                    if (data.img) document.getElementById('globe-img').src = data.img;
                 }
             });
 
             function animateGlobe() {
                 requestAnimationFrame(animateGlobe);
-                gGroup.rotation.y += 0.003;
-                gRenderer.render(gScene, gCamera);
+                if (!isGlobeDragging) {
+                    gGroup.rotation.y += globeVelocity.y;
+                    gGroup.rotation.x += globeVelocity.x;
+                    globeVelocity.y *= 0.95;
+                    globeVelocity.x *= 0.95;
+                    if (Math.abs(globeVelocity.y) < 0.002) globeVelocity.y = 0.0025;
+                }
+                if (gRenderer && gScene && gCamera) {
+                    gRenderer.render(gScene, gCamera);
+                }
             }
             animateGlobe();
         }
@@ -1051,6 +1187,13 @@
             { id: 5, title: "SHIGARAKI ASH VESSEL", categoryBadge: "CERAMICS", image: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=1000", story: "ANAGAMA KILN WOOD-FIRED STONEWARE FORM." },
             { id: 6, title: "RESONANT CERAMIC SPEAKER", categoryBadge: "CERAMICS", image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=1000", story: "ACOUSTIC CLAY CHAMBER WITH CONTACT SENSORS." }
         ];
+
+        function scrollTimeline(direction) {
+            const container = document.getElementById('timeline-container');
+            if (container) {
+                container.scrollBy({ left: direction * 340, behavior: 'smooth' });
+            }
+        }
 
         function toggleWorksMenu() {
             const menu = document.getElementById('works-menu');
@@ -1076,7 +1219,6 @@
 
             document.querySelectorAll('.page-view').forEach(el => el.classList.add('hidden'));
             
-            // Auto expand works dropdown if target is a work sub-item
             const worksMenu = document.getElementById('works-menu');
             const worksArrow = document.getElementById('works-arrow');
             if (worksPages.includes(target) && worksMenu) {
@@ -1085,7 +1227,6 @@
                 if (worksArrow) worksArrow.style.transform = 'rotate(180deg)';
             }
 
-            // Highlight active nav link
             document.querySelectorAll('.nav-link').forEach(link => {
                 if (link.getAttribute('href') === `#${target}`) {
                     link.classList.add('text-[#D5EE10]');
@@ -1145,40 +1286,37 @@
                 el.classList.add('animate-bounce');
                 setTimeout(() => el.classList.remove('animate-bounce'), 600);
             }
-            // Trigger audio chime note on interaction
             try {
-                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const ctx = getSharedAudioContext();
+                if (!ctx || ctx.state !== 'running') return;
                 const osc = ctx.createOscillator();
                 const gain = ctx.createGain();
                 osc.type = 'sine';
                 const freqs = [523.25, 659.25, 783.99, 1046.50, 1318.51];
                 osc.frequency.value = freqs[Math.floor(Math.random() * freqs.length)];
-                gain.gain.setValueAtTime(0.15, ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+                gain.gain.setValueAtTime(0.08, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.25);
                 osc.connect(gain);
                 gain.connect(ctx.destination);
                 osc.start();
-                osc.stop(ctx.currentTime + 0.3);
+                osc.stop(ctx.currentTime + 0.25);
             } catch(e) {}
         }
 
         /* -------------------------------------------------------------
          * 4. AUDIO SYNTH & FORMS
          * ------------------------------------------------------------- */
-        let synthAudioCtx = null, isSynthActive = false;
         function toggleSynth() {
             try {
-                if (!synthAudioCtx) synthAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const ctx = getSharedAudioContext();
                 const icon = document.getElementById('synth-icon');
                 const wave = document.getElementById('sound-wave');
-                if (synthAudioCtx.state === 'suspended') {
-                    synthAudioCtx.resume();
-                    isSynthActive = true;
+                if (ctx && ctx.state === 'suspended') {
+                    ctx.resume();
                     if (icon) icon.className = 'fa-solid fa-volume-high text-zinc-900';
                     if (wave) { wave.classList.remove('hidden'); wave.classList.add('flex'); }
-                } else {
-                    synthAudioCtx.suspend();
-                    isSynthActive = false;
+                } else if (ctx) {
+                    ctx.suspend();
                     if (icon) icon.className = 'fa-solid fa-volume-xmark text-studio-muted';
                     if (wave) { wave.classList.add('hidden'); wave.classList.remove('flex'); }
                 }
@@ -1188,9 +1326,12 @@
         function handleFormSubmit(e) {
             e.preventDefault();
             const toast = document.getElementById('toast');
-            toast.classList.remove('hidden');
-            setTimeout(() => toast.classList.add('hidden'), 3500);
-            document.getElementById('contact-form').reset();
+            if (toast) {
+                toast.classList.remove('hidden');
+                setTimeout(() => toast.classList.add('hidden'), 3500);
+            }
+            const form = document.getElementById('contact-form');
+            if (form) form.reset();
         }
 
         document.addEventListener('DOMContentLoaded', () => {
