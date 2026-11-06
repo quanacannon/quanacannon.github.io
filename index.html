@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QUANA CANNON — Multimedia Artist & Environmental Educator</title>
+    <title>ALEX RIVERS — Multimedia Artist Portfolio</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Plus Jakarta Sans (Bold Sans Display), Space Grotesk (Modern Geometric Sans), JetBrains Mono -->
+    <!-- Google Fonts: Space Grotesk (Display Headings), Plus Jakarta Sans (Body & UI), JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -24,17 +24,22 @@
                     },
                     colors: {
                         studio: {
-                            bg: '#FAFAFA',
+                            bg: '#FAF9F6',
                             card: '#FFFFFF',
-                            border: '#E4E4E7',
+                            border: '#E8E7E3',
                             borderDark: '#18181B',
                             text: '#18181B',
                             muted: '#71717A',
                             subtle: '#A1A1AA',
                             accent: '#CDDB3A',
                             moleskine: '#CDDB3A',
-                            moleskineSoft: '#EBF1A4'
+                            moleskineSoft: '#F4F8CD',
+                            pinkAccent: '#F472B6',
+                            peachAccent: '#FCA5A5'
                         }
+                    },
+                    borderRadius: {
+                        '4xl': '2rem'
                     }
                 }
             }
@@ -42,32 +47,32 @@
     </script>
     
     <style>
-        /* Minimalist Scrollbar with Moleskine Lemon Green Accent */
+        /* Soft Custom Scrollbar */
         ::-webkit-scrollbar {
-            width: 5px;
+            width: 6px;
+            height: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #FAFAFA;
+            background: #FAF9F6;
         }
         ::-webkit-scrollbar-thumb {
             background: #CDDB3A;
+            border-radius: 9999px;
         }
         ::-webkit-scrollbar-thumb:hover {
             background: #18181B;
         }
         
-        /* Minimal clean grid background */
+        /* Subtle soft background dot grid */
         .bg-grid-pattern {
-            background-size: 32px 32px;
-            background-image: 
-                linear-gradient(to right, rgba(0, 0, 0, 0.025) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+            background-size: 28px 28px;
+            background-image: radial-gradient(circle, rgba(24, 24, 27, 0.05) 1.2px, transparent 1.2px);
         }
 
         /* Page View Transition */
         .page-view {
             opacity: 1;
-            transition: opacity 0.2s ease-in-out;
+            transition: opacity 0.25s ease-in-out;
         }
         .page-view.hidden {
             display: none !important;
@@ -76,8 +81,9 @@
 
         /* Audio Equalizer Bar Animation */
         .sound-bar {
-            width: 2px;
+            width: 3px;
             background: #18181B;
+            border-radius: 9999px;
             animation: soundWave 0.8s ease-in-out infinite alternate;
         }
         .sound-bar:nth-child(1) { height: 35%; animation-delay: 0.1s; }
@@ -90,110 +96,110 @@
             100% { transform: scaleY(1); }
         }
 
-        /* Left Sidebar Active Link Indicator (Moleskine Lemon Accent) */
+        /* Left Sidebar Active Link Pill Indicator */
         .nav-link {
             position: relative;
-            transition: all 0.2s ease;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .nav-link.active-nav {
             color: #18181B !important;
-            font-weight: 600;
+            font-weight: 700;
         }
         .nav-link.active-nav::before {
             content: "";
             position: absolute;
-            left: -1.25rem;
+            left: -0.75rem;
             top: 50%;
             transform: translateY(-50%);
-            width: 4px;
-            height: 80%;
+            width: 6px;
+            height: 6px;
             background-color: #CDDB3A;
             border-radius: 9999px;
+            box-shadow: 0 0 8px rgba(205, 219, 58, 0.8);
         }
 
         /* Playful Floating Graphic Shape Keyframes */
         @keyframes floatSlow1 {
             0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-            50% { transform: translateY(-16px) rotate(12deg) scale(1.06); }
+            50% { transform: translateY(-14px) rotate(10deg) scale(1.05); }
         }
         @keyframes floatSlow2 {
             0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-            50% { transform: translateY(18px) rotate(-14deg) scale(0.94); }
+            50% { transform: translateY(16px) rotate(-12deg) scale(0.95); }
         }
         @keyframes spinSlow {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-        @keyframes pulsePop {
+        @keyframes pulseSoft {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15) rotate(6deg); }
+            50% { transform: scale(1.12) rotate(4deg); }
         }
 
         .shape-float-1 { animation: floatSlow1 6.5s ease-in-out infinite; }
         .shape-float-2 { animation: floatSlow2 8s ease-in-out infinite; }
         .shape-float-3 { animation: floatSlow1 9.5s ease-in-out infinite reverse; }
-        .shape-spin { animation: spinSlow 22s linear infinite; }
-        .shape-pulse { animation: pulsePop 4s ease-in-out infinite; }
+        .shape-spin { animation: spinSlow 24s linear infinite; }
+        .shape-pulse { animation: pulseSoft 4s ease-in-out infinite; }
+
+        /* Hide horizontal scrollbar for clean view */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
 
         @media (max-width: 1023px) {
             .nav-link.active-nav::before {
                 display: none;
             }
-            .dot-sep::after {
-                content: "·";
-                margin-left: 0.75rem;
-                margin-right: 0.75rem;
-                color: #A1A1AA;
-            }
-            .dot-sep:last-child::after {
-                content: "";
-                margin: 0;
-            }
         }
     </style>
 </head>
-<body class="bg-studio-bg text-studio-text font-sans antialiased min-h-screen flex flex-col lg:flex-row selection:bg-[#CDDB3A] selection:text-zinc-900 relative">
+<body class="bg-studio-bg text-studio-text font-sans antialiased min-h-screen flex flex-col lg:flex-row selection:bg-[#CDDB3A] selection:text-zinc-900 relative overflow-x-hidden">
 
-    <!-- FLOATING PLAYFUL GRAPHIC SHAPES (BACKGROUND & ACCENTS LAYER) -->
+    <!-- FLOATING PLAYFUL GRAPHIC SHAPES LAYER -->
     <div id="playful-shapes" class="fixed inset-0 pointer-events-none z-10 overflow-hidden select-none">
         
-        <!-- Top Right: Pink 4-Point Sparkle Star -->
-        <div class="absolute top-8 right-12 lg:right-24 shape-float-1 pointer-events-auto cursor-pointer group" onclick="popShape(this)">
+        <!-- Top Right: Soft Pink Sparkle Star -->
+        <div class="absolute top-8 right-10 lg:right-20 shape-float-1 pointer-events-auto cursor-pointer group" onclick="popShape(this)">
             <svg viewBox="0 0 24 24" class="w-10 h-10 lg:w-14 lg:h-14 fill-[#F472B6] drop-shadow-sm transition-transform duration-300 group-hover:scale-125 group-hover:rotate-45">
                 <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
             </svg>
         </div>
 
-        <!-- Upper Mid-Left: Moleskine Lemon 4-Leaf Clover -->
-        <div class="absolute top-28 left-72 lg:left-[22rem] shape-float-2 pointer-events-auto cursor-pointer group" onclick="popShape(this)">
-            <svg viewBox="0 0 100 100" class="w-12 h-12 lg:w-16 lg:h-16 fill-[#CDDB3A] drop-shadow-sm transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-12">
+        <!-- Upper Left: Moleskine Lemon Clover -->
+        <div class="absolute top-24 left-72 lg:left-[22rem] shape-float-2 pointer-events-auto cursor-pointer group" onclick="popShape(this)">
+            <svg viewBox="0 0 100 100" class="w-11 h-11 lg:w-14 lg:h-14 fill-[#CDDB3A] drop-shadow-sm transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-12">
                 <path d="M50 50 C35 20, 10 35, 35 50 C10 65, 35 80, 50 50 C65 80, 90 65, 65 50 C90 35, 65 20, 50 50 Z" />
-                <circle cx="50" cy="50" r="7" fill="#18181B"/>
+                <circle cx="50" cy="50" r="8" fill="#18181B"/>
             </svg>
         </div>
 
-        <!-- Middle Right: Soft Red Heart -->
-        <div class="absolute top-1/3 right-8 lg:right-16 shape-float-3 pointer-events-auto cursor-pointer group" onclick="popShape(this)">
-            <svg viewBox="0 0 24 24" class="w-9 h-9 lg:w-12 lg:h-12 fill-[#FCA5A5] drop-shadow-sm transition-transform duration-300 group-hover:scale-125">
+        <!-- Mid Right: Soft Peach Heart -->
+        <div class="absolute top-1/3 right-6 lg:right-14 shape-float-3 pointer-events-auto cursor-pointer group" onclick="popShape(this)">
+            <svg viewBox="0 0 24 24" class="w-9 h-9 lg:w-11 lg:h-11 fill-[#FCA5A5] drop-shadow-sm transition-transform duration-300 group-hover:scale-125">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
             </svg>
         </div>
 
-        <!-- Center Bottom Left: Soft Lavender Retro 5-Point Star -->
+        <!-- Lower Left: Soft Lavender Retro Star -->
         <div class="absolute bottom-1/4 left-80 lg:left-[26rem] shape-float-1 pointer-events-auto cursor-pointer group" onclick="popShape(this)">
-            <svg viewBox="0 0 24 24" class="w-10 h-10 lg:w-14 lg:h-14 fill-[#C4B5FD] drop-shadow-sm transition-transform duration-300 group-hover:scale-125 group-hover:rotate-180">
+            <svg viewBox="0 0 24 24" class="w-10 h-10 lg:w-13 lg:h-13 fill-[#C4B5FD] drop-shadow-sm transition-transform duration-300 group-hover:scale-125 group-hover:rotate-180">
                 <path d="M12 1.7l3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 16.97l-6.18 3.25L7 13.83 2 8.96l6.91-1L12 1.7z"/>
             </svg>
         </div>
 
-        <!-- Bottom Right: Sky Blue Ring / Donut -->
-        <div class="absolute bottom-16 right-20 shape-float-2 pointer-events-auto cursor-pointer group" onclick="popShape(this)">
-            <svg viewBox="0 0 100 100" class="w-12 h-12 lg:w-16 lg:h-16 transition-transform duration-300 group-hover:scale-125">
+        <!-- Lower Right: Sky Blue Ring -->
+        <div class="absolute bottom-16 right-16 shape-float-2 pointer-events-auto cursor-pointer group" onclick="popShape(this)">
+            <svg viewBox="0 0 100 100" class="w-11 h-11 lg:w-14 lg:h-14 transition-transform duration-300 group-hover:scale-125">
                 <circle cx="50" cy="50" r="38" fill="none" stroke="#7DD3FC" stroke-width="14"/>
             </svg>
         </div>
 
-        <!-- Top Left Corner Accent: Warm Yellow Sparkle -->
+        <!-- Top Header Small Yellow Sparkle -->
         <div class="absolute top-6 left-8 lg:left-72 shape-pulse pointer-events-auto cursor-pointer group" onclick="popShape(this)">
             <svg viewBox="0 0 24 24" class="w-7 h-7 fill-[#FDE047] transition-transform duration-300 group-hover:scale-150">
                 <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
@@ -203,40 +209,45 @@
     </div>
 
     <!-- LEFT-HAND SIDEBAR NAVIGATION -->
-    <aside class="w-full lg:w-64 xl:w-72 lg:fixed lg:top-0 lg:left-0 lg:h-screen lg:flex-shrink-0 z-50 bg-studio-bg/95 backdrop-blur-md border-b lg:border-b-0 lg:border-r border-studio-border px-6 py-6 lg:py-8 flex flex-col justify-between">
-        <div class="space-y-6 lg:space-y-10">
+    <aside class="w-full lg:w-64 xl:w-72 lg:fixed lg:top-0 lg:left-0 lg:h-screen lg:flex-shrink-0 z-50 bg-studio-bg/95 backdrop-blur-md border-b lg:border-b-0 lg:border-r border-studio-border px-6 py-6 lg:py-8 flex flex-col justify-between shadow-xs">
+        <div class="space-y-6 lg:space-y-8">
             
-            <!-- Logo / Brand Title -->
+            <!-- Logo / Artist Brand Header -->
             <a href="#home" class="flex flex-col gap-1.5 group">
                 <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 bg-[#CDDB3A] border border-zinc-900 inline-block"></span>
-                    <span class="font-display font-bold text-2xl tracking-tight text-zinc-900 uppercase">
-                        Quana Cannon
+                    <span class="w-3 h-3 bg-[#CDDB3A] border border-zinc-900 rounded-full shadow-xs"></span>
+                    <span class="font-display font-bold text-2xl tracking-tight text-zinc-900">
+                        Alex Rivers
                     </span>
                 </div>
-                <span class="text-[10px] font-sans font-semibold tracking-[0.2em] text-zinc-700 border border-zinc-900 bg-[#CDDB3A]/25 px-2 py-0.5 w-fit uppercase">
+                <span class="text-[10px] font-sans font-bold tracking-[0.2em] text-zinc-800 bg-[#CDDB3A]/30 border border-[#CDDB3A] px-2.5 py-0.5 rounded-full w-fit uppercase">
                     MULTIMEDIA STUDIO
                 </span>
             </a>
 
-            <!-- Sidebar Category Router Links -->
-            <nav class="flex flex-wrap lg:flex-col items-start gap-3 lg:gap-4 text-xs font-sans font-semibold tracking-[0.18em] uppercase text-studio-muted">
-                <a href="#design" class="nav-link dot-sep lg:after:hidden hover:text-zinc-900 py-1 transition-colors">01 / Design</a>
-                <a href="#art" class="nav-link dot-sep lg:after:hidden hover:text-zinc-900 py-1 transition-colors">02 / Art</a>
-                <a href="#photo" class="nav-link dot-sep lg:after:hidden hover:text-zinc-900 py-1 transition-colors">03 / Photo</a>
-                <a href="#music" class="nav-link dot-sep lg:after:hidden hover:text-zinc-900 py-1 transition-colors">04 / Music</a>
-                <a href="#about" class="nav-link dot-sep lg:after:hidden hover:text-zinc-900 py-1 transition-colors">05 / About</a>
-                <a href="#contact" class="nav-link dot-sep lg:after:hidden hover:text-zinc-900 py-1 transition-colors">06 / Contact</a>
+            <!-- Sidebar Nav Router Links -->
+            <nav class="flex flex-wrap lg:flex-col items-start gap-2 lg:gap-3 text-xs font-sans font-semibold tracking-wider text-studio-muted">
+                <a href="#home" class="nav-link px-3 py-1.5 rounded-full hover:bg-white hover:text-zinc-900 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-house text-xs text-zinc-700"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#art" class="nav-link px-3 py-1.5 rounded-full hover:bg-white hover:text-zinc-900 transition-all">01 / Art</a>
+                <a href="#ceramics" class="nav-link px-3 py-1.5 rounded-full hover:bg-white hover:text-zinc-900 transition-all">02 / Ceramics</a>
+                <a href="#photo-video" class="nav-link px-3 py-1.5 rounded-full hover:bg-white hover:text-zinc-900 transition-all">03 / Photo & Video</a>
+                <a href="#dance" class="nav-link px-3 py-1.5 rounded-full hover:bg-white hover:text-zinc-900 transition-all">04 / Dance</a>
+                <a href="#journals" class="nav-link px-3 py-1.5 rounded-full hover:bg-white hover:text-zinc-900 transition-all">05 / Journals</a>
+                <a href="#about" class="nav-link px-3 py-1.5 rounded-full hover:bg-white hover:text-zinc-900 transition-all">06 / About</a>
+                <a href="#contact" class="nav-link px-3 py-1.5 rounded-full hover:bg-white hover:text-zinc-900 transition-all">07 / Contact</a>
             </nav>
         </div>
 
-        <!-- Sidebar Footer & Audio Control -->
+        <!-- Sidebar Sound Control & Status -->
         <div class="pt-6 border-t border-studio-border flex flex-col gap-4">
-            <!-- Audio Synth Trigger Button -->
-            <button id="synth-btn" onclick="toggleSynth()" class="w-full flex items-center justify-between border border-studio-border bg-white hover:bg-[#EBF1A4]/40 px-3 py-2 text-[11px] font-sans tracking-widest uppercase hover:border-zinc-900 transition-colors">
+            <!-- Audio Synth Toggle -->
+            <button id="synth-btn" onclick="toggleSynth()" class="w-full flex items-center justify-between border border-studio-border bg-white hover:bg-[#F4F8CD] rounded-2xl px-4 py-2.5 text-[11px] font-sans font-bold tracking-widest uppercase hover:border-zinc-900 transition-all shadow-2xs">
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-volume-xmark text-studio-muted" id="synth-icon"></i>
-                    <span id="synth-text">Soundscape</span>
+                    <span id="synth-text" class="text-zinc-900">Soundscape</span>
                 </div>
                 <div id="sound-wave" class="hidden items-center gap-0.5 h-3">
                     <div class="sound-bar"></div>
@@ -246,10 +257,10 @@
                 </div>
             </button>
 
-            <!-- Status Indicator -->
+            <!-- Studio Open Indicator -->
             <div class="hidden lg:flex items-center justify-between text-[10px] font-sans tracking-widest text-studio-muted uppercase">
-                <span class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-[#CDDB3A]"></span>
+                <span class="flex items-center gap-1.5 font-bold">
+                    <span class="w-2 h-2 rounded-full bg-[#CDDB3A] animate-pulse"></span>
                     STUDIO OPEN
                 </span>
                 <span id="sidebar-clock" class="text-zinc-900 font-mono font-medium">00:00 UTC</span>
@@ -257,127 +268,182 @@
         </div>
     </aside>
 
-    <!-- MAIN PAGE CONTAINER -->
+    <!-- MAIN CONTENT CONTAINER -->
     <div class="flex-1 lg:ml-64 xl:ml-72 flex flex-col min-h-screen">
         <main class="flex-grow relative bg-grid-pattern">
 
         <!-- =========================================================
-             PAGE 1: HOME & DESIGN MENU (#home / #design)
+             PAGE 1: HOME & CONDENSED HORIZONTAL TIMELINE (#home)
              ========================================================= -->
-        <section id="page-home" class="page-view max-w-7xl mx-auto px-6 py-12 md:py-20">
+        <section id="page-home" class="page-view max-w-7xl mx-auto px-6 py-10 md:py-16 space-y-16">
             
-            <!-- Hero Statement -->
-            <div class="max-w-4xl mb-16 space-y-4 border-b border-studio-border pb-12 border-l-4 border-l-[#CDDB3A] pl-6 relative">
-                
-                <!-- Playful Floating Header Badge Star -->
-                <div class="absolute -top-3 -right-2 hidden sm:flex items-center gap-1 bg-[#F472B6] text-white text-[10px] font-sans font-bold px-2.5 py-1 rounded-full shadow-sm animate-bounce">
-                    <svg viewBox="0 0 24 24" class="w-3.5 h-3.5 fill-current"><path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/></svg>
-                    <span>PLAYFUL MULTIMEDIA</span>
+            <!-- Hero Statement Card -->
+            <div class="bg-white border border-studio-border rounded-3xl p-8 sm:p-12 shadow-sm relative overflow-hidden space-y-6">
+                <!-- Playful Floating Header Badge -->
+                <div class="inline-flex items-center gap-2 bg-[#F4F8CD] border border-[#CDDB3A] px-3.5 py-1 rounded-full text-xs font-sans font-bold text-zinc-900 uppercase">
+                    <span class="w-2 h-2 rounded-full bg-[#CDDB3A]"></span>
+                    <span>ALEX RIVERS — MULTIMEDIA ARTIST STUDIO</span>
                 </div>
 
-                <div class="font-sans text-xs text-zinc-900 uppercase tracking-[0.2em] flex items-center gap-2 font-bold">
-                    <span class="px-2.5 py-0.5 bg-[#CDDB3A] text-zinc-900 border border-zinc-900 rounded-full">ARCHIVE 2026</span>
-                    <span>QUANA CANNON — MULTIMEDIA ART & DESIGN</span>
-                </div>
-                <h1 class="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-zinc-900 leading-[1.15] tracking-tight">
-                    Multimedia practice exploring material interactions, portraiture, and exhibition design.
+                <h1 class="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-zinc-900 leading-[1.12] tracking-tight max-w-4xl">
+                    Interdisciplinary art studio exploring ceramics, choreography, lens media, and sound installations.
                 </h1>
-                <p class="text-sm md:text-base text-zinc-700 font-sans font-medium max-w-2xl leading-relaxed tracking-wide">
-                    Sculptural objects, conductive soft-circuits, digital installations, and acoustic environments created between Berlin & Tokyo.
+
+                <p class="text-zinc-600 font-sans font-medium text-sm md:text-base max-w-2xl leading-relaxed">
+                    Sculptural ceramics, performance choreography, high-fire glaze chemistry, and film studies based across Berlin, London, and Tokyo.
                 </p>
             </div>
 
-            <!-- Category Index Header -->
-            <div class="flex items-center justify-between mb-8">
-                <div class="font-sans text-xs font-bold text-zinc-900 uppercase tracking-[0.2em] flex items-center gap-2">
-                    <span class="w-2 h-2 bg-[#CDDB3A] border border-zinc-900 inline-block"></span>
-                    Selected Projects (06)
-                </div>
-                <div class="font-sans text-xs tracking-[0.15em] font-semibold text-studio-muted uppercase">
-                    2024 — 2026 Archive
-                </div>
-            </div>
-
-            <!-- Numbered Project Index Rows -->
-            <div class="space-y-8" id="design-project-list">
-                <!-- Project Item 01 -->
-                <div class="bg-white border border-studio-border p-6 md:p-8 hover:border-zinc-900 hover:shadow-md transition-all duration-200 group cursor-pointer" onclick="openModal(1)">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                        <div class="lg:col-span-1 font-mono font-bold text-3xl text-zinc-400 group-hover:text-zinc-900 transition-colors">
-                            01
-                        </div>
-                        <div class="lg:col-span-5 space-y-2">
-                            <div class="flex items-center gap-2 font-sans text-[11px] tracking-[0.15em] text-studio-muted uppercase">
-                                <span class="bg-[#CDDB3A] border border-zinc-900 px-2 py-0.5 text-zinc-900 font-bold">E-Textiles</span>
-                                <span class="font-semibold text-zinc-900">2026</span>
-                            </div>
-                            <h3 class="font-display font-bold text-2xl sm:text-3xl text-zinc-900 group-hover:translate-x-1 transition-transform">
-                                Soft Circuit Hand Garments
-                            </h3>
-                            <p class="text-xs text-zinc-600 font-sans font-medium leading-relaxed">
-                                Dual-layer Velostat pressure sensors and conductive thread sewn into wearable audio-activation gloves.
-                            </p>
-                        </div>
-                        <div class="lg:col-span-6 h-56 bg-zinc-900 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90" alt="Garments">
-                            <div class="absolute bottom-3 right-3 bg-white border border-zinc-900 px-3 py-1 text-[10px] font-sans font-bold tracking-widest uppercase text-zinc-900">
-                                View Portfolio →
-                            </div>
-                        </div>
+            <!-- CONDENSED HORIZONTAL TIMELINE SECTION -->
+            <div class="bg-white border border-studio-border rounded-3xl p-8 shadow-sm space-y-8">
+                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-studio-border pb-6">
+                    <div>
+                        <span class="text-xs font-sans font-bold tracking-[0.2em] text-studio-muted uppercase block">MILESTONES & EXPERIENCE</span>
+                        <h2 class="font-display font-bold text-2xl sm:text-3xl text-zinc-900">Personal Timeline & Work Image Bubbles</h2>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs font-sans font-bold text-zinc-700 bg-studio-bg border border-studio-border px-3 py-1.5 rounded-full">
+                        <i class="fa-solid fa-arrows-left-right text-xs text-zinc-400"></i>
+                        <span>Scroll horizontally to view milestones</span>
                     </div>
                 </div>
 
-                <!-- Project Item 02 -->
-                <div class="bg-white border border-studio-border p-6 md:p-8 hover:border-zinc-900 hover:shadow-md transition-all duration-200 group cursor-pointer" onclick="openModal(2)">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                        <div class="lg:col-span-1 font-mono font-bold text-3xl text-zinc-400 group-hover:text-zinc-900 transition-colors">
-                            02
-                        </div>
-                        <div class="lg:col-span-5 space-y-2">
-                            <div class="flex items-center gap-2 font-sans text-[11px] tracking-[0.15em] text-studio-muted uppercase">
-                                <span class="bg-[#CDDB3A] border border-zinc-900 px-2 py-0.5 text-zinc-900 font-bold">Realtime Shaders</span>
-                                <span class="font-semibold text-zinc-900">2026</span>
-                            </div>
-                            <h3 class="font-display font-bold text-2xl sm:text-3xl text-zinc-900 group-hover:translate-x-1 transition-transform">
-                                Neural Aura Waves
-                            </h3>
-                            <p class="text-xs text-zinc-600 font-sans font-medium leading-relaxed">
-                                Biofeedback-driven GLSL fragment shaders projecting live spectral dispersion inside an architectural dome.
-                            </p>
-                        </div>
-                        <div class="lg:col-span-6 h-56 bg-zinc-900 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90" alt="Aura">
-                            <div class="absolute bottom-3 right-3 bg-white border border-zinc-900 px-3 py-1 text-[10px] font-sans font-bold tracking-widest uppercase text-zinc-900">
-                                View Portfolio →
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Horizontal Scroll Track -->
+                <div class="relative overflow-x-auto no-scrollbar pb-6 pt-16 px-4">
+                    <!-- Central Axis Line -->
+                    <div class="absolute top-1/2 left-0 right-0 h-1 bg-[#CDDB3A]/40 -translate-y-1/2 rounded-full min-w-[1000px]"></div>
 
-                <!-- Project Item 03 -->
-                <div class="bg-white border border-studio-border p-6 md:p-8 hover:border-zinc-900 hover:shadow-md transition-all duration-200 group cursor-pointer" onclick="openModal(3)">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                        <div class="lg:col-span-1 font-mono font-bold text-3xl text-zinc-400 group-hover:text-zinc-900 transition-colors">
-                            03
-                        </div>
-                        <div class="lg:col-span-5 space-y-2">
-                            <div class="flex items-center gap-2 font-sans text-[11px] tracking-[0.15em] text-studio-muted uppercase">
-                                <span class="bg-[#CDDB3A] border border-zinc-900 px-2 py-0.5 text-zinc-900 font-bold">3D Realtime</span>
-                                <span class="font-semibold text-zinc-900">2025</span>
+                    <!-- Timeline Item Cards Grid -->
+                    <div class="flex gap-8 min-w-[1100px] relative z-10">
+
+                        <!-- Milestone 1: 2026 SCHOLARSHIP -->
+                        <div class="w-80 flex-shrink-0 bg-studio-bg border border-studio-border rounded-2xl p-5 space-y-4 hover:border-zinc-900 transition-all shadow-xs relative">
+                            <!-- Node Circle on Central Line -->
+                            <div class="absolute -top-10 left-6 w-6 h-6 rounded-full bg-[#CDDB3A] border-2 border-zinc-900 flex items-center justify-center shadow-xs">
+                                <span class="w-2 h-2 rounded-full bg-zinc-900"></span>
                             </div>
-                            <h3 class="font-display font-bold text-2xl sm:text-3xl text-zinc-900 group-hover:translate-x-1 transition-transform">
-                                Chronosculpt 4D
-                            </h3>
-                            <p class="text-xs text-zinc-600 font-sans font-medium leading-relaxed">
-                                Zero-gravity raytraced geometry folding continuously along complex four-dimensional axes.
-                            </p>
-                        </div>
-                        <div class="lg:col-span-6 h-56 bg-zinc-900 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90" alt="Chronosculpt">
-                            <div class="absolute bottom-3 right-3 bg-white border border-zinc-900 px-3 py-1 text-[10px] font-sans font-bold tracking-widest uppercase text-zinc-900">
-                                View Portfolio →
+
+                            <div class="flex items-center justify-between">
+                                <span class="bg-[#CDDB3A] text-zinc-900 font-sans text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-zinc-900 uppercase">SCHOLARSHIP</span>
+                                <span class="font-mono text-xs font-bold text-zinc-900">2026</span>
+                            </div>
+
+                            <div>
+                                <h3 class="font-display font-bold text-lg text-zinc-900">NEA Emerging Artist Grant</h3>
+                                <p class="text-xs text-zinc-600 font-sans mt-1 leading-relaxed">
+                                    $25,000 grant supporting research into tactile acoustic ceramic vessels and body movement synthesis.
+                                </p>
+                            </div>
+
+                            <!-- Floating Circular Image Bubbles -->
+                            <div class="pt-2 border-t border-studio-border">
+                                <span class="text-[10px] font-sans font-bold uppercase tracking-wider text-studio-muted block mb-2">Work Bubbles (Click)</span>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 rounded-full border-2 border-[#CDDB3A] overflow-hidden cursor-pointer hover:scale-125 transition-transform shadow-xs shape-float-1" onclick="openBubbleModal('https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=1000', 'Grant Fellowship Ceramic Prototype')">
+                                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=300" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="w-12 h-12 rounded-full border-2 border-zinc-900 overflow-hidden cursor-pointer hover:scale-125 transition-transform shadow-xs shape-float-2" onclick="openBubbleModal('https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=1000', 'Acoustic Clay Vessel Testing')">
+                                        <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=300" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Milestone 2: 2025 INTERNSHIP -->
+                        <div class="w-80 flex-shrink-0 bg-studio-bg border border-studio-border rounded-2xl p-5 space-y-4 hover:border-zinc-900 transition-all shadow-xs relative">
+                            <!-- Node Circle -->
+                            <div class="absolute -top-10 left-6 w-6 h-6 rounded-full bg-white border-2 border-zinc-900 flex items-center justify-center shadow-xs">
+                                <span class="w-2 h-2 rounded-full bg-[#CDDB3A]"></span>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <span class="bg-zinc-200 text-zinc-900 font-sans text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-zinc-900 uppercase">INTERNSHIP</span>
+                                <span class="font-mono text-xs font-bold text-zinc-900">2025</span>
+                            </div>
+
+                            <div>
+                                <h3 class="font-display font-bold text-lg text-zinc-900">Studio Olafur Eliasson</h3>
+                                <p class="text-xs text-zinc-600 font-sans mt-1 leading-relaxed">
+                                    Assisted in fabricating large kinetic light canopy sculptures & organic ceramic glaze tests in Berlin.
+                                </p>
+                            </div>
+
+                            <!-- Floating Image Bubbles -->
+                            <div class="pt-2 border-t border-studio-border">
+                                <span class="text-[10px] font-sans font-bold uppercase tracking-wider text-studio-muted block mb-2">Work Bubbles (Click)</span>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 rounded-full border-2 border-[#F472B6] overflow-hidden cursor-pointer hover:scale-125 transition-transform shadow-xs shape-float-2" onclick="openBubbleModal('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000', 'Kinetic Light Installation')">
+                                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=300" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="w-12 h-12 rounded-full border-2 border-zinc-900 overflow-hidden cursor-pointer hover:scale-125 transition-transform shadow-xs shape-float-1" onclick="openBubbleModal('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000', 'Light Canopy Spatial Mesh')">
+                                        <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=300" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Milestone 3: 2024 RESIDENCY -->
+                        <div class="w-80 flex-shrink-0 bg-studio-bg border border-studio-border rounded-2xl p-5 space-y-4 hover:border-zinc-900 transition-all shadow-xs relative">
+                            <!-- Node Circle -->
+                            <div class="absolute -top-10 left-6 w-6 h-6 rounded-full bg-[#CDDB3A] border-2 border-zinc-900 flex items-center justify-center shadow-xs">
+                                <span class="w-2 h-2 rounded-full bg-zinc-900"></span>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <span class="bg-[#CDDB3A] text-zinc-900 font-sans text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-zinc-900 uppercase">RESIDENCY</span>
+                                <span class="font-mono text-xs font-bold text-zinc-900">2024</span>
+                            </div>
+
+                            <div>
+                                <h3 class="font-display font-bold text-lg text-zinc-900">Shigaraki Ceramic Park</h3>
+                                <p class="text-xs text-zinc-600 font-sans mt-1 leading-relaxed">
+                                    3-month intensive producing raw stoneware vessels in traditional wood-fired Anagama kilns in Japan.
+                                </p>
+                            </div>
+
+                            <!-- Floating Image Bubbles -->
+                            <div class="pt-2 border-t border-studio-border">
+                                <span class="text-[10px] font-sans font-bold uppercase tracking-wider text-studio-muted block mb-2">Work Bubbles (Click)</span>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 rounded-full border-2 border-[#7DD3FC] overflow-hidden cursor-pointer hover:scale-125 transition-transform shadow-xs shape-float-1" onclick="openBubbleModal('https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=1000', 'Shigaraki Ceramic Vessel Firing')">
+                                        <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=300" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Milestone 4: 2023-2025 DEGREE -->
+                        <div class="w-80 flex-shrink-0 bg-studio-bg border border-studio-border rounded-2xl p-5 space-y-4 hover:border-zinc-900 transition-all shadow-xs relative">
+                            <!-- Node Circle -->
+                            <div class="absolute -top-10 left-6 w-6 h-6 rounded-full bg-white border-2 border-zinc-900 flex items-center justify-center shadow-xs">
+                                <span class="w-2 h-2 rounded-full bg-zinc-900"></span>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <span class="bg-zinc-200 text-zinc-900 font-sans text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-zinc-900 uppercase">DEGREE</span>
+                                <span class="font-mono text-xs font-bold text-zinc-900">2023 - 2025</span>
+                            </div>
+
+                            <div>
+                                <h3 class="font-display font-bold text-lg text-zinc-900">MFA UdK Berlin & RISD</h3>
+                                <p class="text-xs text-zinc-600 font-sans mt-1 leading-relaxed">
+                                    Specialized in reduction glazes, wheel-thrown porcelain forms, and body movement notation.
+                                </p>
+                            </div>
+
+                            <!-- Floating Image Bubbles -->
+                            <div class="pt-2 border-t border-studio-border">
+                                <span class="text-[10px] font-sans font-bold uppercase tracking-wider text-studio-muted block mb-2">Work Bubbles (Click)</span>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 rounded-full border-2 border-[#CDDB3A] overflow-hidden cursor-pointer hover:scale-125 transition-transform shadow-xs shape-float-2" onclick="openBubbleModal('https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=1000', 'Wheel-Thrown Crystalline Glaze Tile')">
+                                        <img src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=300" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="w-12 h-12 rounded-full border-2 border-zinc-900 overflow-hidden cursor-pointer hover:scale-125 transition-transform shadow-xs shape-float-1" onclick="openBubbleModal('https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=1000', 'Dance Movement Stills')">
+                                        <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=300" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -387,535 +453,431 @@
         <!-- =========================================================
              PAGE 2: ART (#art)
              ========================================================= -->
-        <section id="page-art" class="page-view hidden max-w-7xl mx-auto px-6 py-12 md:py-20">
-            <div class="space-y-4 mb-12 border-b border-studio-border pb-8">
-                <span class="font-sans text-xs font-bold tracking-[0.2em] text-studio-muted uppercase">Quana Cannon — Fine Art & Installations</span>
-                <h1 class="font-display font-bold text-4xl sm:text-6xl text-zinc-900 tracking-tight">Installations & Sculptural Works</h1>
-                <p class="text-zinc-700 font-sans font-medium max-w-xl text-sm md:text-base leading-relaxed">Generative computational artwork, spatial installations, and autonomous software environments.</p>
+        <section id="page-art" class="page-view hidden max-w-7xl mx-auto px-6 py-10 md:py-16 space-y-8">
+            <div class="bg-white border border-studio-border rounded-3xl p-8 sm:p-10 shadow-sm space-y-3">
+                <span class="font-sans text-xs font-bold tracking-[0.2em] text-studio-muted uppercase">Alex Rivers — Fine Art Portfolio</span>
+                <h1 class="font-display font-bold text-4xl sm:text-5xl text-zinc-900 tracking-tight">Fine Art & Kinetic Sculptures</h1>
+                <p class="text-zinc-600 font-sans font-medium text-sm md:text-base max-w-2xl leading-relaxed">
+                    Interactive light installations, generative fluid simulations, and spatial kinetic artwork.
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Art Item 1 -->
-                <div class="bg-white border border-studio-border p-6 space-y-4 hover:border-zinc-900 transition-colors cursor-pointer group" onclick="openModal(2)">
-                    <div class="h-64 bg-zinc-900 overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white border border-studio-border rounded-3xl p-6 space-y-4 hover:border-zinc-900 hover:shadow-md transition-all cursor-pointer group" onclick="openModal(1)">
+                    <div class="h-64 bg-zinc-900 rounded-2xl overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-[#CDDB3A] border border-zinc-900 px-3 py-1 rounded-full text-[10px] font-sans font-bold uppercase">Installation</span>
                     </div>
-                    <div class="font-sans text-[11px] font-bold tracking-[0.18em] text-studio-muted uppercase">01 / Generative Shader</div>
-                    <h3 class="font-display font-bold text-2xl text-zinc-900 group-hover:translate-x-1 transition-transform">Neural Aura Field</h3>
-                    <p class="text-xs text-zinc-600 font-sans font-medium leading-relaxed">Real-time spectral fluid simulation exhibited at Venice Biennale.</p>
+                    <div class="space-y-1">
+                        <span class="text-[11px] font-mono font-bold text-studio-muted">01 / VENICE BIENNALE</span>
+                        <h3 class="font-display font-bold text-2xl text-zinc-900 group-hover:translate-x-1 transition-transform">Neural Aura Field</h3>
+                        <p class="text-xs text-zinc-600 font-sans leading-relaxed">Interactive fluid light simulation driven by participant bio-signals.</p>
+                    </div>
                 </div>
 
-                <!-- Art Item 2 -->
-                <div class="bg-white border border-studio-border p-6 space-y-4 hover:border-zinc-900 transition-colors cursor-pointer group" onclick="openModal(3)">
-                    <div class="h-64 bg-zinc-900 overflow-hidden">
+                <div class="bg-white border border-studio-border rounded-3xl p-6 space-y-4 hover:border-zinc-900 hover:shadow-md transition-all cursor-pointer group" onclick="openModal(2)">
+                    <div class="h-64 bg-zinc-900 rounded-2xl overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-[#CDDB3A] border border-zinc-900 px-3 py-1 rounded-full text-[10px] font-sans font-bold uppercase">Sculpture</span>
                     </div>
-                    <div class="font-sans text-[11px] font-bold tracking-[0.18em] text-studio-muted uppercase">02 / Computational Math</div>
-                    <h3 class="font-display font-bold text-2xl text-zinc-900 group-hover:translate-x-1 transition-transform">Quaternion Flow</h3>
-                    <p class="text-xs text-zinc-600 font-sans font-medium leading-relaxed">GPU fractal visualizer manipulating complex multi-dimensional equations.</p>
+                    <div class="space-y-1">
+                        <span class="text-[11px] font-mono font-bold text-studio-muted">02 / TATE MODERN</span>
+                        <h3 class="font-display font-bold text-2xl text-zinc-900 group-hover:translate-x-1 transition-transform">Quaternion Mesh</h3>
+                        <p class="text-xs text-zinc-600 font-sans leading-relaxed">Suspended aluminum and optical fiber light structure.</p>
+                    </div>
                 </div>
 
-                <!-- Art Item 3 -->
-                <div class="bg-white border border-studio-border p-6 space-y-4 hover:border-zinc-900 transition-colors cursor-pointer group" onclick="openModal(5)">
-                    <div class="h-64 bg-zinc-900 overflow-hidden">
+                <div class="bg-white border border-studio-border rounded-3xl p-6 space-y-4 hover:border-zinc-900 hover:shadow-md transition-all cursor-pointer group" onclick="openModal(3)">
+                    <div class="h-64 bg-zinc-900 rounded-2xl overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-[#CDDB3A] border border-zinc-900 px-3 py-1 rounded-full text-[10px] font-sans font-bold uppercase">Kinetic</span>
                     </div>
-                    <div class="font-sans text-[11px] font-bold tracking-[0.18em] text-studio-muted uppercase">03 / Kinetic Light</div>
-                    <h3 class="font-display font-bold text-2xl text-zinc-900 group-hover:translate-x-1 transition-transform">Lumen Canopy</h3>
-                    <p class="text-xs text-zinc-600 font-sans font-medium leading-relaxed">LiDAR tracked overhead light structure suspended in Turbine Hall.</p>
+                    <div class="space-y-1">
+                        <span class="text-[11px] font-mono font-bold text-studio-muted">03 / MORI ART MUSEUM</span>
+                        <h3 class="font-display font-bold text-2xl text-zinc-900 group-hover:translate-x-1 transition-transform">Lumen Canopy</h3>
+                        <p class="text-xs text-zinc-600 font-sans leading-relaxed">Sensor-driven ceiling canopy responding to room acoustics.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- =========================================================
-             PAGE 3: PHOTO (#photo)
+             PAGE 3: CERAMICS (#ceramics)
              ========================================================= -->
-        <section id="page-photo" class="page-view hidden max-w-7xl mx-auto px-6 py-12 md:py-20">
-            <div class="space-y-4 mb-12 border-b border-studio-border pb-8">
-                <span class="font-sans text-xs tracking-[0.2em] text-studio-muted uppercase">Quana Cannon — Photography</span>
-                <h1 class="font-display font-light text-4xl sm:text-6xl text-zinc-900">Photographic Archive</h1>
-                <p class="text-zinc-600 font-sans font-light max-w-xl text-sm md:text-base leading-relaxed">Medium format black & white film, digital light studies, and urban architectural silhouettes.</p>
-            </div>
-
-            <!-- Sub Category Tabs -->
-            <div class="flex items-center gap-6 font-sans text-xs tracking-[0.15em] text-studio-muted uppercase mb-8 border-b border-studio-border pb-4">
-                <span class="text-zinc-900 font-medium">01 B&W Medium Format</span>
-                <span>02 Spectral Light Studies</span>
-                <span>03 Architectural Geometry</span>
+        <section id="page-ceramics" class="page-view hidden max-w-7xl mx-auto px-6 py-10 md:py-16 space-y-8">
+            <div class="bg-white border border-studio-border rounded-3xl p-8 sm:p-10 shadow-sm space-y-3">
+                <span class="font-sans text-xs font-bold tracking-[0.2em] text-studio-muted uppercase">Alex Rivers — Ceramic Studio</span>
+                <h1 class="font-display font-bold text-4xl sm:text-5xl text-zinc-900 tracking-tight">Ceramics & Vessel Sculpture</h1>
+                <p class="text-zinc-600 font-sans font-medium text-sm md:text-base max-w-2xl leading-relaxed">
+                    Wheel-thrown porcelain forms, Anagama wood-fired stoneware, zinc silicate glazes, and acoustic clay vessels.
+                </p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white border border-studio-border p-3 space-y-2">
-                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop" class="w-full h-72 object-cover">
-                    <div class="flex justify-between items-center text-[10px] font-sans tracking-widest text-studio-muted uppercase">
-                        <span>Berlin Monochrome #01</span>
-                        <span>Hasselblad 500C</span>
+                <div class="bg-white border border-studio-border rounded-3xl p-6 space-y-4 hover:border-zinc-900 hover:shadow-md transition-all cursor-pointer group" onclick="openModal(4)">
+                    <div class="h-72 bg-zinc-900 rounded-2xl overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-[#CDDB3A] border border-zinc-900 px-3 py-1 rounded-full text-[10px] font-sans font-bold uppercase">Stoneware</span>
+                    </div>
+                    <div class="space-y-1">
+                        <h3 class="font-display font-bold text-2xl text-zinc-900 group-hover:translate-x-1 transition-transform">Crystalline Porcelain Urn</h3>
+                        <p class="text-xs text-zinc-600 font-sans leading-relaxed">Cone 10 reduction glaze featuring zinc silicate crystal bloom formations.</p>
                     </div>
                 </div>
-                <div class="bg-white border border-studio-border p-3 space-y-2">
-                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=800&auto=format&fit=crop" class="w-full h-72 object-cover">
-                    <div class="flex justify-between items-center text-[10px] font-sans tracking-widest text-studio-muted uppercase">
-                        <span>Studio Light Refraction</span>
-                        <span>35mm Kodak Portra</span>
+
+                <div class="bg-white border border-studio-border rounded-3xl p-6 space-y-4 hover:border-zinc-900 hover:shadow-md transition-all cursor-pointer group" onclick="openModal(5)">
+                    <div class="h-72 bg-zinc-900 rounded-2xl overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-[#CDDB3A] border border-zinc-900 px-3 py-1 rounded-full text-[10px] font-sans font-bold uppercase">Anagama Wood-Fire</span>
+                    </div>
+                    <div class="space-y-1">
+                        <h3 class="font-display font-bold text-2xl text-zinc-900 group-hover:translate-x-1 transition-transform">Shigaraki Ash Vessel</h3>
+                        <p class="text-xs text-zinc-600 font-sans leading-relaxed">Unglazed coarse stoneware fired over 7 days in wood-burning Anagama kiln.</p>
                     </div>
                 </div>
-                <div class="bg-white border border-studio-border p-3 space-y-2">
-                    <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=800&auto=format&fit=crop" class="w-full h-72 object-cover">
-                    <div class="flex justify-between items-center text-[10px] font-sans tracking-widest text-studio-muted uppercase">
-                        <span>Turbine Hall Silhouette</span>
-                        <span>Digital Archive</span>
+
+                <div class="bg-white border border-studio-border rounded-3xl p-6 space-y-4 hover:border-zinc-900 hover:shadow-md transition-all cursor-pointer group" onclick="openModal(6)">
+                    <div class="h-72 bg-zinc-900 rounded-2xl overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-[#CDDB3A] border border-zinc-900 px-3 py-1 rounded-full text-[10px] font-sans font-bold uppercase">Tactile Sound</span>
+                    </div>
+                    <div class="space-y-1">
+                        <h3 class="font-display font-bold text-2xl text-zinc-900 group-hover:translate-x-1 transition-transform">Resonant Ceramic Speaker</h3>
+                        <p class="text-xs text-zinc-600 font-sans leading-relaxed">Internal acoustic chamber vessel embedded with contact microphones.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- =========================================================
-             PAGE 4: MUSIC (#music)
+             PAGE 4: PHOTO & VIDEO (#photo-video)
              ========================================================= -->
-        <section id="page-music" class="page-view hidden max-w-7xl mx-auto px-6 py-12 md:py-20">
-            <div class="space-y-4 mb-12 border-b border-studio-border pb-8">
-                <span class="font-sans text-xs font-bold tracking-[0.2em] text-studio-muted uppercase">Quana Cannon — Sound & Music</span>
-                <h1 class="font-display font-bold text-4xl sm:text-6xl text-zinc-900 tracking-tight">Music & Digital Instruments</h1>
-                <p class="text-zinc-700 font-sans font-medium max-w-xl text-sm md:text-base leading-relaxed">Ambient soundscapes, conductive soft-circuit synthesizer keys, and spatial audio installations.</p>
+        <section id="page-photo-video" class="page-view hidden max-w-7xl mx-auto px-6 py-10 md:py-16 space-y-8">
+            <div class="bg-white border border-studio-border rounded-3xl p-8 sm:p-10 shadow-sm space-y-3">
+                <span class="font-sans text-xs font-bold tracking-[0.2em] text-studio-muted uppercase">Alex Rivers — Lens & Film Archive</span>
+                <h1 class="font-display font-bold text-4xl sm:text-5xl text-zinc-900 tracking-tight">Photo & Video Archive</h1>
+                <p class="text-zinc-600 font-sans font-medium text-sm md:text-base max-w-2xl leading-relaxed">
+                    Medium format Hasselblad photography, 16mm dance stills, and spectral light projection loops.
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                <!-- Interactive Playable Synth Keys -->
-                <div class="lg:col-span-7 bg-white border border-studio-border p-8 space-y-6">
-                    <div class="flex justify-between items-center border-b border-studio-border pb-4 font-sans text-xs tracking-[0.15em] uppercase">
-                        <span class="font-bold text-zinc-900">01 / Soft Circuit Synthesizer</span>
-                        <span class="text-zinc-900 bg-[#CDDB3A] border border-zinc-900 px-2 py-0.5 font-bold">Audio Engine Ready</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white border border-studio-border rounded-3xl p-4 space-y-3 shadow-xs">
+                    <div class="rounded-2xl overflow-hidden h-72 bg-zinc-900">
+                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
                     </div>
+                    <div class="flex justify-between items-center text-[11px] font-sans font-bold text-studio-muted px-2">
+                        <span class="text-zinc-900">Berlin Monochrome Study</span>
+                        <span class="font-mono">Hasselblad 500C</span>
+                    </div>
+                </div>
 
-                    <p class="text-xs text-zinc-700 leading-relaxed font-sans font-medium">
-                        Interact with the conductive pads below to trigger real-time synthesized harmonics via Web Audio DSP:
+                <div class="bg-white border border-studio-border rounded-3xl p-4 space-y-3 shadow-xs">
+                    <div class="rounded-2xl overflow-hidden h-72 bg-zinc-900">
+                        <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-center text-[11px] font-sans font-bold text-studio-muted px-2">
+                        <span class="text-zinc-900">Dance Film Still #04</span>
+                        <span class="font-mono">16mm Color Film</span>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-studio-border rounded-3xl p-4 space-y-3 shadow-xs">
+                    <div class="rounded-2xl overflow-hidden h-72 bg-zinc-900">
+                        <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-center text-[11px] font-sans font-bold text-studio-muted px-2">
+                        <span class="text-zinc-900">Diffraction Video Loop</span>
+                        <span class="font-mono">4K Projection</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             PAGE 5: DANCE (#dance)
+             ========================================================= -->
+        <section id="page-dance" class="page-view hidden max-w-7xl mx-auto px-6 py-10 md:py-16 space-y-8">
+            <div class="bg-white border border-studio-border rounded-3xl p-8 sm:p-10 shadow-sm space-y-3">
+                <span class="font-sans text-xs font-bold tracking-[0.2em] text-studio-muted uppercase">Alex Rivers — Choreography</span>
+                <h1 class="font-display font-bold text-4xl sm:text-5xl text-zinc-900 tracking-tight">Dance & Movement Direction</h1>
+                <p class="text-zinc-600 font-sans font-medium text-sm md:text-base max-w-2xl leading-relaxed">
+                    Site-specific dance performance, body signal synthesis, and kinesphere space notation.
+                </p>
+            </div>
+
+            <div class="bg-white border border-studio-border rounded-3xl p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center shadow-xs">
+                <div class="lg:col-span-6 space-y-4">
+                    <span class="bg-[#CDDB3A] text-zinc-900 border border-zinc-900 px-3 py-1 rounded-full text-xs font-sans font-bold uppercase">FEATURED PERFORMANCE</span>
+                    <h2 class="font-display font-bold text-3xl sm:text-4xl text-zinc-900">Body Signal Resonance</h2>
+                    <p class="text-xs sm:text-sm text-zinc-600 font-sans leading-relaxed">
+                        A 35-minute solo dance film inside Kraftwerk Leipzig. Conductive sensors attached to dancers' wrists and ankles triggered real-time Web Audio synthesis.
                     </p>
-
-                    <!-- Interactive Key Pads -->
-                    <div class="grid grid-cols-4 gap-3">
-                        <button onclick="playNote(174.61, 'F3')" class="p-6 bg-studio-bg border border-studio-border hover:border-zinc-900 hover:bg-[#CDDB3A] hover:text-zinc-900 transition-all text-center space-y-2 group">
-                            <div class="font-sans text-base font-bold">F3</div>
-                            <div class="font-mono text-[10px] text-studio-muted group-hover:text-zinc-900 font-medium">174 Hz</div>
-                        </button>
-                        <button onclick="playNote(220.00, 'A3')" class="p-6 bg-studio-bg border border-studio-border hover:border-zinc-900 hover:bg-[#CDDB3A] hover:text-zinc-900 transition-all text-center space-y-2 group">
-                            <div class="font-sans text-base font-bold">A3</div>
-                            <div class="font-mono text-[10px] text-studio-muted group-hover:text-zinc-900 font-medium">220 Hz</div>
-                        </button>
-                        <button onclick="playNote(261.63, 'C4')" class="p-6 bg-studio-bg border border-studio-border hover:border-zinc-900 hover:bg-[#CDDB3A] hover:text-zinc-900 transition-all text-center space-y-2 group">
-                            <div class="font-sans text-base font-bold">C4</div>
-                            <div class="font-mono text-[10px] text-studio-muted group-hover:text-zinc-900 font-medium">261 Hz</div>
-                        </button>
-                        <button onclick="playNote(329.63, 'E4')" class="p-6 bg-studio-bg border border-studio-border hover:border-zinc-900 hover:bg-[#CDDB3A] hover:text-zinc-900 transition-all text-center space-y-2 group">
-                            <div class="font-sans text-base font-bold">E4</div>
-                            <div class="font-mono text-[10px] text-studio-muted group-hover:text-zinc-900 font-medium">329 Hz</div>
-                        </button>
-                    </div>
-
-                    <!-- Note Feedback Display -->
-                    <div class="bg-studio-bg border border-studio-border p-4 font-sans text-xs tracking-wider uppercase flex justify-between items-center">
-                        <span class="text-studio-muted font-bold">ACTIVE FREQUENCY:</span>
-                        <span id="active-note-display" class="font-bold text-zinc-900 bg-[#CDDB3A] px-2.5 py-0.5 border border-zinc-900">SELECT A KEY</span>
+                    <div class="flex items-center gap-4 text-xs font-sans font-bold uppercase text-zinc-800 pt-2">
+                        <span>Choreographer: Alex Rivers</span>
+                        <span>•</span>
+                        <span>Venue: Leipzig</span>
                     </div>
                 </div>
-
-                <!-- Music Track Index -->
-                <div class="lg:col-span-5 space-y-4">
-                    <div class="font-sans text-xs font-bold text-zinc-900 uppercase tracking-[0.18em] mb-2">
-                        02 / Compositions & Soundscapes
-                    </div>
-
-                    <div class="bg-white border border-studio-border divide-y divide-studio-border font-sans text-xs">
-                        <div class="p-4 flex items-center justify-between hover:bg-zinc-50">
-                            <div>
-                                <div class="font-display font-bold text-lg text-zinc-900">Subterranean Harmonics</div>
-                                <div class="text-[10px] font-semibold tracking-widest text-studio-muted uppercase">32-Channel Spatial Audio (08:45)</div>
-                            </div>
-                            <button onclick="playNote(174.61, 'SUBTERRANEAN')" class="px-3 py-1 border border-zinc-900 hover:bg-[#CDDB3A] font-sans text-[11px] font-bold tracking-wider uppercase">Play</button>
-                        </div>
-
-                        <div class="p-4 flex items-center justify-between hover:bg-zinc-50">
-                            <div>
-                                <div class="font-display font-bold text-lg text-zinc-900">Aura Frequency Chords</div>
-                                <div class="text-[10px] font-semibold tracking-widest text-studio-muted uppercase">Synthesized Ambient Pads (05:20)</div>
-                            </div>
-                            <button onclick="playNote(261.63, 'AURA')" class="px-3 py-1 border border-zinc-900 hover:bg-[#CDDB3A] font-sans text-[11px] font-bold tracking-wider uppercase">Play</button>
-                        </div>
-
-                        <div class="p-4 flex items-center justify-between hover:bg-zinc-50">
-                            <div>
-                                <div class="font-display font-bold text-lg text-zinc-900">Crosswalk Symphony</div>
-                                <div class="text-[10px] font-semibold tracking-widest text-studio-muted uppercase">Urban Acoustic Mapping (12:10)</div>
-                            </div>
-                            <button onclick="playNote(220.00, 'CROSSWALK')" class="px-3 py-1 border border-zinc-900 hover:bg-[#CDDB3A] font-sans text-[11px] font-bold tracking-wider uppercase">Play</button>
-                        </div>
-                    </div>
+                <div class="lg:col-span-6 h-80 rounded-2xl overflow-hidden bg-zinc-900">
+                    <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover">
                 </div>
             </div>
         </section>
 
         <!-- =========================================================
-             PAGE 5: ABOUT (#about)
+             PAGE 6: JOURNALS (#journals)
              ========================================================= -->
-        <section id="page-about" class="page-view hidden max-w-7xl mx-auto px-6 py-12 md:py-20">
-            <div class="space-y-4 mb-12 border-b border-studio-border pb-8">
-                <span class="font-sans text-xs font-bold tracking-[0.2em] text-studio-muted uppercase">Quana Cannon — Artist Profile</span>
-                <h1 class="font-display font-bold text-4xl sm:text-6xl text-zinc-900 tracking-tight">Biography & Practice</h1>
+        <section id="page-journals" class="page-view hidden max-w-7xl mx-auto px-6 py-10 md:py-16 space-y-8">
+            <div class="bg-white border border-studio-border rounded-3xl p-8 sm:p-10 shadow-sm space-y-3">
+                <span class="font-sans text-xs font-bold tracking-[0.2em] text-studio-muted uppercase">Alex Rivers — Field Notes</span>
+                <h1 class="font-display font-bold text-4xl sm:text-5xl text-zinc-900 tracking-tight">Studio Journals & Field Notes</h1>
+                <p class="text-zinc-600 font-sans font-medium text-sm md:text-base max-w-2xl leading-relaxed">
+                    Observations on glaze chemistry, choreography notation, darkroom logs, and material testing essays.
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Journal Item 1 -->
+                <div class="bg-white border border-studio-border rounded-3xl p-6 sm:p-8 space-y-4 hover:border-zinc-900 transition-all shadow-xs flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="bg-[#F4F8CD] text-zinc-900 border border-[#CDDB3A] text-[10px] font-sans font-bold px-2.5 py-0.5 rounded-full uppercase">GLAZE LOG</span>
+                            <span class="font-mono text-xs text-studio-muted">OCT 2026</span>
+                        </div>
+                        <h3 class="font-display font-bold text-2xl text-zinc-900">Zinc Silicate Crystal Formations in Reduction Kilns</h3>
+                        <p class="text-xs text-zinc-600 font-sans leading-relaxed line-clamp-3">
+                            Notes on controlling cooling cycles between 1100°C and 1050°C to achieve optimal crystal growth patterns on wheel-thrown porcelain bodies.
+                        </p>
+                    </div>
+                    <button onclick="openJournalModal(1)" class="w-fit text-xs font-sans font-bold uppercase tracking-wider text-zinc-900 underline hover:text-[#CDDB3A] transition-colors pt-2">
+                        Read Entry →
+                    </button>
+                </div>
+
+                <!-- Journal Item 2 -->
+                <div class="bg-white border border-studio-border rounded-3xl p-6 sm:p-8 space-y-4 hover:border-zinc-900 transition-all shadow-xs flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="bg-[#F4F8CD] text-zinc-900 border border-[#CDDB3A] text-[10px] font-sans font-bold px-2.5 py-0.5 rounded-full uppercase">DANCE ESSAY</span>
+                            <span class="font-mono text-xs text-studio-muted">AUG 2026</span>
+                        </div>
+                        <h3 class="font-display font-bold text-2xl text-zinc-900">Tactile Inertia & Kinesphere Spatial Boundaries</h3>
+                        <p class="text-xs text-zinc-600 font-sans leading-relaxed line-clamp-3">
+                            Reflections on body movement interaction with heavy wet clay forms during the Berlin Studio workshop performance.
+                        </p>
+                    </div>
+                    <button onclick="openJournalModal(2)" class="w-fit text-xs font-sans font-bold uppercase tracking-wider text-zinc-900 underline hover:text-[#CDDB3A] transition-colors pt-2">
+                        Read Entry →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             PAGE 7: ABOUT (#about)
+             ========================================================= -->
+        <section id="page-about" class="page-view hidden max-w-7xl mx-auto px-6 py-10 md:py-16 space-y-8">
+            <div class="bg-white border border-studio-border rounded-3xl p-8 sm:p-10 shadow-sm space-y-3">
+                <span class="font-sans text-xs font-bold tracking-[0.2em] text-studio-muted uppercase">Alex Rivers — Artist Biography</span>
+                <h1 class="font-display font-bold text-4xl sm:text-5xl text-zinc-900 tracking-tight">Biography & Studio Stack</h1>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 <!-- Bio Text -->
-                <div class="lg:col-span-7 space-y-6 text-zinc-700 font-sans text-sm md:text-base leading-relaxed font-medium">
+                <div class="lg:col-span-7 bg-white border border-studio-border rounded-3xl p-8 space-y-6 text-zinc-700 font-sans text-sm leading-relaxed">
                     <p class="font-display font-bold text-2xl text-zinc-900 leading-snug">
-                        Quana Cannon (b. 2004) is a London and Berlin-based multimedia artist working at the intersection of e-textiles, real-time GLSL fragment shaders, spatial acoustics, and tactile installation art.
+                        Alex Rivers (b. 1994) is an interdisciplinary multimedia artist working across fine art, ceramic sculpture, lens media, and dance performance.
                     </p>
                     <p>
-                        Holding an BA in Education Studies and Studio Art from Wellesley College, Cannon crafts tactile physical garments embedded with Velostat pressure sensors, alongside zero-gravity raytraced visual geometry.
+                        Holding an MFA from UdK Berlin and B.S. from RISD in Fine Art & Ceramics, Rivers explores tactile clay acoustics, glaze chemistry, and human kinesphere movement notation.
                     </p>
                     <p>
-                        Their work has been presented internationally at Venice Biennale, Mori Art Center Tokyo, ZKM Center for Art and Media, and Ars Electronica Linz.
+                        Exhibitions include Venice Biennale, Tate Modern London, Shigaraki Ceramic Cultural Park Japan, and Mori Art Museum Tokyo.
                     </p>
 
-                    <div class="pt-4 grid grid-cols-2 sm:grid-cols-3 gap-4 font-sans text-xs tracking-wider uppercase">
-                        <div class="bg-white p-4 border border-studio-border">
-                            <div class="text-studio-muted font-bold text-[10px]">Location</div>
-                            <div class="text-zinc-900 font-bold mt-1">Berlin / London</div>
+                    <div class="pt-4 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs font-sans">
+                        <div class="bg-studio-bg p-4 border border-studio-border rounded-2xl">
+                            <span class="text-studio-muted text-[10px] font-bold block">BASE</span>
+                            <span class="font-bold text-zinc-900">Berlin / London</span>
                         </div>
-                        <div class="bg-white p-4 border border-studio-border">
-                            <div class="text-studio-muted font-bold text-[10px]">Education</div>
-                            <div class="text-zinc-900 font-bold mt-1">MFA UdK Berlin</div>
+                        <div class="bg-studio-bg p-4 border border-studio-border rounded-2xl">
+                            <span class="text-studio-muted text-[10px] font-bold block">EDUCATION</span>
+                            <span class="font-bold text-zinc-900">UdK Berlin & RISD</span>
                         </div>
-                        <div class="bg-white p-4 border border-studio-border">
-                            <div class="text-studio-muted font-bold text-[10px]">Representation</div>
-                            <div class="text-zinc-900 font-bold mt-1">Kontrast Digital</div>
+                        <div class="bg-studio-bg p-4 border border-studio-border rounded-2xl">
+                            <span class="text-studio-muted text-[10px] font-bold block">GALLERY</span>
+                            <span class="font-bold text-zinc-900">Kontrast Studio</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Technical Matrix -->
-                <div class="lg:col-span-5 bg-white border border-studio-border p-6 sm:p-8 space-y-6">
-                    <div class="font-sans text-xs font-bold text-zinc-900 uppercase tracking-[0.18em] border-b border-studio-border pb-3 flex items-center gap-2">
-                        <span class="w-2.5 h-2.5 bg-[#CDDB3A] border border-zinc-900 inline-block"></span>
-                        Technical Stack & Hardware
-                    </div>
+                <div class="lg:col-span-5 bg-white border border-studio-border rounded-3xl p-8 space-y-6">
+                    <h3 class="font-display font-bold text-xl text-zinc-900 border-b border-studio-border pb-3 flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 bg-[#CDDB3A] rounded-full inline-block"></span>
+                        Technical & Material Stack
+                    </h3>
 
                     <div class="space-y-4 font-sans text-xs">
                         <div>
-                            <div class="text-zinc-900 font-bold uppercase tracking-widest text-[10px] mb-1">Physical Computing / E-Textiles</div>
-                            <div class="text-zinc-700 font-medium leading-relaxed">Velostat, Conductive Thread, Teensy 4.1, LiDAR Tracking, ESP32 OSC</div>
+                            <span class="text-zinc-900 font-bold uppercase text-[10px] block mb-1">Ceramics & Glazes</span>
+                            <p class="text-zinc-600">Porcelain, High-Fire Reduction, Wood Anagama Kiln, Zinc Silicate Crystal Glazes</p>
                         </div>
                         <div>
-                            <div class="text-zinc-900 font-bold uppercase tracking-widest text-[10px] mb-1">Real-Time Shaders & CGI</div>
-                            <div class="text-zinc-700 font-medium leading-relaxed">TouchDesigner, GLSL Shaders, Unreal Engine 5, Raytracing, WebGL</div>
+                            <span class="text-zinc-900 font-bold uppercase text-[10px] block mb-1">Choreography & Movement</span>
+                            <p class="text-zinc-600">Kinesphere Notation, OSC Motion Sensors, Web Audio Acoustic Synthesis</p>
                         </div>
                         <div>
-                            <div class="text-zinc-900 font-bold uppercase tracking-widest text-[10px] mb-1">Spatial Audio & DSP</div>
-                            <div class="text-zinc-700 font-medium leading-relaxed">Max/MSP, Web Audio API, Pure Data, 32-Channel Spatialization</div>
+                            <span class="text-zinc-900 font-bold uppercase text-[10px] block mb-1">Lens & Digital Media</span>
+                            <p class="text-zinc-600">Hasselblad 500C B&W Film, 16mm Color Film, TouchDesigner 4K Video Loops</p>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Exhibition Timeline -->
-            <div class="space-y-6">
-                <div class="font-sans text-xs font-bold text-zinc-900 uppercase tracking-[0.18em] border-b border-studio-border pb-3">
-                    Selected Exhibitions & Commissions (2022 — 2026)
-                </div>
-
-                <div class="divide-y divide-studio-border bg-white border border-studio-border">
-                    <div class="p-5 flex flex-col md:flex-row md:items-center justify-between gap-2 hover:bg-zinc-50 transition-colors">
-                        <div class="font-mono text-xs font-bold text-studio-muted md:w-1/6">2026.05</div>
-                        <div class="md:w-2/4">
-                            <h3 class="font-display font-bold text-xl text-zinc-900">Soft Circuit Hand Garments</h3>
-                            <p class="text-xs text-zinc-600 font-sans font-medium">Interactive wearable audio activation exhibition.</p>
-                        </div>
-                        <div class="md:w-1/4 text-left md:text-right font-sans text-xs font-bold tracking-widest uppercase text-zinc-900">MIT Media Lab</div>
-                    </div>
-
-                    <div class="p-5 flex flex-col md:flex-row md:items-center justify-between gap-2 hover:bg-zinc-50 transition-colors">
-                        <div class="font-mono text-xs font-bold text-studio-muted md:w-1/6">2026.02</div>
-                        <div class="md:w-2/4">
-                            <h3 class="font-display font-bold text-xl text-zinc-900">Neural Aura Field</h3>
-                            <p class="text-xs text-zinc-600 font-sans font-medium">Biofeedback-driven GLSL fragment shaders.</p>
-                        </div>
-                        <div class="md:w-1/4 text-left md:text-right font-sans text-xs font-bold tracking-widest uppercase text-zinc-900">Venice Biennale</div>
-                    </div>
-
-                    <div class="p-5 flex flex-col md:flex-row md:items-center justify-between gap-2 hover:bg-zinc-50 transition-colors">
-                        <div class="font-mono text-xs font-bold text-studio-muted md:w-1/6">2025.10</div>
-                        <div class="md:w-2/4">
-                            <h3 class="font-display font-bold text-xl text-zinc-900">Ghost Grid Soundscapes</h3>
-                            <p class="text-xs text-zinc-600 font-sans font-medium">32-channel spatialized ambient acoustics and projection mapping.</p>
-                        </div>
-                        <div class="md:w-1/4 text-left md:text-right font-sans text-xs font-bold tracking-widest uppercase text-zinc-900">Mori Art Center</div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- =========================================================
-             PAGE 5: ABOUT (#about)
+             PAGE 8: CONTACT (#contact)
              ========================================================= -->
-        <section id="page-about" class="page-view hidden max-w-7xl mx-auto px-6 py-12 md:py-20">
-            <div class="space-y-4 mb-12 border-b border-studio-border pb-8">
-                <span class="font-sans text-xs tracking-[0.2em] text-studio-muted uppercase">Quana Cannon — Artist Profile</span>
-                <h1 class="font-display font-light text-4xl sm:text-6xl text-zinc-900">Biography & Practice</h1>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
-                <!-- Bio Text -->
-                <div class="lg:col-span-7 space-y-6 text-zinc-700 font-sans text-sm md:text-base leading-relaxed font-light">
-                    <p class="font-display text-2xl text-zinc-900 leading-snug">
-                        Quana Cannon (b. 1994) is a London and Berlin-based multimedia artist working at the intersection of e-textiles, real-time GLSL fragment shaders, spatial acoustics, and tactile installation art.
-                    </p>
-                    <p>
-                        Holding an MFA in Computational Arts from UdK Berlin and B.S. in Electrical Engineering from MIT, Cannon crafts tactile physical garments embedded with Velostat pressure sensors, alongside zero-gravity raytraced visual geometry.
-                    </p>
-                    <p>
-                        Their work has been presented internationally at Venice Biennale, Mori Art Center Tokyo, ZKM Center for Art and Media, and Ars Electronica Linz.
-                    </p>
-
-                    <div class="pt-4 grid grid-cols-2 sm:grid-cols-3 gap-4 font-sans text-xs tracking-wider uppercase">
-                        <div class="bg-white p-4 border border-studio-border">
-                            <div class="text-studio-muted text-[10px]">Location</div>
-                            <div class="text-zinc-900 font-medium mt-1">Berlin / London</div>
-                        </div>
-                        <div class="bg-white p-4 border border-studio-border">
-                            <div class="text-studio-muted text-[10px]">Education</div>
-                            <div class="text-zinc-900 font-medium mt-1">MFA UdK Berlin</div>
-                        </div>
-                        <div class="bg-white p-4 border border-studio-border">
-                            <div class="text-studio-muted text-[10px]">Representation</div>
-                            <div class="text-zinc-900 font-medium mt-1">Kontrast Digital</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Technical Matrix -->
-                <div class="lg:col-span-5 bg-white border border-studio-border p-6 sm:p-8 space-y-6">
-                    <div class="font-sans text-xs font-medium text-zinc-900 uppercase tracking-[0.18em] border-b border-studio-border pb-3 flex items-center gap-2">
-                        <span class="w-2 h-2 bg-[#CDDB3A] border border-zinc-900 inline-block"></span>
-                        Technical Stack & Hardware
-                    </div>
-
-                    <div class="space-y-4 font-sans text-xs">
-                        <div>
-                            <div class="text-studio-muted uppercase tracking-widest text-[10px] mb-1">Physical Computing / E-Textiles</div>
-                            <div class="text-zinc-900 font-normal leading-relaxed">Velostat, Conductive Thread, Teensy 4.1, LiDAR Tracking, ESP32 OSC</div>
-                        </div>
-                        <div>
-                            <div class="text-studio-muted uppercase tracking-widest text-[10px] mb-1">Real-Time Shaders & CGI</div>
-                            <div class="text-zinc-900 font-normal leading-relaxed">TouchDesigner, GLSL Shaders, Unreal Engine 5, Raytracing, WebGL</div>
-                        </div>
-                        <div>
-                            <div class="text-studio-muted uppercase tracking-widest text-[10px] mb-1">Spatial Audio & DSP</div>
-                            <div class="text-zinc-900 font-normal leading-relaxed">Max/MSP, Web Audio API, Pure Data, 32-Channel Spatialization</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Exhibition Timeline -->
-            <div class="space-y-6">
-                <div class="font-sans text-xs font-medium text-zinc-900 uppercase tracking-[0.18em] border-b border-studio-border pb-3">
-                    Selected Exhibitions & Commissions (2022 — 2026)
-                </div>
-
-                <div class="divide-y divide-studio-border bg-white border border-studio-border">
-                    <div class="p-5 flex flex-col md:flex-row md:items-center justify-between gap-2 hover:bg-zinc-50 transition-colors">
-                        <div class="font-sans text-xs text-studio-muted md:w-1/6">2026.05</div>
-                        <div class="md:w-2/4">
-                            <h3 class="font-display font-medium text-xl text-zinc-900">Soft Circuit Hand Garments</h3>
-                            <p class="text-xs text-zinc-600 font-sans font-light">Interactive wearable audio activation exhibition.</p>
-                        </div>
-                        <div class="md:w-1/4 text-left md:text-right font-sans text-xs tracking-widest uppercase text-studio-muted">MIT Media Lab</div>
-                    </div>
-
-                    <div class="p-5 flex flex-col md:flex-row md:items-center justify-between gap-2 hover:bg-zinc-50 transition-colors">
-                        <div class="font-sans text-xs text-studio-muted md:w-1/6">2026.02</div>
-                        <div class="md:w-2/4">
-                            <h3 class="font-display font-medium text-xl text-zinc-900">Neural Aura Field</h3>
-                            <p class="text-xs text-zinc-600 font-sans font-light">Biofeedback-driven GLSL fragment shaders.</p>
-                        </div>
-                        <div class="md:w-1/4 text-left md:text-right font-sans text-xs tracking-widest uppercase text-studio-muted">Venice Biennale</div>
-                    </div>
-
-                    <div class="p-5 flex flex-col md:flex-row md:items-center justify-between gap-2 hover:bg-zinc-50 transition-colors">
-                        <div class="font-sans text-xs text-studio-muted md:w-1/6">2025.10</div>
-                        <div class="md:w-2/4">
-                            <h3 class="font-display font-medium text-xl text-zinc-900">Ghost Grid Soundscapes</h3>
-                            <p class="text-xs text-zinc-600 font-sans font-light">32-channel spatialized ambient acoustics and projection mapping.</p>
-                        </div>
-                        <div class="md:w-1/4 text-left md:text-right font-sans text-xs tracking-widest uppercase text-studio-muted">Mori Art Center</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- =========================================================
-             PAGE 6: CONTACT (#contact)
-             ========================================================= -->
-        <section id="page-contact" class="page-view hidden max-w-7xl mx-auto px-6 py-12 md:py-20">
-            
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <section id="page-contact" class="page-view hidden max-w-7xl mx-auto px-6 py-10 md:py-16 space-y-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 
-                <!-- Left Info -->
-                <div class="lg:col-span-5 space-y-8">
+                <!-- Contact Direct Info -->
+                <div class="lg:col-span-5 space-y-6 bg-white border border-studio-border rounded-3xl p-8 shadow-xs">
                     <div>
-                        <span class="font-sans text-xs text-studio-muted uppercase tracking-[0.2em] block mb-2">Commissions & Inquiries</span>
-                        <h1 class="font-display font-light text-4xl sm:text-5xl text-zinc-900">Get in Touch</h1>
+                        <span class="font-sans text-xs text-studio-muted uppercase tracking-[0.2em] font-bold block mb-2">COMMISSIONS & INQUIRIES</span>
+                        <h1 class="font-display font-bold text-4xl text-zinc-900">Get in Touch</h1>
                     </div>
 
-                    <p class="text-zinc-600 font-sans font-light text-sm md:text-base leading-relaxed">
-                        For exhibition inquiries, architectural commissions, real-time shader licensing, or keynote presentations, please use the form or email directly.
+                    <p class="text-zinc-600 font-sans text-sm leading-relaxed">
+                        For gallery exhibitions, ceramic commissions, movement choreography direction, or collaborative projects, please send a transmission below.
                     </p>
 
-                    <div class="space-y-4 font-sans text-xs">
-                        <div class="bg-white p-5 border border-studio-border space-y-2">
-                            <div class="text-studio-muted tracking-widest uppercase text-[10px]">Direct Email</div>
-                            <div class="flex items-center justify-between">
-                                <span class="font-medium text-zinc-900 text-sm">alex@rivers-studio.io</span>
-                                <button onclick="copyEmail('alex@rivers-studio.io')" class="text-zinc-900 underline hover:text-studio-muted tracking-widest uppercase text-[11px]">Copy</button>
-                            </div>
-                        </div>
-
-                        <div class="bg-white p-5 border border-studio-border space-y-2">
-                            <div class="text-studio-muted tracking-widest uppercase text-[10px]">Representation Gallery</div>
-                            <div class="font-medium text-zinc-900 text-sm">Kontrast Digital (Berlin / London)</div>
-                        </div>
-                    </div>
-
-                    <div class="pt-2">
-                        <div class="font-sans text-xs text-studio-muted mb-3 uppercase tracking-widest">Network Channels</div>
-                        <div class="flex gap-2 font-sans text-xs tracking-wider uppercase">
-                            <a href="#" class="px-4 py-2 border border-studio-border bg-white text-zinc-900 hover:border-zinc-900 transition-colors">Instagram</a>
-                            <a href="#" class="px-4 py-2 border border-studio-border bg-white text-zinc-900 hover:border-zinc-900 transition-colors">Behance</a>
-                            <a href="#" class="px-4 py-2 border border-studio-border bg-white text-zinc-900 hover:border-zinc-900 transition-colors">Vimeo</a>
-                            <a href="#" class="px-4 py-2 border border-studio-border bg-white text-zinc-900 hover:border-zinc-900 transition-colors">GitHub</a>
+                    <div class="bg-studio-bg p-5 border border-studio-border rounded-2xl space-y-2 font-sans text-xs">
+                        <span class="text-studio-muted tracking-widest uppercase text-[10px] font-bold block">Direct Email</span>
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-zinc-900 text-sm">alex@rivers-studio.io</span>
+                            <button onclick="copyEmail('alex@rivers-studio.io')" class="bg-[#CDDB3A] border border-zinc-900 px-3 py-1 rounded-full text-zinc-900 font-bold text-[10px] uppercase hover:bg-zinc-900 hover:text-white transition-colors">Copy</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right Form -->
+                <!-- Form -->
                 <div class="lg:col-span-7">
-                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="bg-white p-8 md:p-10 border border-studio-border space-y-6">
-                        
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="bg-white p-8 sm:p-10 border border-studio-border rounded-3xl space-y-6 shadow-xs">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
-                                <label class="block font-sans text-xs font-medium text-zinc-900 mb-2 uppercase tracking-widest">Full Name *</label>
+                                <label class="block font-sans text-xs font-bold text-zinc-900 mb-2 uppercase tracking-wider">Full Name *</label>
                                 <input type="text" id="form-name" required placeholder="Elena Rostova" 
-                                    class="w-full bg-studio-bg border border-studio-border rounded-none px-4 py-3 text-sm text-zinc-900 font-sans focus:outline-none focus:border-zinc-900 transition-colors">
+                                    class="w-full bg-studio-bg border border-studio-border rounded-2xl px-4 py-3 text-sm text-zinc-900 font-sans focus:outline-none focus:border-zinc-900">
                             </div>
 
                             <div>
-                                <label class="block font-sans text-xs font-medium text-zinc-900 mb-2 uppercase tracking-widest">Email Address *</label>
+                                <label class="block font-sans text-xs font-bold text-zinc-900 mb-2 uppercase tracking-wider">Email Address *</label>
                                 <input type="email" id="form-email" required placeholder="elena@gallery.com" 
-                                    class="w-full bg-studio-bg border border-studio-border rounded-none px-4 py-3 text-sm text-zinc-900 font-sans focus:outline-none focus:border-zinc-900 transition-colors">
+                                    class="w-full bg-studio-bg border border-studio-border rounded-2xl px-4 py-3 text-sm text-zinc-900 font-sans focus:outline-none focus:border-zinc-900">
                             </div>
                         </div>
 
                         <div>
-                            <label class="block font-sans text-xs font-medium text-zinc-900 mb-2 uppercase tracking-widest">Inquiry Category *</label>
-                            <select id="form-category" required class="w-full bg-studio-bg border border-studio-border rounded-none px-4 py-3 text-sm text-zinc-900 font-sans focus:outline-none focus:border-zinc-900 transition-colors">
+                            <label class="block font-sans text-xs font-bold text-zinc-900 mb-2 uppercase tracking-wider">Inquiry Category *</label>
+                            <select id="form-category" required class="w-full bg-studio-bg border border-studio-border rounded-2xl px-4 py-3 text-sm text-zinc-900 font-sans focus:outline-none focus:border-zinc-900">
                                 <option value="" disabled selected>Select category...</option>
-                                <option value="installation">Interactive Architectural Installation</option>
-                                <option value="3d">3D Realtime / CGI Artwork Commission</option>
-                                <option value="generative">Real-Time GLSL Shader Licensing</option>
-                                <option value="sound">Spatial Audio & Acoustic Design</option>
-                                <option value="keynote">Keynote / Exhibition Workshop</option>
+                                <option value="art">Fine Art & Gallery Exhibition</option>
+                                <option value="ceramics">Custom Ceramic Vessel Commission</option>
+                                <option value="photo-video">Photo Series / Video Loop Project</option>
+                                <option value="dance">Dance Performance & Choreography</option>
                             </select>
                         </div>
 
                         <div>
-                            <label class="block font-sans text-xs font-medium text-zinc-900 mb-2 uppercase tracking-widest">Estimated Budget Range (USD)</label>
-                            <div class="grid grid-cols-3 gap-3">
-                                <button type="button" onclick="selectBudget(this, '$5k - $15k')" class="budget-btn py-2.5 px-3 border border-studio-border bg-studio-bg text-xs font-sans text-zinc-900 hover:border-zinc-900 transition-colors">
-                                    $5k - $15k
-                                </button>
-                                <button type="button" onclick="selectBudget(this, '$15k - $40k')" class="budget-btn py-2.5 px-3 border border-studio-border bg-studio-bg text-xs font-sans text-zinc-900 hover:border-zinc-900 transition-colors">
-                                    $15k - $40k
-                                </button>
-                                <button type="button" onclick="selectBudget(this, '$40k+')" class="budget-btn py-2.5 px-3 border border-studio-border bg-studio-bg text-xs font-sans text-zinc-900 hover:border-zinc-900 transition-colors">
-                                    $40k+
-                                </button>
-                            </div>
-                            <input type="hidden" id="form-budget" value="">
+                            <label class="block font-sans text-xs font-bold text-zinc-900 mb-2 uppercase tracking-wider">Project Brief *</label>
+                            <textarea id="form-message" required rows="4" placeholder="Describe project requirements and timeline..." 
+                                class="w-full bg-studio-bg border border-studio-border rounded-2xl px-4 py-3 text-sm text-zinc-900 font-sans focus:outline-none focus:border-zinc-900"></textarea>
                         </div>
 
-                        <div>
-                            <label class="block font-sans text-xs font-medium text-zinc-900 mb-2 uppercase tracking-widest">Project Brief *</label>
-                            <textarea id="form-message" required rows="4" placeholder="Describe the project concept, venue scope, and target timeframe..." 
-                                class="w-full bg-studio-bg border border-studio-border rounded-none px-4 py-3 text-sm text-zinc-900 font-sans focus:outline-none focus:border-zinc-900 transition-colors"></textarea>
-                        </div>
-
-                        <button type="submit" id="submit-btn" class="w-full py-4 bg-zinc-900 text-white font-sans text-xs font-medium uppercase tracking-[0.2em] hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2">
+                        <button type="submit" id="submit-btn" class="w-full py-4 bg-zinc-900 text-white rounded-2xl font-sans text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#CDDB3A] hover:text-zinc-900 transition-colors flex items-center justify-center gap-2 shadow-xs">
                             <span>Transmit Inquiry</span>
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </form>
                 </div>
-
             </div>
-
         </section>
 
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-white border-t border-studio-border py-8 px-6 text-xs font-sans tracking-widest uppercase text-studio-muted">
+    <footer class="bg-white border-t border-studio-border py-8 px-6 text-xs font-sans tracking-wider uppercase text-studio-muted">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <span class="w-2 h-2 bg-zinc-900"></span>
-                <span>© 2026 Quana Cannon Studio. All Rights Reserved.</span>
+            <div class="flex items-center gap-2 font-bold">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#CDDB3A]"></span>
+                <span class="text-zinc-900">© 2026 ALEX RIVERS STUDIO</span>
             </div>
             
             <div class="flex items-center gap-6">
-                <span>Berlin / London: <span id="live-clock" class="text-zinc-900 font-mono font-medium">00:00:00 UTC</span></span>
-                <a href="#home" class="hover:text-zinc-900 transition-colors">Top ↑</a>
+                <span>UTC: <span id="live-clock" class="text-zinc-900 font-mono font-bold">00:00:00</span></span>
+                <a href="#home" class="hover:text-zinc-900 font-bold transition-colors">Back to Top ↑</a>
             </div>
         </div>
     </footer>
 
-    <!-- LIGHTBOX MODAL -->
-    <div id="project-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6 md:p-10">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-xs" onclick="closeModal()"></div>
+    <!-- LIGHTBOX & JOURNAL MODALS -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6">
+        <div class="absolute inset-0 bg-zinc-900/60 backdrop-blur-xs" onclick="closeModal()"></div>
 
-        <div class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white border border-studio-border p-6 sm:p-8 z-10 space-y-6">
-            <button onclick="closeModal()" class="absolute top-5 right-5 w-8 h-8 bg-studio-bg border border-studio-border flex items-center justify-center text-zinc-900 hover:bg-zinc-900 hover:text-white transition-colors">
+        <div class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white border border-studio-border rounded-3xl p-6 sm:p-8 z-10 space-y-6 shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-5 right-5 w-9 h-9 bg-studio-bg border border-studio-border rounded-full flex items-center justify-center text-zinc-900 hover:bg-zinc-900 hover:text-white transition-colors">
                 <i class="fa-solid fa-xmark text-sm"></i>
             </button>
 
             <div id="modal-content" class="space-y-6">
-                <!-- Dynamically injected -->
+                <!-- Injected dynamically -->
             </div>
         </div>
     </div>
 
     <!-- TOAST NOTIFICATION -->
-    <div id="toast" class="fixed bottom-8 right-8 z-50 hidden bg-zinc-900 text-white px-6 py-4 border border-zinc-800 shadow-xl flex items-center gap-4 text-xs font-sans tracking-wider uppercase">
-        <i class="fa-solid fa-check text-emerald-400"></i>
+    <div id="toast" class="fixed bottom-8 right-8 z-50 hidden bg-zinc-900 text-white px-6 py-4 rounded-2xl border border-zinc-800 shadow-xl flex items-center gap-4 text-xs font-sans tracking-wider uppercase">
+        <i class="fa-solid fa-check text-[#CDDB3A]"></i>
         <div>
-            <div class="font-medium" id="toast-title">Transmission Sent</div>
-            <div class="text-zinc-400 font-light normal-case" id="toast-message">Thank you. Response will be sent shortly.</div>
+            <div class="font-bold" id="toast-title">Transmission Sent</div>
+            <div class="text-zinc-400 font-normal normal-case" id="toast-message">Response will be sent shortly.</div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- JAVASCRIPT APP LOGIC -->
     <script>
         /* -------------------------------------------------------------
-         * 0. PLAYFUL GRAPHIC SHAPE INTERACTION
+         * 0. PLAYFUL GRAPHIC SHAPES & WORK BUBBLE INTERACTION
          * ------------------------------------------------------------- */
         function popShape(el) {
-            el.classList.add('animate-ping');
+            el.classList.add('animate-bounce');
             setTimeout(() => {
-                el.classList.remove('animate-ping');
-            }, 500);
+                el.classList.remove('animate-bounce');
+            }, 600);
 
-            // Trigger soft playful pop note via web audio if initialized
             if (typeof playNote === 'function') {
                 const freqs = [329.63, 440.00, 523.25, 659.25];
                 const randomFreq = freqs[Math.floor(Math.random() * freqs.length)];
                 playNote(randomFreq, 'POP!');
             }
+        }
+
+        function openBubbleModal(imgUrl, caption) {
+            const modalContent = document.getElementById('modal-content');
+            modalContent.innerHTML = `
+                <div class="relative max-h-[65vh] bg-zinc-900 rounded-2xl overflow-hidden flex items-center justify-center">
+                    <img src="${imgUrl}" alt="${caption}" class="max-h-[65vh] w-auto object-contain">
+                </div>
+                <div class="space-y-2">
+                    <span class="bg-[#CDDB3A] text-zinc-900 border border-zinc-900 px-3 py-1 rounded-full text-[10px] font-sans font-bold uppercase">WORK BUBBLE IMAGE</span>
+                    <h3 class="font-display font-bold text-2xl text-zinc-900">${caption}</h3>
+                </div>
+            `;
+            document.getElementById('project-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
         }
 
         /* -------------------------------------------------------------
@@ -924,107 +886,111 @@
         const projectsData = [
             {
                 id: 1,
-                title: "SOFT CIRCUIT HAND GARMENTS",
-                category: "design",
-                categoryBadge: "E-TEXTILES",
-                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=1000&auto=format&fit=crop",
-                summary: "Dual-layer Velostat pressure sensors and conductive thread sewn into wearable audio-activation gloves.",
+                title: "NEURAL AURA FIELD",
+                categoryBadge: "FINE ART",
+                image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop",
                 year: "2026",
-                venue: "MIT Media Lab / Berlin",
-                stack: ["Velostat", "Conductive Thread", "Teensy 4.1", "Max/MSP"],
-                story: "Soft Circuit Hand Garments explores tactile interaction through wearable textiles. The gloves incorporate conductive fabric pads and Velostat pressure sensors, allowing users to trigger real-time soundscapes based on physical touch intensity."
+                venue: "Venice Biennale, Italy",
+                stack: ["Interactive Light", "GLSL", "Fluid Dynamics"],
+                story: "Neural Aura Field translates biofeedback data into undulating spectral light fields, exploring human presence in spatial environments."
             },
             {
                 id: 2,
-                title: "NEURAL AURA WAVES",
-                category: "generative",
-                categoryBadge: "REALTIME SHADERS",
-                image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop",
-                summary: "Real-time GLSL fragment shaders driven by multichannel brainwave frequencies inside a digital dome.",
-                year: "2026",
-                venue: "Venice Biennale, Italy",
-                stack: ["TouchDesigner", "GLSL Shaders", "Bio-Sensors"],
-                story: "Neural Aura Waves translates human biofeedback into undulating real-time color fields. The installation mirrors emotional state transitions through soft fluid physics and adaptive spectral dispersion."
+                title: "QUATERNION MESH",
+                categoryBadge: "FINE ART",
+                image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1000&auto=format&fit=crop",
+                year: "2025",
+                venue: "Tate Modern, London",
+                stack: ["Fiber Optics", "Aluminum Structure"],
+                story: "Suspended mesh structure illuminated by kinetic fiber-optic strands."
             },
             {
                 id: 3,
-                title: "CHRONOSCULPT 4D",
-                category: "3d",
-                categoryBadge: "3D REALTIME",
-                image: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=1000&auto=format&fit=crop",
-                summary: "Raytraced zero-gravity geometries folding continuously through four-dimensional spatial axes.",
+                title: "LUMEN CANOPY",
+                categoryBadge: "KINETIC ART",
+                image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop",
                 year: "2025",
-                venue: "Digital Art Museum, NYC",
-                stack: ["Unreal Engine 5", "Blender", "Raytracing"],
-                story: "Exploring hyper-dimensional visual structures. Visitors interactively rotate the sculpture's four-dimensional axes via gesture control interfaces."
+                venue: "Mori Art Center, Tokyo",
+                stack: ["Sensors", "Kinetic Canopy"],
+                story: "Sensor-driven ceiling canopy responding to human movement in real time."
             },
             {
                 id: 4,
-                title: "QUATERNION FLOW",
-                category: "art",
-                categoryBadge: "COMPUTATIONAL MATH",
-                image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1000&auto=format&fit=crop",
-                summary: "GPU fractal visualizer manipulating complex multi-dimensional equations in real-time.",
+                title: "CRYSTALLINE PORCELAIN URN",
+                categoryBadge: "CERAMICS",
+                image: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=1000&auto=format&fit=crop",
                 year: "2025",
-                venue: "Ars Electronica, Linz",
-                stack: ["GLSL", "WebGL", "Three.js"],
-                story: "Quaternion Flow visualizes complex four-dimensional mathematical spaces mapped to interactive dual-axis control pads."
+                venue: "Berlin Ceramic Gallery",
+                stack: ["Porcelain", "Zinc Silicate Glaze"],
+                story: "Wheel-thrown porcelain glazed with formulated zinc silicates and fired to Cone 10 reduction."
             },
             {
                 id: 5,
-                title: "LUMEN CANOPY",
-                category: "art",
-                categoryBadge: "KINETIC LIGHT",
-                image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop",
-                summary: "LiDAR tracked overhead light structure suspended in Turbine Hall.",
+                title: "SHIGARAKI ASH VESSEL",
+                categoryBadge: "CERAMICS",
+                image: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=1000&auto=format&fit=crop",
                 year: "2024",
-                venue: "Tate Modern, London",
-                stack: ["LiDAR", "DMX Lighting", "C++ / openFrameworks"],
-                story: "An interactive architectural ceiling installation responding to spatial density and movement vectors of gallery audiences."
+                venue: "Shigaraki, Japan",
+                stack: ["Anagama Kiln", "Stoneware"],
+                story: "Hand-sculpted stoneware fired for 160 hours in wood-burning Anagama kilns."
             },
             {
                 id: 6,
-                title: "CROSSWALK SYMPHONY",
-                category: "music",
-                categoryBadge: "SPATIAL AUDIO",
-                image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1000&auto=format&fit=crop",
-                summary: "Urban acoustic sensor array synthesizing ambient city rhythms into multi-channel harmony.",
+                title: "RESONANT CERAMIC SPEAKER",
+                categoryBadge: "CERAMICS & SOUND",
+                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=1000&auto=format&fit=crop",
                 year: "2024",
-                venue: "Mori Art Center, Tokyo",
-                stack: ["Max/MSP", "Raspberry Pi", "32-Ch Speaker Array"],
-                story: "Crosswalk Symphony translates street pedestrian flow into organic acoustic drone chords and resonant micro-textures."
+                venue: "Berlin Sound Lab",
+                stack: ["Contact Mics", "Acoustic Clay"],
+                story: "Acoustically tuned porcelain vessel with embedded piezoelectric contact sensors."
+            }
+        ];
+
+        const journalData = [
+            {
+                id: 1,
+                title: "Zinc Silicate Crystal Formations in Reduction Kilns",
+                tag: "GLAZE LOG",
+                date: "OCT 2026",
+                content: "Controlling glaze chemistry requires careful balancing of zinc oxide and silica ratios. During the cooling cycle from 1250°C to 1080°C, holding temperatures for 4 hours allows zinc silicate crystal seeds to bloom across the porcelain surface."
+            },
+            {
+                id: 2,
+                title: "Tactile Inertia & Kinesphere Spatial Boundaries",
+                tag: "DANCE ESSAY",
+                date: "AUG 2026",
+                content: "When body movement interacts with high-density wet clay forms, weight distribution changes the dancer's center of mass. This creates a tactile feedback loop where the material dictates kinetic velocity."
             }
         ];
 
         /* -------------------------------------------------------------
-         * 2. CLIENT-SIDE MULTI-PAGE ROUTER (LEFT SIDEBAR ACTIVE STATES)
+         * 2. CLIENT-SIDE MULTI-PAGE ROUTER
          * ------------------------------------------------------------- */
         function navigateTo(pageId) {
-            const validPages = ['home', 'design', 'art', 'photo', 'music', 'about', 'contact'];
+            const validPages = ['home', 'art', 'ceramics', 'photo-video', 'dance', 'journals', 'about', 'contact'];
             let target = pageId.replace('#', '');
-            if (target === 'design' || target === '') target = 'home';
-            if (!validPages.includes(target)) target = 'home';
+            if (target === '' || !validPages.includes(target)) target = 'home';
 
-            // Hide all pages
+            // Hide all views
             document.querySelectorAll('.page-view').forEach(el => {
                 el.classList.add('hidden');
             });
 
-            // Show target page
+            // Show active view
             const activePage = document.getElementById(`page-${target}`);
             if (activePage) {
                 activePage.classList.remove('hidden');
                 window.scrollTo({ top: 0, behavior: 'instant' });
             }
 
-            // Update Left Sidebar Nav Links Active State
+            // Highlight Sidebar Nav Link
             document.querySelectorAll('.nav-link').forEach(link => {
                 const linkTarget = link.getAttribute('href').replace('#', '');
-                if (linkTarget === target || (target === 'home' && linkTarget === 'design')) {
-                    link.classList.add('active-nav', 'text-zinc-900');
+                if (linkTarget === target) {
+                    link.classList.add('active-nav', 'text-zinc-900', 'bg-white');
                     link.classList.remove('text-studio-muted');
                 } else {
-                    link.classList.remove('active-nav', 'text-zinc-900');
+                    link.classList.remove('active-nav', 'text-zinc-900', 'bg-white');
                     link.classList.add('text-studio-muted');
                 }
             });
@@ -1035,7 +1001,7 @@
         });
 
         /* -------------------------------------------------------------
-         * 3. PLAYABLE SYNTHESIZER KEYS (WEB AUDIO DSP)
+         * 3. WEB AUDIO SYNTHESIZER
          * ------------------------------------------------------------- */
         let synthAudioCtx = null;
 
@@ -1055,26 +1021,21 @@
                 osc.frequency.setValueAtTime(freq, synthAudioCtx.currentTime);
 
                 gain.gain.setValueAtTime(0.001, synthAudioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.15, synthAudioCtx.currentTime + 0.05);
-                gain.gain.exponentialRampToValueAtTime(0.0001, synthAudioCtx.currentTime + 1.2);
+                gain.gain.exponentialRampToValueAtTime(0.12, synthAudioCtx.currentTime + 0.05);
+                gain.gain.exponentialRampToValueAtTime(0.0001, synthAudioCtx.currentTime + 1.0);
 
                 osc.connect(gain);
                 gain.connect(synthAudioCtx.destination);
 
                 osc.start();
-                osc.stop(synthAudioCtx.currentTime + 1.25);
-
-                const display = document.getElementById('active-note-display');
-                if (display) {
-                    display.innerText = `${label} — ${freq} HZ ACTIVE`;
-                }
+                osc.stop(synthAudioCtx.currentTime + 1.1);
             } catch (e) {
-                console.warn("Synth note playback", e);
+                console.warn("Synth playback audio exception:", e);
             }
         }
 
         /* -------------------------------------------------------------
-         * 4. MODAL, FORM & UTILITY LOGIC
+         * 4. UTILITIES & MODAL HANDLERS
          * ------------------------------------------------------------- */
         function copyEmail(text) {
             const textarea = document.createElement('textarea');
@@ -1085,22 +1046,11 @@
             textarea.select();
             try {
                 document.execCommand('copy');
-                showToast("Copied to Clipboard", text);
+                showToast("Copied Email", text);
             } catch (err) {
-                console.error('Could not copy text: ', err);
+                console.error('Copy failed', err);
             }
             document.body.removeChild(textarea);
-        }
-
-        function selectBudget(btn, amount) {
-            document.querySelectorAll('.budget-btn').forEach(b => {
-                b.classList.remove('bg-[#CDDB3A]', 'border-zinc-900', 'font-bold');
-                b.classList.add('bg-studio-bg', 'border-studio-border');
-            });
-            btn.classList.remove('bg-studio-bg', 'border-studio-border');
-            btn.classList.add('bg-[#CDDB3A]', 'border-zinc-900', 'font-bold');
-            const hiddenInput = document.getElementById('form-budget');
-            if (hiddenInput) hiddenInput.value = amount;
         }
 
         function handleFormSubmit(event) {
@@ -1108,18 +1058,14 @@
             const submitBtn = document.getElementById('submit-btn');
             if (submitBtn) {
                 submitBtn.disabled = true;
-                submitBtn.innerHTML = `<span>TRANSMITTING...</span><i class="fa-solid fa-spinner animate-spin"></i>`;
+                submitBtn.innerHTML = `<span>Transmitting...</span><i class="fa-solid fa-spinner animate-spin"></i>`;
             }
             setTimeout(() => {
                 showToast("Transmission Sent", "Thank you for reaching out. Alex will respond within 24 hours.");
                 document.getElementById('contact-form').reset();
-                document.querySelectorAll('.budget-btn').forEach(b => {
-                    b.classList.remove('bg-[#CDDB3A]', 'border-zinc-900', 'font-bold');
-                    b.classList.add('bg-studio-bg', 'border-studio-border');
-                });
                 if (submitBtn) {
                     submitBtn.disabled = false;
-                    submitBtn.innerHTML = `<span>TRANSMIT INQUIRY</span><i class="fa-solid fa-arrow-right"></i>`;
+                    submitBtn.innerHTML = `<span>Transmit Inquiry</span><i class="fa-solid fa-arrow-right"></i>`;
                 }
             }, 800);
         }
@@ -1144,36 +1090,50 @@
 
             const modalContent = document.getElementById('modal-content');
             modalContent.innerHTML = `
-                <div class="relative h-64 sm:h-80 bg-zinc-900 border border-studio-border overflow-hidden">
-                    <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover opacity-90">
+                <div class="relative h-64 sm:h-80 bg-zinc-900 rounded-2xl overflow-hidden">
+                    <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
                 </div>
 
                 <div class="space-y-4">
-                    <div class="flex items-center gap-3 font-sans text-xs font-bold text-studio-muted tracking-widest uppercase">
-                        <span class="bg-[#CDDB3A] border border-zinc-900 px-2.5 py-0.5 text-zinc-900 font-bold">${project.categoryBadge}</span>
-                        <span class="text-zinc-900">YEAR: ${project.year}</span>
+                    <div class="flex items-center gap-3 font-sans text-xs font-bold text-studio-muted">
+                        <span class="bg-[#CDDB3A] border border-zinc-900 px-3 py-0.5 rounded-full text-zinc-900">${project.categoryBadge}</span>
+                        <span>YEAR: ${project.year}</span>
                     </div>
 
-                    <h2 class="font-display font-bold text-3xl sm:text-4xl text-zinc-900 tracking-tight">${project.title}</h2>
+                    <h2 class="font-display font-bold text-3xl text-zinc-900 tracking-tight">${project.title}</h2>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
-                        <div class="md:col-span-2 space-y-3">
-                            <h4 class="font-sans text-xs font-bold text-zinc-900 uppercase tracking-widest">Project Description</h4>
-                            <p class="text-zinc-700 text-sm leading-relaxed font-sans font-medium">${project.story}</p>
-                        </div>
+                    <div class="space-y-3 pt-2">
+                        <h4 class="font-sans text-xs font-bold text-zinc-900 uppercase">Project Description</h4>
+                        <p class="text-zinc-600 text-sm leading-relaxed font-sans">${project.story}</p>
+                    </div>
 
-                        <div class="bg-studio-bg p-5 border border-studio-border space-y-3 font-sans text-xs">
-                            <div>
-                                <div class="text-zinc-900 font-bold uppercase tracking-widest text-[10px]">Venue / Lab</div>
-                                <div class="text-zinc-900 font-semibold">${project.venue}</div>
-                            </div>
-                            <div>
-                                <div class="text-zinc-900 font-bold uppercase tracking-widest text-[10px] mb-1">Materials & Stack</div>
-                                <div class="flex flex-wrap gap-1">
-                                    ${project.stack.map(s => `<span class="px-2 py-0.5 bg-white border border-zinc-900 text-zinc-900 font-bold text-[11px]">${s}</span>`).join('')}
-                                </div>
-                            </div>
-                        </div>
+                    <div class="bg-studio-bg p-4 rounded-2xl border border-studio-border flex flex-wrap gap-2 text-xs font-sans">
+                        <span class="font-bold text-zinc-900">Materials:</span>
+                        ${project.stack.map(s => `<span class="bg-white border border-zinc-900 px-2.5 py-0.5 rounded-full font-bold">${s}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('project-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openJournalModal(journalId) {
+            const entry = journalData.find(j => j.id === journalId);
+            if (!entry) return;
+
+            const modalContent = document.getElementById('modal-content');
+            modalContent.innerHTML = `
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="bg-[#F4F8CD] border border-[#CDDB3A] px-3 py-1 rounded-full text-zinc-900 font-sans text-xs font-bold">${entry.tag}</span>
+                        <span class="font-mono text-xs text-studio-muted">${entry.date}</span>
+                    </div>
+
+                    <h2 class="font-display font-bold text-3xl text-zinc-900 tracking-tight">${entry.title}</h2>
+                    
+                    <div class="pt-4 border-t border-studio-border">
+                        <p class="text-zinc-700 text-sm md:text-base leading-relaxed font-sans font-medium whitespace-pre-line">${entry.content}</p>
                     </div>
                 </div>
             `;
@@ -1192,7 +1152,7 @@
             if (e.key === 'Escape') closeModal();
         });
 
-        // Ambient Soundscape Toggle
+        // Ambient Soundscape Generator
         let audioCtx = null;
         let isSynthActive = false;
         let osc1, osc2, gainNode;
@@ -1247,7 +1207,7 @@
                     }
                 }
             } catch (err) {
-                console.warn("Web Audio Context initialized safely.", err);
+                console.warn("Web Audio Context safe initialization:", err);
             }
         }
 
@@ -1260,11 +1220,11 @@
             if (sbEl) sbEl.innerText = now.toISOString().substring(11, 16) + ' UTC';
         }
 
-        window.onload = function () {
+        document.addEventListener('DOMContentLoaded', () => {
             navigateTo(window.location.hash || 'home');
             setInterval(updateClock, 1000);
             updateClock();
-        };
+        });
     </script>
 </body>
 </html>
