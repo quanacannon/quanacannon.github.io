@@ -193,15 +193,27 @@
                     <div id="works-menu" class="hidden flex-col gap-3 pl-5 pt-3 text-xl lg:text-2xl text-zinc-600">
                         <a href="#art" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">ART</a>
                         <a href="#ceramics" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">CERAMICS</a>
-                        <a href="#photo-video" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">PHOTO & VIDEO</a>
+                        <a href="#photo" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">PHOTO</a>
+                        <a href="#video" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">VIDEO</a>
                         <a href="#dance" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">DANCE</a>
                         <a href="#journals" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">JOURNALS</a>
+                        <a href="#projects" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">PROJECTS</a>
                     </div>
                 </div>
 
                 <a href="#about" class="nav-link hover:text-[#D5EE10] hover:translate-x-2 transition-all">ABOUT</a>
                 <a href="#contact" class="nav-link hover:text-[#D5EE10] hover:translate-x-2 transition-all">CONTACT</a>
             </nav>
+
+            <!-- SOCIAL MEDIA LINKS -->
+            <div class="flex items-center gap-3 pt-2 text-zinc-900">
+                <a href="https://instagram.com" target="_blank" rel="noopener" class="w-11 h-11 rounded-full bg-white flex items-center justify-center hover:bg-[#D5EE10] transition-colors shadow-xs border border-zinc-200/60" title="Instagram">
+                    <i class="fa-brands fa-instagram text-lg"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener" class="w-11 h-11 rounded-full bg-white flex items-center justify-center hover:bg-[#D5EE10] transition-colors shadow-xs border border-zinc-200/60" title="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in text-lg"></i>
+                </a>
+            </div>
         </div>
 
         <!-- Synth Sound Control -->
@@ -225,19 +237,23 @@
     <main class="flex-grow md:ml-80 lg:ml-96 min-h-screen relative p-6 md:p-12">
 
         <!-- =========================================================
-             PAGE 1: HOME (#home) - 3D FLOATING 'QUANA CANNON' LETTERS & IN-PLANE WORK CIRCLES
+             PAGE 1: HOME (#home) - INTERACTIVE 2D FLOATING LETTERS
              ========================================================= -->
-        <section id="page-home" class="page-view h-[85vh] md:h-[90vh] relative flex items-center justify-center overflow-hidden">
+        <section id="page-home" class="page-view relative w-full h-[85vh] min-h-[500px] flex flex-col justify-center items-center overflow-hidden">
+            <div id="q-canvas-container" class="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing"></div>
             
-            <!-- 3D FLOATING LETTERS & WORK BUBBLES CANVAS CONTAINER -->
-            <div id="q-canvas-container" class="w-full h-full relative cursor-grab active:cursor-grabbing"></div>
-
+            <div class="absolute bottom-4 left-4 right-4 md:left-8 flex justify-between items-end pointer-events-none z-20">
+                <div class="space-y-1 bg-white/80 backdrop-blur-xs p-3.5 rounded-2xl border border-zinc-200/60 shadow-xs pointer-events-auto">
+                    <span class="text-[10px] text-studio-muted uppercase tracking-widest block">INTERACTIVE CENTERPIECE</span>
+                    <p class="text-xs text-zinc-900 uppercase font-semibold">MOVE CURSOR TO UNSCRAMBLE "QUANA CANNON" & COLLIDE</p>
+                </div>
+            </div>
         </section>
 
         <!-- =========================================================
-             PAGE 2: ART (#art)
+             PAGE 2: ART (#art) - EXPANDED VERTICAL GALLERY
              ========================================================= -->
-        <section id="page-art" class="page-view hidden max-w-6xl mx-auto space-y-10">
+        <section id="page-art" class="page-view hidden max-w-6xl mx-auto space-y-10 pb-16">
             <div class="space-y-2">
                 <span class="text-xs text-studio-muted uppercase tracking-widest block">FINE ART</span>
                 <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">KINETIC & LIGHT WORKS</h1>
@@ -245,7 +261,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="space-y-3 cursor-pointer group" onclick="openModal(1)">
-                    <div class="h-72 rounded-3xl overflow-hidden bg-zinc-200">
+                    <div class="h-80 rounded-3xl overflow-hidden bg-zinc-200">
                         <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <h3 class="text-2xl text-zinc-900 uppercase">NEURAL AURA FIELD</h3>
@@ -253,7 +269,7 @@
                 </div>
 
                 <div class="space-y-3 cursor-pointer group" onclick="openModal(2)">
-                    <div class="h-72 rounded-3xl overflow-hidden bg-zinc-200">
+                    <div class="h-80 rounded-3xl overflow-hidden bg-zinc-200">
                         <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <h3 class="text-2xl text-zinc-900 uppercase">QUATERNION MESH</h3>
@@ -261,11 +277,59 @@
                 </div>
 
                 <div class="space-y-3 cursor-pointer group" onclick="openModal(3)">
-                    <div class="h-72 rounded-3xl overflow-hidden bg-zinc-200">
+                    <div class="h-80 rounded-3xl overflow-hidden bg-zinc-200">
                         <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <h3 class="text-2xl text-zinc-900 uppercase">LUMEN CANOPY</h3>
                     <p class="text-xs text-studio-muted uppercase">MORI ART MUSEUM / SENSORS</p>
+                </div>
+
+                <div class="space-y-3 cursor-pointer group" onclick="openModal(1)">
+                    <div class="h-80 rounded-3xl overflow-hidden bg-zinc-200">
+                        <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-2xl text-zinc-900 uppercase">SPECTRAL REFRACTION</h3>
+                    <p class="text-xs text-studio-muted uppercase">BERLIN KRAFTWERK / PRISMS</p>
+                </div>
+
+                <div class="space-y-3 cursor-pointer group" onclick="openModal(2)">
+                    <div class="h-80 rounded-3xl overflow-hidden bg-zinc-200">
+                        <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-2xl text-zinc-900 uppercase">CHROMATIC RESONANCE</h3>
+                    <p class="text-xs text-studio-muted uppercase">HAUS DER KULTURN / SOUND</p>
+                </div>
+
+                <div class="space-y-3 cursor-pointer group" onclick="openModal(3)">
+                    <div class="h-80 rounded-3xl overflow-hidden bg-zinc-200">
+                        <img src="https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-2xl text-zinc-900 uppercase">TENSION FIELD #09</h3>
+                    <p class="text-xs text-studio-muted uppercase">HYBRID BRASS & LEDS</p>
+                </div>
+
+                <div class="space-y-3 cursor-pointer group" onclick="openModal(1)">
+                    <div class="h-80 rounded-3xl overflow-hidden bg-zinc-200">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-2xl text-zinc-900 uppercase">SYNAPSE GRID</h3>
+                    <p class="text-xs text-studio-muted uppercase">INTERACTIVE CIRCUITS</p>
+                </div>
+
+                <div class="space-y-3 cursor-pointer group" onclick="openModal(2)">
+                    <div class="h-80 rounded-3xl overflow-hidden bg-zinc-200">
+                        <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-2xl text-zinc-900 uppercase">ORBITAL PENDULUM</h3>
+                    <p class="text-xs text-studio-muted uppercase">GRAVITY SCULPTURE</p>
+                </div>
+
+                <div class="space-y-3 cursor-pointer group" onclick="openModal(3)">
+                    <div class="h-80 rounded-3xl overflow-hidden bg-zinc-200">
+                        <img src="https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-2xl text-zinc-900 uppercase">DIFFRACTION ARCH</h3>
+                    <p class="text-xs text-studio-muted uppercase">MONOLITHIC ACRYLIC</p>
                 </div>
             </div>
         </section>
@@ -307,12 +371,12 @@
         </section>
 
         <!-- =========================================================
-             PAGE 4: PHOTO & VIDEO (#photo-video)
+             PAGE 4A: PHOTO (#photo)
              ========================================================= -->
-        <section id="page-photo-video" class="page-view hidden max-w-6xl mx-auto space-y-10">
+        <section id="page-photo" class="page-view hidden max-w-6xl mx-auto space-y-10">
             <div class="space-y-2">
                 <span class="text-xs text-studio-muted uppercase tracking-widest block">LENS MEDIA</span>
-                <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">FILM & PROJECTION</h1>
+                <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">PHOTOGRAPHY GALLERY</h1>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -321,7 +385,7 @@
                         <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800" class="w-full h-full object-cover">
                     </div>
                     <h3 class="text-xl text-zinc-900 uppercase">BERLIN MONOCHROME</h3>
-                    <p class="text-xs text-studio-muted uppercase">HASSELBLAD 500C</p>
+                    <p class="text-xs text-studio-muted uppercase">HASSELBLAD 500C / SILVER GELATIN</p>
                 </div>
 
                 <div class="space-y-3">
@@ -329,15 +393,55 @@
                         <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=800" class="w-full h-full object-cover">
                     </div>
                     <h3 class="text-xl text-zinc-900 uppercase">DANCE STILL #04</h3>
-                    <p class="text-xs text-studio-muted uppercase">16MM FILM</p>
+                    <p class="text-xs text-studio-muted uppercase">16MM FILM ARCHIVE</p>
                 </div>
 
                 <div class="space-y-3">
                     <div class="rounded-3xl overflow-hidden h-80 bg-zinc-200">
-                        <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=800" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=800" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="text-xl text-zinc-900 uppercase">DIFFRACTION LOOP</h3>
-                    <p class="text-xs text-studio-muted uppercase">4K PROJECTION</p>
+                    <h3 class="text-xl text-zinc-900 uppercase">SHIGARAKI FOG STUDY</h3>
+                    <p class="text-xs text-studio-muted uppercase">MEDIUM FORMAT DIGITAL</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             PAGE 4B: VIDEO (#video)
+             ========================================================= -->
+        <section id="page-video" class="page-view hidden max-w-6xl mx-auto space-y-10">
+            <div class="space-y-2">
+                <span class="text-xs text-studio-muted uppercase tracking-widest block">MOVING IMAGE</span>
+                <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">VIDEO & PROJECTION</h1>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-4 bg-white p-6 rounded-3xl border border-zinc-200/60 shadow-xs">
+                    <div class="rounded-2xl overflow-hidden h-64 bg-zinc-900 relative flex items-center justify-center group cursor-pointer" onclick="openModal(1)">
+                        <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=800" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute w-16 h-16 rounded-full bg-[#D5EE10] text-zinc-900 flex items-center justify-center text-xl shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <span class="bg-[#D5EE10] text-zinc-900 text-[10px] px-2.5 py-0.5 rounded-full uppercase">4K PROJECTION</span>
+                        <h3 class="text-2xl text-zinc-900 uppercase">DIFFRACTION LOOP</h3>
+                        <p class="text-xs text-studio-muted uppercase">12-CHANNEL GENERATIVE VIDEO INSTALLATION</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4 bg-white p-6 rounded-3xl border border-zinc-200/60 shadow-xs">
+                    <div class="rounded-2xl overflow-hidden h-64 bg-zinc-900 relative flex items-center justify-center group cursor-pointer" onclick="openModal(2)">
+                        <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=800" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute w-16 h-16 rounded-full bg-[#D5EE10] text-zinc-900 flex items-center justify-center text-xl shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <span class="bg-zinc-200 text-zinc-900 text-[10px] px-2.5 py-0.5 rounded-full uppercase">PERFORMANCE FILM</span>
+                        <h3 class="text-2xl text-zinc-900 uppercase">KINESPHERE CHOREOGRAPHY</h3>
+                        <p class="text-xs text-studio-muted uppercase">EXPERIMENTAL SHORT FILM / DANCE IN CLAY</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -366,25 +470,122 @@
         </section>
 
         <!-- =========================================================
-             PAGE 6: JOURNALS (#journals)
+             PAGE 6: JOURNALS (#journals) - HORIZONTAL DROPDOWN ACCORDION
              ========================================================= -->
         <section id="page-journals" class="page-view hidden max-w-6xl mx-auto space-y-10">
             <div class="space-y-2">
-                <span class="text-xs text-studio-muted uppercase tracking-widest block">RESEARCH</span>
-                <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">FIELD NOTES</h1>
+                <span class="text-xs text-studio-muted uppercase tracking-widest block">RESEARCH & FIELDWORK</span>
+                <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">FIELD JOURNALS</h1>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="space-y-4 cursor-pointer" onclick="openJournalModal(1)">
-                    <span class="bg-[#D5EE10] text-zinc-900 text-xs px-3 py-1 rounded-full uppercase">GLAZE LOG</span>
-                    <h3 class="text-3xl text-zinc-900 uppercase">ZINC SILICATE CRYSTAL FORMATIONS</h3>
-                    <p class="text-xs text-studio-muted uppercase">OCT 2026 / REDUCTION KILN TEMPERATURE COOLING</p>
+            <!-- STACKED ONE-LINE HORIZONTAL DROPDOWNS -->
+            <div class="space-y-3">
+                <div class="journal-accordion-item border border-zinc-200 bg-white rounded-2xl overflow-hidden shadow-xs transition-all">
+                    <button onclick="toggleJournalAccordion(this)" class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-zinc-50 transition-colors">
+                        <div class="flex items-center gap-4 flex-wrap">
+                            <span class="bg-[#D5EE10] text-zinc-900 text-[10px] px-2.5 py-1 rounded-full uppercase">GLAZE LOG</span>
+                            <span class="text-xl md:text-2xl text-zinc-900 uppercase">ZINC SILICATE CRYSTAL FORMATIONS</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs text-studio-muted uppercase hidden sm:inline">OCT 2026</span>
+                            <i class="fa-solid fa-chevron-down text-zinc-600 transition-transform duration-300"></i>
+                        </div>
+                    </button>
+                    <div class="accordion-content hidden px-6 pb-6 pt-2 border-t border-zinc-100 text-xs text-studio-muted uppercase leading-relaxed space-y-3">
+                        <p>COOLING SCHEDULE: RAPID DROP FROM 1260°C TO 1080°C, HELD FOR 4 HOURS. LARGE ZINC CRYSTAL ROSETTES DEVELOPED ON HIGH-ALUMINA PORCELAIN BODIES.</p>
+                        <div class="h-48 rounded-2xl bg-zinc-100 overflow-hidden max-w-md">
+                            <img src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=600" class="w-full h-full object-cover">
+                        </div>
+                    </div>
                 </div>
 
-                <div class="space-y-4 cursor-pointer" onclick="openJournalModal(2)">
-                    <span class="bg-[#D5EE10] text-zinc-900 text-xs px-3 py-1 rounded-full uppercase">ESSAY</span>
-                    <h3 class="text-3xl text-zinc-900 uppercase">TACTILE INERTIA & KINESPHERE</h3>
-                    <p class="text-xs text-studio-muted uppercase">AUG 2026 / BODY MOVEMENT IN CLAY</p>
+                <div class="journal-accordion-item border border-zinc-200 bg-white rounded-2xl overflow-hidden shadow-xs transition-all">
+                    <button onclick="toggleJournalAccordion(this)" class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-zinc-50 transition-colors">
+                        <div class="flex items-center gap-4 flex-wrap">
+                            <span class="bg-[#D5EE10] text-zinc-900 text-[10px] px-2.5 py-1 rounded-full uppercase">ESSAY</span>
+                            <span class="text-xl md:text-2xl text-zinc-900 uppercase">TACTILE INERTIA & KINESPHERE</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs text-studio-muted uppercase hidden sm:inline">AUG 2026</span>
+                            <i class="fa-solid fa-chevron-down text-zinc-600 transition-transform duration-300"></i>
+                        </div>
+                    </button>
+                    <div class="accordion-content hidden px-6 pb-6 pt-2 border-t border-zinc-100 text-xs text-studio-muted uppercase leading-relaxed space-y-3">
+                        <p>EXPLORING HOW RESISTANCE IN DENSE STONEWARE CLAY DIRECTLY MIRRORS MUSCULAR INERTIA DURING CHOREOGRAPHIC IMPROVISATION.</p>
+                    </div>
+                </div>
+
+                <div class="journal-accordion-item border border-zinc-200 bg-white rounded-2xl overflow-hidden shadow-xs transition-all">
+                    <button onclick="toggleJournalAccordion(this)" class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-zinc-50 transition-colors">
+                        <div class="flex items-center gap-4 flex-wrap">
+                            <span class="bg-zinc-200 text-zinc-900 text-[10px] px-2.5 py-1 rounded-full uppercase">ACOUSTICS</span>
+                            <span class="text-xl md:text-2xl text-zinc-900 uppercase">RESONANT FREQUENCY OF UNFIRED CLAY</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs text-studio-muted uppercase hidden sm:inline">MAY 2026</span>
+                            <i class="fa-solid fa-chevron-down text-zinc-600 transition-transform duration-300"></i>
+                        </div>
+                    </button>
+                    <div class="accordion-content hidden px-6 pb-6 pt-2 border-t border-zinc-100 text-xs text-studio-muted uppercase leading-relaxed space-y-3">
+                        <p>MEASURING ACOUSTIC ABSORPTION SPECTRA ACROSS LEATHER-HARD VS BONE-DRY CLAY CHAMBERS FOR AUDIO SYNTH RESONATORS.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             PAGE 6B: PROJECTS & AUDIO PODCAST (#projects)
+             ========================================================= -->
+        <section id="page-projects" class="page-view hidden max-w-6xl mx-auto space-y-12">
+            <div class="space-y-2">
+                <span class="text-xs text-studio-muted uppercase tracking-widest block">INITIATIVES</span>
+                <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">STUDIO PROJECTS & PODCAST</h1>
+            </div>
+
+            <!-- AUDIO PODCAST PLAYER MODULE -->
+            <div class="bg-white p-8 md:p-10 rounded-3xl border border-zinc-200/80 shadow-md space-y-6">
+                <div class="flex items-center justify-between flex-wrap gap-4">
+                    <div class="space-y-1">
+                        <span class="bg-[#D5EE10] text-zinc-900 text-xs px-3 py-1 rounded-full uppercase">AUDIO PODCAST</span>
+                        <h2 class="text-3xl md:text-4xl text-zinc-900 uppercase mt-2">THE RESONANT OBJECT — EP. 04</h2>
+                        <p class="text-xs text-studio-muted uppercase">FEATURING QUANA CANNON & DR. CLARA VANE ON TACTILE ACOUSTICS</p>
+                    </div>
+                    <div class="w-14 h-14 rounded-full bg-zinc-900 text-[#D5EE10] flex items-center justify-center text-2xl shadow-md">
+                        <i class="fa-solid fa-podcast"></i>
+                    </div>
+                </div>
+
+                <!-- Custom Audio Control Bar -->
+                <div class="bg-studio-bg p-6 rounded-2xl space-y-4 border border-zinc-200/60">
+                    <audio id="podcast-audio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="metadata"></audio>
+                    
+                    <div class="flex items-center gap-4">
+                        <button id="podcast-play-btn" onclick="togglePodcastPlay()" class="w-12 h-12 rounded-full bg-[#D5EE10] text-zinc-900 flex items-center justify-center text-lg hover:scale-105 transition-transform shadow-sm">
+                            <i class="fa-solid fa-play ml-0.5" id="podcast-play-icon"></i>
+                        </button>
+                        <div class="flex-grow space-y-1">
+                            <div class="flex justify-between text-xs text-studio-muted uppercase">
+                                <span id="podcast-time-curr">0:00</span>
+                                <span id="podcast-time-dur">0:00</span>
+                            </div>
+                            <input type="range" id="podcast-seek" min="0" value="0" step="0.1" onchange="seekPodcast(this.value)" class="w-full accent-[#D5EE10] cursor-pointer">
+                        </div>
+                    </div>
+
+                    <!-- Simulated Waveform Visualizer -->
+                    <div class="flex items-center justify-between gap-1 h-8 px-2">
+                        <div class="w-1 h-full bg-zinc-300 rounded-full"></div>
+                        <div class="w-1 h-3/4 bg-[#D5EE10] rounded-full"></div>
+                        <div class="w-1 h-1/2 bg-zinc-300 rounded-full"></div>
+                        <div class="w-1 h-full bg-[#D5EE10] rounded-full"></div>
+                        <div class="w-1 h-2/3 bg-zinc-300 rounded-full"></div>
+                        <div class="w-1 h-4/5 bg-[#D5EE10] rounded-full"></div>
+                        <div class="w-1 h-1/3 bg-zinc-300 rounded-full"></div>
+                        <div class="w-1 h-full bg-[#D5EE10] rounded-full"></div>
+                        <div class="w-1 h-1/2 bg-zinc-300 rounded-full"></div>
+                        <div class="w-1 h-3/4 bg-[#D5EE10] rounded-full"></div>
+                        <div class="w-1 h-2/3 bg-zinc-300 rounded-full"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -407,9 +608,9 @@
             <div class="space-y-4">
                 <div class="flex items-center justify-between">
                     <h2 class="text-2xl md:text-4xl text-zinc-900 uppercase">GLOBAL FIELDWORK MAP</h2>
-                    <span class="text-xs text-studio-muted uppercase tracking-wider hidden sm:inline"><i class="fa-solid fa-hand-pointer mr-1"></i> DRAG TO ROTATE & CLICK PINS</span>
+                    <span class="text-xs text-studio-muted uppercase tracking-wider hidden sm:inline"><i class="fa-solid fa-hand-pointer mr-1"></i> HOVER OVER PINS TO EXPLORE</span>
                 </div>
-                <div id="globe-container" class="w-full h-[450px] md:h-[520px] relative rounded-3xl overflow-hidden bg-zinc-950 flex items-center justify-center cursor-grab active:cursor-grabbing select-none shadow-xl">
+                <div id="globe-container" class="w-full h-[450px] md:h-[520px] relative rounded-3xl overflow-hidden bg-studio-bg flex items-center justify-center cursor-grab active:cursor-grabbing select-none border border-zinc-200/60 shadow-xs">
                     <div id="globe-tooltip" class="absolute bottom-6 left-6 right-6 md:right-auto md:max-w-sm bg-white/95 backdrop-blur-md p-5 rounded-2xl shadow-2xl border border-zinc-100 transition-all duration-300">
                         <div class="flex items-center gap-3">
                             <img id="globe-img" src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=200" class="w-14 h-14 rounded-xl object-cover flex-shrink-0 bg-zinc-200" alt="Location preview">
@@ -967,7 +1168,7 @@
         }
 
         /* -------------------------------------------------------------
-         * 2. THREE.JS INTERACTIVE 3D GLOBE WITH CONTINENT TEXTURE & MOUSE DRAG
+         * 2. THREE.JS REALISTIC CONTINENT 3D GLOBE WITH HOVER INTERACTION
          * ------------------------------------------------------------- */
         const globeLocations = [
             { name: "LUBBOCK, TX", lat: 33.5779, lon: -101.8552, tag: "RESIDENCY", desc: "COTTON BELT CLAY FIELDWORK.", img: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=300" },
@@ -988,11 +1189,11 @@
             canvas.height = 512;
             const ctx = canvas.getContext('2d');
 
-            // Water / Oceans
+            // Ocean Base Color
             ctx.fillStyle = '#0F172A';
             ctx.fillRect(0, 0, 1024, 512);
 
-            // Gridlines
+            // Latitude / Longitude Gridlines
             ctx.strokeStyle = '#1E293B';
             ctx.lineWidth = 1;
             for (let x = 0; x <= 1024; x += 64) {
@@ -1002,29 +1203,38 @@
                 ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(1024, y); ctx.stroke();
             }
 
-            // Stylized Landmass Shapes (North America, South America, Eurasia, Africa, Australia)
+            // Real Geographical Map Coordinates for Continents (Equirectangular Projections)
             ctx.fillStyle = '#27272A';
-            
-            // North America
-            ctx.beginPath();
-            ctx.ellipse(250, 150, 110, 70, 0.2, 0, Math.PI * 2); ctx.fill();
-            // South America
-            ctx.beginPath();
-            ctx.ellipse(330, 320, 60, 100, -0.3, 0, Math.PI * 2); ctx.fill();
-            // Eurasia
-            ctx.beginPath();
-            ctx.ellipse(680, 140, 180, 80, -0.1, 0, Math.PI * 2); ctx.fill();
-            // Africa
-            ctx.beginPath();
-            ctx.ellipse(560, 270, 75, 95, 0.1, 0, Math.PI * 2); ctx.fill();
-            // Australia
-            ctx.beginPath();
-            ctx.ellipse(840, 350, 65, 45, 0, 0, Math.PI * 2); ctx.fill();
-
-            // Saturated Lemon Outline Strokes around Continents
             ctx.strokeStyle = '#D5EE10';
-            ctx.lineWidth = 2.5;
-            ctx.stroke();
+            ctx.lineWidth = 2.0;
+
+            function drawLandPolygon(coords) {
+                ctx.beginPath();
+                coords.forEach((pt, i) => {
+                    const x = ((pt[1] + 180) / 360) * 1024;
+                    const y = ((90 - pt[0]) / 180) * 512;
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                });
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+            }
+
+            // 1. North America
+            drawLandPolygon([[71,-156],[70,-130],[60,-138],[54,-130],[48,-124],[34,-120],[22,-106],[16,-92],[15,-88],[21,-87],[25,-80],[30,-81],[35,-75],[44,-64],[52,-55],[60,-64],[68,-65],[71,-156]]);
+            // 2. South America
+            drawLandPolygon([[11,-74],[8,-60],[-5,-35],[-22,-40],[-35,-53],[-54,-68],[-45,-75],[-18,-71],[-4,-80],[11,-74]]);
+            // 3. Eurasia
+            drawLandPolygon([[70,18],[70,80],[72,130],[60,165],[40,140],[35,120],[22,114],[10,105],[8,77],[25,62],[12,44],[30,32],[36,5],[44,-8],[58,6],[65,14],[70,18]]);
+            // 4. Africa
+            drawLandPolygon([[36,-5],[31,32],[11,43],[-11,40],[-34,20],[-30,17],[5,9],[12,-16],[36,-5]]);
+            // 5. Australia & New Zealand
+            drawLandPolygon([[-11,130],[-15,145],[-38,148],[-32,115],[-22,113],[-11,130]]);
+            // 6. Greenland
+            drawLandPolygon([[82,-40],[70,-20],[60,-44],[75,-60],[82,-40]]);
+            // 7. Antarctica
+            drawLandPolygon([[-70,-180],[-70,180],[-88,180],[-88,-180]]);
 
             const texture = new THREE.CanvasTexture(canvas);
             texture.needsUpdate = true;
@@ -1086,7 +1296,6 @@
             globeLocations.forEach(loc => {
                 const pos = latLonToVector3(loc.lat, loc.lon, radius + 1.8);
                 
-                // Pin Base Marker
                 const pinMesh = new THREE.Mesh(
                     new THREE.SphereGeometry(3.2, 16, 16),
                     new THREE.MeshBasicMaterial({ color: 0xD5EE10 })
@@ -1094,7 +1303,6 @@
                 pinMesh.position.copy(pos);
                 pinMesh.userData = loc;
 
-                // Inner Pulse Core
                 const coreMesh = new THREE.Mesh(
                     new THREE.SphereGeometry(1.6, 12, 12),
                     new THREE.MeshBasicMaterial({ color: 0x1C1C1A })
@@ -1112,7 +1320,32 @@
                 previousMousePosition = { x: e.clientX || (e.touches && e.touches[0].clientX), y: e.clientY || (e.touches && e.touches[0].clientY) };
             };
 
+            const raycaster = new THREE.Raycaster();
+            const mouse = new THREE.Vector2();
+
             const onPointerMove = (e) => {
+                const rect = gRenderer.domElement.getBoundingClientRect();
+                if (rect.width > 0 && rect.height > 0) {
+                    const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+                    const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+                    
+                    mouse.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+                    mouse.y = -((clientY - rect.top) / rect.height) * 2 + 1;
+                    
+                    raycaster.setFromCamera(mouse, gCamera);
+                    const intersects = raycaster.intersectObjects(gPinsGroup.children);
+                    if (intersects.length > 0 && intersects[0].object.userData.name) {
+                        const data = intersects[0].object.userData;
+                        document.getElementById('globe-title').innerText = data.name;
+                        document.getElementById('globe-tag').innerText = data.tag;
+                        document.getElementById('globe-desc').innerText = data.desc;
+                        if (data.img) document.getElementById('globe-img').src = data.img;
+                        container.style.cursor = 'pointer';
+                    } else if (!isGlobeDragging) {
+                        container.style.cursor = 'grab';
+                    }
+                }
+
                 if (!isGlobeDragging) return;
                 const clientX = e.clientX || (e.touches && e.touches[0].clientX);
                 const clientY = e.clientY || (e.touches && e.touches[0].clientY);
@@ -1139,27 +1372,6 @@
             container.addEventListener('touchmove', onPointerMove, { passive: true });
             window.addEventListener('touchend', onPointerUp);
 
-            // Click Pin Detection
-            const raycaster = new THREE.Raycaster();
-            const mouse = new THREE.Vector2();
-
-            container.addEventListener('click', (e) => {
-                const rect = gRenderer.domElement.getBoundingClientRect();
-                if (rect.width <= 0 || rect.height <= 0) return;
-                mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-                mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-                raycaster.setFromCamera(mouse, gCamera);
-                
-                const intersects = raycaster.intersectObjects(gPinsGroup.children);
-                if (intersects.length > 0 && intersects[0].object.userData.name) {
-                    const data = intersects[0].object.userData;
-                    document.getElementById('globe-title').innerText = data.name;
-                    document.getElementById('globe-tag').innerText = data.tag;
-                    document.getElementById('globe-desc').innerText = data.desc;
-                    if (data.img) document.getElementById('globe-img').src = data.img;
-                }
-            });
-
             function animateGlobe() {
                 requestAnimationFrame(animateGlobe);
                 if (!isGlobeDragging) {
@@ -1177,43 +1389,99 @@
         }
 
         /* -------------------------------------------------------------
-         * 3. ROUTER & MODAL UTILITIES
+         * 3. ROUTER & MODAL & ACCORDION UTILITIES
          * ------------------------------------------------------------- */
         const projectsData = [
-            { id: 1, title: "NEURAL AURA FIELD", categoryBadge: "FINE ART", image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000", story: "BIOFEEDBACK SPECTRAL LIGHT INSTALLATION AT VENICE BIENNALE." },
-            { id: 2, title: "QUATERNION MESH", categoryBadge: "FINE ART", image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1000", story: "SUSPENDED KINETIC FIBER OPTIC STRUCTURE AT TATE MODERN." },
-            { id: 3, title: "LUMEN CANOPY", categoryBadge: "FINE ART", image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000", story: "ACOUSTIC MOVEMENT CEILING CANOPY AT MORI ART MUSEUM." },
-            { id: 4, title: "CRYSTALLINE PORCELAIN URN", categoryBadge: "CERAMICS", image: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=1000", story: "ZINC SILICATE REDUCTION GLAZE PORCELAIN VESSEL." },
-            { id: 5, title: "SHIGARAKI ASH VESSEL", categoryBadge: "CERAMICS", image: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=1000", story: "ANAGAMA KILN WOOD-FIRED STONEWARE FORM." },
-            { id: 6, title: "RESONANT CERAMIC SPEAKER", categoryBadge: "CERAMICS", image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=1000", story: "ACOUSTIC CLAY CHAMBER WITH CONTACT SENSORS." }
+            { id: 1, title: "NEURAL AURA FIELD", categoryBadge: "LIGHT", image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800", story: "EXHIBITED AT VENICE BIENNALE / ARSENALE. SPECTRAL LIGHT REFRACTION FIELD." },
+            { id: 2, title: "QUATERNION MESH", categoryBadge: "FIBER", image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=800", story: "TATE MODERN INSTALLATION FEATURING CONDUCTIVE WOVEN FIBER NETWORKS." },
+            { id: 3, title: "LUMEN CANOPY", categoryBadge: "SENSORS", image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800", story: "MORI ART MUSEUM TOKYO. KINETIC LIGHT CEILING SENSITIVE TO AUDIENCE MOVEMENT." },
+            { id: 4, title: "CRYSTALLINE URN", categoryBadge: "PORCELAIN", image: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=800", story: "HIGH-ALUMINA PORCELAIN WITH ZINC SILICATE CRYSTALLINE GLAZE." },
+            { id: 5, title: "SHIGARAKI ASH VESSEL", categoryBadge: "ANAGAMA", image: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=800", story: "WOOD-FIRED FOR 7 DAYS AT SHIGARAKI CERAMIC CULTURAL PARK JAPAN." },
+            { id: 6, title: "RESONANT SPEAKER", categoryBadge: "ACOUSTIC CLAY", image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=800", story: "PORCELAIN ACOUSTIC RESONANCE CHAMBER FOR ANALOG SYNTHESIZER OSCILLATIONS." }
         ];
+
+        function toggleWorksMenu() {
+            const worksMenu = document.getElementById('works-menu');
+            const worksArrow = document.getElementById('works-arrow');
+            if (!worksMenu) return;
+            const isHidden = worksMenu.classList.contains('hidden');
+            if (isHidden) {
+                worksMenu.classList.remove('hidden');
+                worksMenu.classList.add('flex');
+                if (worksArrow) worksArrow.style.transform = 'rotate(180deg)';
+            } else {
+                worksMenu.classList.add('hidden');
+                worksMenu.classList.remove('flex');
+                if (worksArrow) worksArrow.style.transform = 'rotate(0deg)';
+            }
+        }
 
         function scrollTimeline(direction) {
             const container = document.getElementById('timeline-container');
             if (container) {
-                container.scrollBy({ left: direction * 340, behavior: 'smooth' });
+                container.scrollBy({ left: direction * 320, behavior: 'smooth' });
             }
         }
 
-        function toggleWorksMenu() {
-            const menu = document.getElementById('works-menu');
-            const arrow = document.getElementById('works-arrow');
-            if (!menu) return;
-            const isHidden = menu.classList.contains('hidden');
+        function toggleJournalAccordion(btn) {
+            const parent = btn.closest('.journal-accordion-item');
+            if (!parent) return;
+            const content = parent.querySelector('.accordion-content');
+            const icon = parent.querySelector('.fa-chevron-down');
+            if (!content) return;
+            const isHidden = content.classList.contains('hidden');
             if (isHidden) {
-                menu.classList.remove('hidden');
-                menu.classList.add('flex');
-                if (arrow) arrow.style.transform = 'rotate(180deg) scale(1.2)';
+                content.classList.remove('hidden');
+                if (icon) icon.style.transform = 'rotate(180deg)';
             } else {
-                menu.classList.add('hidden');
-                menu.classList.remove('flex');
-                if (arrow) arrow.style.transform = 'rotate(0deg) scale(1)';
+                content.classList.add('hidden');
+                if (icon) icon.style.transform = 'rotate(0deg)';
             }
+        }
+
+        function togglePodcastPlay() {
+            const audio = document.getElementById('podcast-audio');
+            const icon = document.getElementById('podcast-play-icon');
+            if (!audio) return;
+            if (audio.paused) {
+                audio.play();
+                if (icon) icon.className = 'fa-solid fa-pause';
+            } else {
+                audio.pause();
+                if (icon) icon.className = 'fa-solid fa-play ml-0.5';
+            }
+        }
+
+        function seekPodcast(val) {
+            const audio = document.getElementById('podcast-audio');
+            if (audio) audio.currentTime = val;
+        }
+
+        const audioEl = document.getElementById('podcast-audio');
+        if (audioEl) {
+            audioEl.addEventListener('timeupdate', () => {
+                const seek = document.getElementById('podcast-seek');
+                const timeCurr = document.getElementById('podcast-time-curr');
+                const timeDur = document.getElementById('podcast-time-dur');
+                if (seek) {
+                    seek.max = audioEl.duration || 100;
+                    seek.value = audioEl.currentTime;
+                }
+                if (timeCurr) timeCurr.innerText = formatAudioTime(audioEl.currentTime);
+                if (timeDur && audioEl.duration) timeDur.innerText = formatAudioTime(audioEl.duration);
+            });
+        }
+
+        function formatAudioTime(sec) {
+            if (isNaN(sec)) return '0:00';
+            const m = Math.floor(sec / 60);
+            const s = Math.floor(sec % 60);
+            return `${m}:${s < 10 ? '0' : ''}${s}`;
         }
 
         function navigateTo(pageId) {
-            const validPages = ['home', 'art', 'ceramics', 'photo-video', 'dance', 'journals', 'about', 'contact'];
-            const worksPages = ['art', 'ceramics', 'photo-video', 'dance', 'journals'];
+            const validPages = ['home', 'art', 'ceramics', 'photo', 'video', 'dance', 'journals', 'projects', 'about', 'contact'];
+            const worksPages = ['art', 'ceramics', 'photo', 'video', 'dance', 'journals', 'projects'];
             let target = pageId.replace('#', '');
             if (target === '' || !validPages.includes(target)) target = 'home';
 
