@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUANA CANNON — Multimedia Artist Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Three.js for 3D Globe & 3D 'Q' -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- CURATED AESTHETIC FONTS FOR FLOATING LETTERS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bodoni+Moda:ital,opsz,wght@1,6..96,900&family=Cinzel:wght@900&family=Cormorant+Garamond:ital,wght@0,700;1,700&family=Instrument+Serif:ital@0;1&family=Playfair+Display:ital,wght@1,900&family=Space+Grotesk:wght@700&family=Syne:wght@800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        studio: {
+                            bg: '#FAF8F5',
+                            text: '#1C1C1A',
+                            muted: '#7A7974',
+                            accent: '#D5EE10',
+                            moleskine: '#D5EE10'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* UNIFIED SINGLE FONT RULE */
+        * {
+            font-family: 'Archivo Black', sans-serif !important;
+        }
+
+        /* Soft Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF8F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D5EE10;
+            border-radius: 9999px;
+        }
+
+        /* Page View Transition */
+        .page-view {
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .page-view.hidden {
+            display: none !important;
+            opacity: 0;
+        }
+
+        /* Sound Bar Animation */
+        .sound-bar {
+            width: 4px;
+            background: #1C1C1A;
+            border-radius: 9999px;
+            animation: soundWave 0.8s ease-in-out infinite alternate;
+        }
+        .sound-bar:nth-child(1) { height: 35%; animation-delay: 0.1s; }
+        .sound-bar:nth-child(2) { height: 85%; animation-delay: 0.3s; }
+        .sound-bar:nth-child(3) { height: 55%; animation-delay: 0.2s; }
+
+        @keyframes soundWave {
+            0% { transform: scaleY(0.2); }
+            100% { transform: scaleY(1); }
+        }
+
+        /* Floating Animation for Work Bubbles around 3D Q */
+        @keyframes floatOrbit1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            50% { transform: translate(-15px, -20px) rotate(8deg) scale(1.08); }
+        }
+        @keyframes floatOrbit2 {
+<body class="bg-studio-bg text-studio-text antialiased min-h-screen flex flex-col md:flex-row selection:bg-[#D5EE10] selection:text-zinc-900 relative overflow-x-hidden">
+
+    <!-- FLOATING GRAPHIC ACCENT SHAPES -->
+    <div id="playful-shapes" class="fixed inset-0 pointer-events-none z-10 overflow-hidden select-none">
+        
+        <!-- 1. 4-Point Sparkle Star (Pink #F472B6) -->
+        <div class="absolute top-10 right-12 orbit-bubble-1 pointer-events-auto cursor-pointer" onclick="popShape(this)" title="Pink Sparkle Star">
+            <svg viewBox="0 0 24 24" class="w-10 h-10 fill-[#F472B6] opacity-80 transition-transform duration-300 hover:scale-125 drop-shadow-sm">
+                <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
+            </svg>
+        </div>
+
+        <!-- 2. 4-Point Sparkle Star (Warm Yellow #FDE047) -->
+        <div class="absolute top-1/3 left-6 md:left-10 orbit-bubble-3 pointer-events-auto cursor-pointer" onclick="popShape(this)" title="Yellow Sparkle Star">
+            <svg viewBox="0 0 24 24" class="w-8 h-8 fill-[#FDE047] opacity-85 transition-transform duration-300 hover:scale-125 drop-shadow-sm">
+                <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
+            </svg>
+        </div>
+
+        <!-- 3. Soft Heart Accent (Peach/Coral #FCA5A5) -->
+        <div class="absolute top-20 left-1/4 orbit-bubble-2 pointer-events-auto cursor-pointer hidden md:block" onclick="popShape(this)" title="Peach Heart">
+            <svg viewBox="0 0 24 24" class="w-9 h-9 fill-[#FCA5A5] opacity-85 transition-transform duration-300 hover:scale-125 drop-shadow-sm">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        </div>
+
+        <!-- 4. 4-Leaf Clover 1 (Saturated Lemon #D5EE10) -->
+        <div class="absolute bottom-28 left-8 md:left-14 orbit-bubble-1 pointer-events-auto cursor-pointer" onclick="popShape(this)" title="Lemon Clover">
+            <svg viewBox="0 0 100 100" class="w-11 h-11 fill-[#D5EE10] opacity-90 transition-transform duration-300 hover:scale-125 drop-shadow-sm">
+                <path d="M50 50 C35 25 15 35 30 50 C15 65 35 75 50 50 C65 75 85 65 70 50 C85 35 65 25 50 50 Z" />
+                <path d="M50 50 Q48 72 40 88" stroke="#D5EE10" stroke-width="5" fill="none" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+        <!-- 4b. 4-Leaf Clover 2 (Saturated Lemon #D5EE10) -->
+        <div class="absolute top-24 right-1/4 orbit-bubble-2 pointer-events-auto cursor-pointer hidden sm:block" onclick="popShape(this)" title="Lemon Clover 2">
+            <svg viewBox="0 0 100 100" class="w-10 h-10 fill-[#D5EE10] opacity-90 transition-transform duration-300 hover:scale-125 drop-shadow-sm">
+                <path d="M50 50 C35 25 15 35 30 50 C15 65 35 75 50 50 C65 75 85 65 70 50 C85 35 65 25 50 50 Z" />
+                <path d="M50 50 Q48 72 40 88" stroke="#D5EE10" stroke-width="5" fill="none" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+        <!-- 4c. 4-Leaf Clover 3 (Saturated Lemon #D5EE10) -->
+        <div class="absolute top-2/3 right-8 md:right-16 orbit-bubble-3 pointer-events-auto cursor-pointer" onclick="popShape(this)" title="Lemon Clover 3">
+            <svg viewBox="0 0 100 100" class="w-12 h-12 fill-[#D5EE10] opacity-90 transition-transform duration-300 hover:scale-125 drop-shadow-sm">
+                <path d="M50 50 C35 25 15 35 30 50 C15 65 35 75 50 50 C65 75 85 65 70 50 C85 35 65 25 50 50 Z" />
+                <path d="M50 50 Q48 72 40 88" stroke="#D5EE10" stroke-width="5" fill="none" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+        <!-- 5. 5-Point Retro Star (Soft Lavender #C4B5FD) -->
+        <div class="absolute bottom-12 right-1/3 orbit-bubble-3 pointer-events-auto cursor-pointer hidden sm:block" onclick="popShape(this)" title="Lavender Retro Star">
+            <svg viewBox="0 0 24 24" class="w-10 h-10 fill-[#C4B5FD] opacity-85 transition-transform duration-300 hover:scale-125 drop-shadow-sm">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+        </div>
+
+        <!-- 6. Spiky Circle / Starburst (Sky Blue #7DD3FC) -->
+        <div class="absolute bottom-16 right-12 md:right-16 orbit-bubble-2 pointer-events-auto cursor-pointer" onclick="popShape(this)" title="Sky Blue Spiky Circle">
+            <svg viewBox="0 0 100 100" class="w-12 h-12 fill-[#7DD3FC] opacity-85 transition-transform duration-300 hover:scale-125 drop-shadow-sm">
+                <path d="M50 5 L58 28 L82 18 L72 40 L95 50 L72 60 L82 82 L58 72 L50 95 L42 72 L18 82 L28 60 L5 50 L28 40 L18 18 L42 28 Z"/>
+            </svg>
+        </div>
+
+    </div>
+
+    <!-- PERMANENT LEFT-HAND MENU SIDEBAR (LARGE TEXT) -->
+    <aside class="w-full md:w-80 lg:w-96 md:fixed md:left-0 md:top-0 md:bottom-0 p-8 md:p-12 flex flex-col justify-between z-40 bg-studio-bg border-b md:border-b-0 md:border-r border-zinc-200/40">
+        <div class="space-y-10">
+            <!-- Brand Logo -->
+            <a href="#home" class="block group space-y-2">
+                <div class="flex items-center gap-3">
+                    <span class="w-4 h-4 bg-[#D5EE10] rounded-full"></span>
+                    <span class="text-3xl lg:text-4xl tracking-tight text-zinc-900 uppercase">
+                        QUANA CANNON
+                    </span>
+                </div>
+                <span class="text-xs text-studio-muted uppercase tracking-widest block">
+                    MULTIMEDIA STUDIO
+                </span>
+            </a>
+
+            <!-- LARGE NAVIGATION LINKS WITH WORKS DROPDOWN -->
+            <nav class="flex flex-col gap-4 text-2xl lg:text-3xl tracking-tight text-zinc-800 uppercase">
+                <a href="#home" class="nav-link hover:text-[#D5EE10] hover:translate-x-2 transition-all">HOME</a>
+                
+                <!-- WORKS DROPDOWN MENU -->
+                <div class="relative flex flex-col">
+                    <button id="works-dropdown-btn" onclick="toggleWorksMenu()" class="w-full flex items-center justify-between text-zinc-800 hover:text-[#D5EE10] hover:translate-x-2 transition-all uppercase text-left py-1">
+                        <span>WORKS</span>
+                        <i class="fa-solid fa-star text-base text-black transition-transform duration-300" id="works-arrow"></i>
+                    </button>
+                    <div id="works-menu" class="hidden flex-col gap-3 pl-5 pt-3 text-xl lg:text-2xl text-zinc-600">
+                        <a href="#art" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">ART</a>
+                        <a href="#ceramics" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">CERAMICS</a>
+                        <a href="#photo-video" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">PHOTO & VIDEO</a>
+                        <a href="#dance" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">DANCE</a>
+                        <a href="#journals" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">JOURNALS</a>
+                    </div>
+                </div>
+
+                <a href="#about" class="nav-link hover:text-[#D5EE10] hover:translate-x-2 transition-all">ABOUT</a>
+                <a href="#contact" class="nav-link hover:text-[#D5EE10] hover:translate-x-2 transition-all">CONTACT</a>
+            </nav>
+        </div>
+
+        <!-- Synth Sound Control -->
+        <div class="pt-8 space-y-4">
+            <button id="synth-btn" onclick="toggleSynth()" class="flex items-center gap-3 bg-white px-5 py-3 rounded-full text-xs uppercase tracking-wider text-zinc-800 hover:bg-[#D5EE10] transition-all shadow-xs">
+                <i class="fa-solid fa-volume-xmark text-studio-muted" id="synth-icon"></i>
+                <span id="synth-text">SOUNDSCAPE SYNTH</span>
+                <div id="sound-wave" class="hidden items-center gap-1 h-3">
+                    <div class="sound-bar"></div>
+                    <div class="sound-bar"></div>
+                    <div class="sound-bar"></div>
+                </div>
+            </button>
+            <div class="text-[10px] uppercase text-studio-muted">
+                BERLIN / TOKYO / BOSTON
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow md:ml-80 lg:ml-96 min-h-screen relative p-6 md:p-12">
+
+        <!-- =========================================================
+             PAGE 1: HOME (#home) - 3D FLOATING 'QUANA CANNON' LETTERS & IN-PLANE WORK CIRCLES
+             ========================================================= -->
+        <section id="page-home" class="page-view h-[85vh] md:h-[90vh] relative flex items-center justify-center overflow-hidden">
+            
+            <!-- 3D FLOATING LETTERS & WORK BUBBLES CANVAS CONTAINER -->
+            <div id="q-canvas-container" class="w-full h-full relative cursor-grab active:cursor-grabbing"></div>
+
+        </section>
+
+        <!-- =========================================================
+             PAGE 2: ART (#art)
+             ========================================================= -->
+        <section id="page-art" class="page-view hidden max-w-6xl mx-auto space-y-10">
+            <div class="space-y-2">
+                <span class="text-xs text-studio-muted uppercase tracking-widest block">FINE ART</span>
+                <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">KINETIC & LIGHT WORKS</h1>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="space-y-3 cursor-pointer group" onclick="openModal(1)">
+                    <div class="h-72 rounded-3xl overflow-hidden bg-zinc-200">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-2xl text-zinc-900 uppercase">NEURAL AURA FIELD</h3>
+                    <p class="text-xs text-studio-muted uppercase">VENICE BIENNALE / LIGHT</p>
+                </div>
+
+                <div class="space-y-3 cursor-pointer group" onclick="openModal(2)">
+                    <div class="h-72 rounded-3xl overflow-hidden bg-zinc-200">
+                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-2xl text-zinc-900 uppercase">QUATERNION MESH</h3>
+                    <p class="text-xs text-studio-muted uppercase">TATE MODERN / FIBER</p>
+                </div>
+
+                <div class="space-y-3 cursor-pointer group" onclick="openModal(3)">
+                    <div class="h-72 rounded-3xl overflow-hidden bg-zinc-200">
+                        <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-2xl text-zinc-900 uppercase">LUMEN CANOPY</h3>
+                    <p class="text-xs text-studio-muted uppercase">MORI ART MUSEUM / SENSORS</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             PAGE 3: CERAMICS (#ceramics)
+             ========================================================= -->
+        <section id="page-ceramics" class="page-view hidden max-w-6xl mx-auto space-y-10">
+            <div class="space-y-2">
+                <span class="text-xs text-studio-muted uppercase tracking-widest block">CERAMIC STUDIO</span>
+                <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">PORCELAIN & STONEWARE</h1>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="space-y-3 cursor-pointer group" onclick="openModal(4)">
+                    <div class="h-72 rounded-3xl overflow-hidden bg-zinc-200">
+                        <img src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-2xl text-zinc-900 uppercase">CRYSTALLINE URN</h3>
+                    <p class="text-xs text-studio-muted uppercase">PORCELAIN / ZINC GLAZE</p>
+                </div>
+
+                <div class="space-y-3 cursor-pointer group" onclick="openModal(5)">
+                    <div class="h-72 rounded-3xl overflow-hidden bg-zinc-200">
+                        <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-2xl text-zinc-900 uppercase">SHIGARAKI ASH VESSEL</h3>
+                    <p class="text-xs text-studio-muted uppercase">ANAGAMA WOOD FIRE</p>
+                </div>
+
+                <div class="space-y-3 cursor-pointer group" onclick="openModal(6)">
+                    <div class="h-72 rounded-3xl overflow-hidden bg-zinc-200">
+                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-2xl text-zinc-900 uppercase">RESONANT SPEAKER</h3>
+                    <p class="text-xs text-studio-muted uppercase">ACOUSTIC CLAY CHAMBER</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             PAGE 4: PHOTO & VIDEO (#photo-video)
+             ========================================================= -->
+        <section id="page-photo-video" class="page-view hidden max-w-6xl mx-auto space-y-10">
+            <div class="space-y-2">
+                <span class="text-xs text-studio-muted uppercase tracking-widest block">LENS MEDIA</span>
+                <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">FILM & PROJECTION</h1>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="space-y-3">
+                    <div class="rounded-3xl overflow-hidden h-80 bg-zinc-200">
+                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl text-zinc-900 uppercase">BERLIN MONOCHROME</h3>
+                    <p class="text-xs text-studio-muted uppercase">HASSELBLAD 500C</p>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="rounded-3xl overflow-hidden h-80 bg-zinc-200">
+                        <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=800" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl text-zinc-900 uppercase">DANCE STILL #04</h3>
+                    <p class="text-xs text-studio-muted uppercase">16MM FILM</p>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="rounded-3xl overflow-hidden h-80 bg-zinc-200">
+                        <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=800" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl text-zinc-900 uppercase">DIFFRACTION LOOP</h3>
+                    <p class="text-xs text-studio-muted uppercase">4K PROJECTION</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             PAGE 5: DANCE (#dance)
+             ========================================================= -->
+        <section id="page-dance" class="page-view hidden max-w-6xl mx-auto space-y-10">
+            <div class="space-y-2">
+                <span class="text-xs text-studio-muted uppercase tracking-widest block">MOVEMENT</span>
+                <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">DANCE DIRECTION</h1>
+            </div>
+
+            <div class="space-y-6">
+                <div class="h-96 rounded-3xl overflow-hidden bg-zinc-200">
+                    <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=1200" class="w-full h-full object-cover">
+                </div>
+                <div class="space-y-2">
+                    <span class="bg-[#D5EE10] text-zinc-900 px-3 py-1 rounded-full text-xs uppercase">FEATURED PERFORMANCE</span>
+                    <h2 class="text-3xl md:text-5xl text-zinc-900 uppercase">BODY SIGNAL RESONANCE</h2>
+                    <p class="text-sm text-studio-muted uppercase max-w-2xl">
+                        35-MINUTE SOLO PERFORMANCE AT KRAFTWERK LEIPZIG USING CONDUCTIVE SYNTHESIZER ACCELEROMETERS.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             PAGE 6: JOURNALS (#journals)
+             ========================================================= -->
+        <section id="page-journals" class="page-view hidden max-w-6xl mx-auto space-y-10">
+            <div class="space-y-2">
+                <span class="text-xs text-studio-muted uppercase tracking-widest block">RESEARCH</span>
+                <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">FIELD NOTES</h1>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-4 cursor-pointer" onclick="openJournalModal(1)">
+                    <span class="bg-[#D5EE10] text-zinc-900 text-xs px-3 py-1 rounded-full uppercase">GLAZE LOG</span>
+                    <h3 class="text-3xl text-zinc-900 uppercase">ZINC SILICATE CRYSTAL FORMATIONS</h3>
+                    <p class="text-xs text-studio-muted uppercase">OCT 2026 / REDUCTION KILN TEMPERATURE COOLING</p>
+                </div>
+
+                <div class="space-y-4 cursor-pointer" onclick="openJournalModal(2)">
+                    <span class="bg-[#D5EE10] text-zinc-900 text-xs px-3 py-1 rounded-full uppercase">ESSAY</span>
+                    <h3 class="text-3xl text-zinc-900 uppercase">TACTILE INERTIA & KINESPHERE</h3>
+                    <p class="text-xs text-studio-muted uppercase">AUG 2026 / BODY MOVEMENT IN CLAY</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             PAGE 7: ABOUT & GLOBE & TIMELINE (#about)
+             ========================================================= -->
+        <section id="page-about" class="page-view hidden max-w-6xl mx-auto space-y-14">
+            <div class="space-y-4">
+                <span class="text-xs text-studio-muted uppercase tracking-widest block">BIOGRAPHY</span>
+                <h1 class="text-3xl md:text-5xl text-zinc-900 uppercase leading-tight">
+                    QUANA CANNON IS A MULTIMEDIA ARTIST WORKING ACROSS FINE ART, CERAMICS, LENS MEDIA, AND CHOREOGRAPHY.
+                </h1>
+                <p class="text-sm text-studio-muted uppercase max-w-3xl leading-relaxed">
+                    MFA UDK BERLIN / B.S. RISD. EXHIBITED AT VENICE BIENNALE, TATE MODERN, SHIGARAKI CERAMIC PARK JAPAN, AND MORI ART MUSEUM TOKYO.
+                </p>
+            </div>
+
+            <!-- INTERACTIVE 3D GLOBE -->
+            <div class="space-y-4">
+                <h2 class="text-2xl md:text-4xl text-zinc-900 uppercase">GLOBAL FIELDWORK MAP</h2>
+                <div id="globe-container" class="w-full h-[400px] md:h-[500px] relative rounded-3xl overflow-hidden bg-gradient-to-b from-[#FAF8F5] to-[#EFECE6] flex items-center justify-center">
+                    <div id="globe-tooltip" class="absolute bottom-6 left-6 right-6 md:right-auto md:max-w-md bg-white p-6 rounded-2xl shadow-lg">
+                        <span id="globe-tag" class="bg-[#D5EE10] text-zinc-900 text-xs px-2.5 py-0.5 rounded-full uppercase">RESEARCH BASE</span>
+                        <h3 id="globe-title" class="text-2xl text-zinc-900 uppercase mt-2">LUBBOCK, TX</h3>
+                        <p id="globe-desc" class="text-xs text-studio-muted uppercase mt-1">COTTON BELT CLAY FIELDWORK.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HORIZONTAL TIMELINE -->
+            <div class="space-y-6">
+                <h2 class="text-2xl md:text-4xl text-zinc-900 uppercase">TIMELINE & MILESTONES</h2>
+                <div class="overflow-x-auto no-scrollbar pb-4">
+                    <div class="flex gap-6 min-w-[900px]">
+                        <div class="w-72 bg-white p-6 rounded-3xl space-y-3">
+                            <span class="bg-[#D5EE10] text-zinc-900 text-[10px] px-2.5 py-0.5 rounded-full uppercase">2026 GRANT</span>
+                            <h3 class="text-xl text-zinc-900 uppercase">NEA EMERGING ARTIST</h3>
+                            <p class="text-xs text-studio-muted uppercase">RESEARCH IN ACOUSTIC CLAY ACOUSTICS.</p>
+                        </div>
+                        <div class="w-72 bg-white p-6 rounded-3xl space-y-3">
+                            <span class="bg-zinc-200 text-zinc-900 text-[10px] px-2.5 py-0.5 rounded-full uppercase">2025 FELLOW</span>
+                            <h3 class="text-xl text-zinc-900 uppercase">STUDIO OLAFUR ELIASSON</h3>
+                            <p class="text-xs text-studio-muted uppercase">BERLIN KINETIC LIGHT SCULPTURES.</p>
+                        </div>
+                        <div class="w-72 bg-white p-6 rounded-3xl space-y-3">
+                            <span class="bg-[#D5EE10] text-zinc-900 text-[10px] px-2.5 py-0.5 rounded-full uppercase">2024 RESIDENCY</span>
+                            <h3 class="text-xl text-zinc-900 uppercase">SHIGARAKI PARK JAPAN</h3>
+                            <p class="text-xs text-studio-muted uppercase">WOOD-FIRED ANAGAMA KILN FELLOWSHIP.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             PAGE 8: CONTACT (#contact)
+             ========================================================= -->
+        <section id="page-contact" class="page-view hidden max-w-4xl mx-auto space-y-8">
+            <div class="space-y-2">
+                <span class="text-xs text-studio-muted uppercase tracking-widest block">INQUIRIES</span>
+                <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">CONTACT STUDIO</h1>
+            </div>
+
+            <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs uppercase text-zinc-900 mb-2">NAME *</label>
+                        <input type="text" id="form-name" required placeholder="ELENA ROSTOVA" class="w-full bg-white rounded-2xl px-5 py-4 text-sm uppercase text-zinc-900 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase text-zinc-900 mb-2">EMAIL *</label>
+                        <input type="email" id="form-email" required placeholder="ELENA@GALLERY.COM" class="w-full bg-white rounded-2xl px-5 py-4 text-sm uppercase text-zinc-900 focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs uppercase text-zinc-900 mb-2">PROJECT BRIEF *</label>
+                    <textarea id="form-message" required rows="4" placeholder="EXHIBITION / COMMISSION DETAILS..." class="w-full bg-white rounded-2xl px-5 py-4 text-sm uppercase text-zinc-900 focus:outline-none"></textarea>
+                </div>
+
+                <button type="submit" id="submit-btn" class="w-full py-4 bg-zinc-900 text-white rounded-full text-xs uppercase tracking-widest hover:bg-[#D5EE10] hover:text-zinc-900 transition-colors">
+                    TRANSMIT INQUIRY →
+                </button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- LIGHTBOX & JOURNAL MODAL -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-zinc-900/60 backdrop-blur-xs" onclick="closeModal()"></div>
+        <div class="relative w-full max-w-3xl bg-white rounded-3xl p-6 sm:p-10 z-10 space-y-6 shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-6 right-6 w-10 h-10 bg-studio-bg rounded-full flex items-center justify-center text-zinc-900 hover:bg-zinc-900 hover:text-white transition-colors">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+            <div id="modal-content" class="space-y-4"></div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-8 right-8 z-50 hidden bg-zinc-900 text-white px-6 py-4 rounded-2xl shadow-xl flex items-center gap-4 text-xs uppercase tracking-wider">
+        <i class="fa-solid fa-check text-[#D5EE10]"></i>
+        <div id="toast-title">TRANSMISSION SENT</div>
+    </div>
+
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        /* -------------------------------------------------------------
+         * 1. THREE.JS INTERACTIVE FLOATING 2D 'QUANA CANNON' LETTERS & IN-PLANE WORK CIRCLES
+         * ------------------------------------------------------------- */
+        let qScene, qCamera, qRenderer, isQMouseDown = false, qPrevMouse = { x: 0, y: 0 };
+        let letterObjects = [];
+        let bubbleObjects = [];
+        let mouseWorldPos = new THREE.Vector3(999, 999, 0);
+        let orderFactor = 0; // 0 = scrambled initial state, 1 = ordered into "QUANA CANNON"
+
+        // UNIFORM FONT THICKNESS AND SIZE (900 Weight, 175px Size) ACROSS FLOATING LETTERS
+        const lettersData = [
+            // QUANA (Top Row)
+            { char: 'Q', font: '900 175px "Cormorant Garamond", serif', homeX: -56, homeY: 18 },
+            { char: 'U', font: '900 175px "Syne", sans-serif', homeX: -28, homeY: 18 },
+            { char: 'A', font: '900 175px "Instrument Serif", serif', homeX:   0, homeY: 18 },
+            { char: 'N', font: '900 175px "Archivo Black", sans-serif', homeX:  28, homeY: 18 },
+            { char: 'A', font: '900 175px "Bodoni Moda", serif', homeX:  56, homeY: 18 },
+            // CANNON (Bottom Row)
+            { char: 'C', font: '900 175px "Cormorant Garamond", serif', homeX: -70, homeY: -18 },
+            { char: 'A', font: '900 175px "Space Grotesk", sans-serif', homeX: -42, homeY: -18 },
+            { char: 'N', font: '900 175px "Playfair Display", serif', homeX: -14, homeY: -18 },
+            { char: 'N', font: '900 175px "Cinzel", serif', homeX:  14, homeY: -18 },
+            { char: 'O', font: '900 175px "Syne", sans-serif', homeX:  42, homeY: -18 },
+            { char: 'N', font: '900 175px "Instrument Serif", serif', homeX:  70, homeY: -18 }
+        ];
+
+        // SPREAD OUT WORK CIRCLES DATA (IN-PLANE WITH 3D SCENE)
+        const workBubblesData = [
+            { id: 1, img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600", homeX: -115, homeY: 48 },
+            { id: 4, img: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=600", homeX: 115, homeY: 52 },
+            { id: 5, img: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=600", homeX: -125, homeY: -48 },
+            { id: 2, img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=600", homeX: 120, homeY: -45 },
+            { id: 3, img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600", homeX: 0, homeY: 65 }
+        ];
+
+        function createLetterTexture(item) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 256;
+            canvas.height = 256;
+            const ctx = canvas.getContext('2d');
+
+            // Transparent background - isolate text without box background
+            ctx.clearRect(0, 0, 256, 256);
+
+            // Saturated Lemon Green (#D5EE10) isolated text with uniform font size & weight
+            ctx.fillStyle = '#D5EE10';
+            ctx.font = item.font || '900 175px "Archivo Black", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(item.char, 128, 134);
+
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.needsUpdate = true;
+            return texture;
+        }
+
+        function updateAllLetterTextures() {
+            letterObjects.forEach(obj => {
+                const newTex = createLetterTexture(obj.itemData);
+                obj.mesh.material.map.dispose();
+                obj.mesh.material.map = newTex;
+                obj.mesh.material.needsUpdate = true;
+            });
+        }
+
+        function init3DLetters() {
+            const container = document.getElementById('q-canvas-container');
+            if (!container || container.querySelector('canvas')) return;
+
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            qScene = new THREE.Scene();
+            qCamera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+            qCamera.position.z = 170;
+
+            qRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            qRenderer.setSize(width, height);
+            qRenderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(qRenderer.domElement);
+
+            // Lighting setup
+            const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+            qScene.add(ambientLight);
+
+            // 1. Build 2D Flat Isolated Letter Planes
+            const geo = new THREE.PlaneGeometry(26, 26);
+
+            letterObjects = lettersData.map((item) => {
+                const frontTex = createLetterTexture(item);
+                const mat = new THREE.MeshBasicMaterial({ 
+                    map: frontTex, 
+                    transparent: true, 
+                    alphaTest: 0.05,
+                    side: THREE.DoubleSide 
+                });
+
+                const mesh = new THREE.Mesh(geo, mat);
+                qScene.add(mesh);
+
+                // Scrambled Initial Positions across canvas space
+                const scrambleX = (Math.random() - 0.5) * 320;
+                const scrambleY = (Math.random() - 0.5) * 220;
+                const scrambleZ = 0;
+
+                const scrambleRot = new THREE.Euler(0, 0, (Math.random() - 0.5) * 2.8);
+
+                mesh.position.set(scrambleX, scrambleY, scrambleZ);
+                mesh.rotation.copy(scrambleRot);
+
+                return {
+                    mesh: mesh,
+                    char: item.char,
+                    itemData: item,
+                    homePos: new THREE.Vector3(item.homeX, item.homeY, 0),
+                    scramblePos: new THREE.Vector3(scrambleX, scrambleY, scrambleZ),
+                    currPos: new THREE.Vector3(scrambleX, scrambleY, scrambleZ),
+                    velocity: new THREE.Vector3(0, 0, 0),
+                    rotVelocity: new THREE.Vector3(0, 0, (Math.random() - 0.5) * 0.04),
+                    radius: 13
+                };
+            });
+
+            // Re-render letter canvas textures when Google Web Fonts finish loading
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(() => {
+                    setTimeout(updateAllLetterTextures, 150);
+                });
+            }
+
+            // 2. Build In-Plane Work Image Circles (Same Scene Plane z=0)
+            const textureLoader = new THREE.TextureLoader();
+            const circleGeo = new THREE.CircleGeometry(16, 64);
+
+            bubbleObjects = workBubblesData.map((item) => {
+                const texture = textureLoader.load(item.img);
+                const mat = new THREE.MeshBasicMaterial({ 
+                    map: texture, 
+                    side: THREE.DoubleSide 
+                });
+
+                const mesh = new THREE.Mesh(circleGeo, mat);
+                mesh.userData = { id: item.id };
+                qScene.add(mesh);
+
+                const initPos = new THREE.Vector3(item.homeX, item.homeY, 0);
+                mesh.position.copy(initPos);
+
+                return {
+                    mesh: mesh,
+                    id: item.id,
+                    homePos: initPos.clone(),
+                    currPos: initPos.clone(),
+                    velocity: new THREE.Vector3(0, 0, 0),
+                    radius: 16
+                };
+            });
+
+            // Track Mouse to align "QUANA CANNON" and push objects
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const mouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+                const mouseY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+                const vector = new THREE.Vector3(mouseX, mouseY, 0.5);
+                vector.unproject(qCamera);
+                const dir = vector.sub(qCamera.position).normalize();
+                const distance = -qCamera.position.z / dir.z;
+                mouseWorldPos.copy(qCamera.position).add(dir.multiplyScalar(distance));
+
+                orderFactor = Math.min(1.0, orderFactor + 0.06);
+
+                // Raycast for hover pointer on circles
+                const raycaster = new THREE.Raycaster();
+                const mouseVec = new THREE.Vector2(mouseX, mouseY);
+                raycaster.setFromCamera(mouseVec, qCamera);
+                const intersects = raycaster.intersectObjects(bubbleObjects.map(b => b.mesh));
+                if (intersects.length > 0) {
+                    container.style.cursor = 'pointer';
+                } else {
+                    container.style.cursor = 'grab';
+                }
+            });
+
+            container.addEventListener('click', (e) => {
+                const rect = container.getBoundingClientRect();
+                const mouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+                const mouseY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+                const raycaster = new THREE.Raycaster();
+                raycaster.setFromCamera(new THREE.Vector2(mouseX, mouseY), qCamera);
+                const intersects = raycaster.intersectObjects(bubbleObjects.map(b => b.mesh));
+                if (intersects.length > 0) {
+                    const hitObj = intersects[0].object;
+                    if (hitObj.userData && hitObj.userData.id) {
+                        openModal(hitObj.userData.id);
+                    }
+                }
+            });
+
+            // Physics & In-Plane Collisions Animation Loop
+            function animateLetters() {
+                requestAnimationFrame(animateLetters);
+
+                orderFactor = Math.min(1.0, orderFactor + 0.0015);
+
+                // A. Individual Letter Dynamics
+                letterObjects.forEach((obj, idx) => {
+                    const targetPos = new THREE.Vector3().lerpVectors(obj.scramblePos, obj.homePos, orderFactor);
+
+                    const time = Date.now() * 0.0025 + idx;
+                    targetPos.y += Math.sin(time) * 3.5;
+                    targetPos.x += Math.cos(time * 0.8) * 2.5;
+
+                    const springForce = targetPos.clone().sub(obj.currPos).multiplyScalar(0.05);
+                    obj.velocity.add(springForce);
+                    obj.velocity.multiplyScalar(0.86);
+
+                    // Mouse Repulsion Force
+                    const distToMouse = obj.currPos.distanceTo(mouseWorldPos);
+                    if (distToMouse < 40 && distToMouse > 0.1) {
+                        const pushDir = obj.currPos.clone().sub(mouseWorldPos).normalize();
+                        const force = (40 - distToMouse) * 0.5;
+                        obj.velocity.add(pushDir.multiplyScalar(force));
+                    }
+
+                    obj.currPos.add(obj.velocity);
+                    obj.mesh.position.copy(obj.currPos);
+
+                    obj.mesh.rotation.z += (0 - obj.mesh.rotation.z) * (0.05 * orderFactor) + obj.rotVelocity.z * (1 - orderFactor);
+                });
+
+                // B. Individual Work Circle Dynamics
+                bubbleObjects.forEach((bubble, idx) => {
+                    const targetPos = bubble.homePos.clone();
+                    const time = Date.now() * 0.002 + idx * 1.5;
+                    targetPos.y += Math.sin(time) * 4;
+                    targetPos.x += Math.cos(time * 0.7) * 3;
+
+                    const springForce = targetPos.sub(bubble.currPos).multiplyScalar(0.04);
+                    bubble.velocity.add(springForce);
+                    bubble.velocity.multiplyScalar(0.88);
+
+                    // Mouse Repulsion Force on Circles
+                    const distToMouse = bubble.currPos.distanceTo(mouseWorldPos);
+                    if (distToMouse < 45 && distToMouse > 0.1) {
+                        const pushDir = bubble.currPos.clone().sub(mouseWorldPos).normalize();
+                        const force = (45 - distToMouse) * 0.6;
+                        bubble.velocity.add(pushDir.multiplyScalar(force));
+                    }
+
+                    bubble.currPos.add(bubble.velocity);
+                    bubble.mesh.position.copy(bubble.currPos);
+                });
+
+                // C. Inter-Letter Collision Physics
+                for (let i = 0; i < letterObjects.length; i++) {
+                    for (let j = i + 1; j < letterObjects.length; j++) {
+                        const l1 = letterObjects[i];
+                        const l2 = letterObjects[j];
+                        const dist = l1.currPos.distanceTo(l2.currPos);
+                        const minDist = l1.radius + l2.radius;
+
+                        if (dist < minDist && dist > 0.1) {
+                            const overlap = (minDist - dist) * 0.5;
+                            const collideDir = l1.currPos.clone().sub(l2.currPos).normalize();
+                            l1.currPos.add(collideDir.clone().multiplyScalar(overlap));
+                            l2.currPos.sub(collideDir.clone().multiplyScalar(overlap));
+                            l1.velocity.add(collideDir.clone().multiplyScalar(overlap * 0.35));
+                            l2.velocity.sub(collideDir.clone().multiplyScalar(overlap * 0.35));
+                        }
+                    }
+                }
+
+                // D. In-Plane DIRECT Collision Physics Between Letters & Work Circles
+                for (let i = 0; i < letterObjects.length; i++) {
+                    for (let j = 0; j < bubbleObjects.length; j++) {
+                        const letter = letterObjects[i];
+                        const bubble = bubbleObjects[j];
+                        const dist = letter.currPos.distanceTo(bubble.currPos);
+                        const minDist = letter.radius + bubble.radius + 2;
+
+                        if (dist < minDist && dist > 0.1) {
+                            const overlap = (minDist - dist);
+                            const collideDir = letter.currPos.clone().sub(bubble.currPos).normalize();
+                            
+                            letter.currPos.add(collideDir.clone().multiplyScalar(overlap * 0.5));
+                            bubble.currPos.sub(collideDir.clone().multiplyScalar(overlap * 0.5));
+
+                            letter.velocity.add(collideDir.clone().multiplyScalar(overlap * 0.4));
+                            bubble.velocity.sub(collideDir.clone().multiplyScalar(overlap * 0.4));
+                        }
+                    }
+                }
+
+                // E. Inter-Bubble Collision Physics
+                for (let i = 0; i < bubbleObjects.length; i++) {
+                    for (let j = i + 1; j < bubbleObjects.length; j++) {
+                        const b1 = bubbleObjects[i];
+                        const b2 = bubbleObjects[j];
+                        const dist = b1.currPos.distanceTo(b2.currPos);
+                        const minDist = b1.radius + b2.radius;
+
+                        if (dist < minDist && dist > 0.1) {
+                            const overlap = (minDist - dist) * 0.5;
+                            const collideDir = b1.currPos.clone().sub(b2.currPos).normalize();
+                            b1.currPos.add(collideDir.clone().multiplyScalar(overlap));
+                            b2.currPos.sub(collideDir.clone().multiplyScalar(overlap));
+                            b1.velocity.add(collideDir.clone().multiplyScalar(overlap * 0.3));
+                            b2.velocity.sub(collideDir.clone().multiplyScalar(overlap * 0.3));
+                        }
+                    }
+                }
+
+                qRenderer.render(qScene, qCamera);
+            }
+            animateLetters();
+
+            window.addEventListener('resize', () => {
+                if (!container || !qRenderer) return;
+                const w = container.clientWidth;
+                const h = container.clientHeight;
+                qCamera.aspect = w / h;
+                qCamera.updateProjectionMatrix();
+                qRenderer.setSize(w, h);
+            });
+        }
+
+        // Alias for compatibility
+        function init3DQ() {
+            init3DLetters();
+        }
+
+        /* -------------------------------------------------------------
+         * 2. THREE.JS 3D GLOBE FOR ABOUT PAGE
+         * ------------------------------------------------------------- */
+        const globeLocations = [
+            { name: "LUBBOCK, TX", lat: 33.5779, lon: -101.8552, tag: "RESIDENCY", desc: "COTTON BELT CLAY FIELDWORK." },
+            { name: "XISHUANGBANNA, CHINA", lat: 21.9264, lon: 101.2536, tag: "BIO-ART", desc: "TROPICAL BOTANICAL ACOUSTICS." },
+            { name: "CHICAGOLAND, IL", lat: 41.8781, lon: -87.6298, tag: "EXHIBITION", desc: "KINETIC CANOPY INSTALLATION." },
+            { name: "WELLESLEY / BOSTON, MA", lat: 42.2968, lon: -71.2924, tag: "RESEARCH", desc: "PORCELAIN GLAZE RESEARCH." },
+            { name: "TAIPEI, TAIWAN", lat: 25.0330, lon: 121.5654, tag: "RESIDENCY", desc: "HIGH-FIRE CERAMICS RESIDENCY." },
+            { name: "KUALA LUMPUR, MALAYSIA", lat: 3.1390, lon: 101.6869, tag: "INSTALLATION", desc: "E-TEXTILE SOUND INSTALLATION." },
+            { name: "JINGDEZHEN, CHINA", lat: 29.2936, lon: 117.2079, tag: "CERAMICS", desc: "PORCELAIN WHEEL THROWING STUDY." },
+            { name: "SUKADANA, INDONESIA", lat: -1.2467, lon: 109.9531, tag: "FIELDWORK", desc: "RAINFOREST ACOUSTICS RESEARCH." },
+            { name: "SHANGHAI, CHINA", lat: 31.2304, lon: 121.4737, tag: "TRIENNIAL", desc: "NEW MEDIA ART PERFORMANCE." }
+        ];
+
+        let gScene, gCamera, gRenderer, gGroup, raycaster, mouse;
+
+        function init3DGlobe() {
+            const container = document.getElementById('globe-container');
+            if (!container || container.querySelector('canvas')) return;
+
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            gScene = new THREE.Scene();
+            gCamera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+            gCamera.position.z = 220;
+
+            gRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            gRenderer.setSize(width, height);
+            gRenderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(gRenderer.domElement);
+
+            gGroup = new THREE.Group();
+            gScene.add(gGroup);
+
+            const radius = 65;
+            const globeGeo = new THREE.SphereGeometry(radius, 48, 48);
+            const globeMat = new THREE.MeshPhongMaterial({ color: 0xFAF8F5, emissive: 0xECE9E2, shininess: 10 });
+            gGroup.add(new THREE.Mesh(globeGeo, globeMat));
+
+            const wireGeo = new THREE.SphereGeometry(radius + 0.5, 24, 24);
+            const wireMat = new THREE.MeshBasicMaterial({ color: 0xD5EE10, wireframe: true, transparent: true, opacity: 0.25 });
+            gGroup.add(new THREE.Mesh(wireGeo, wireMat));
+
+            gScene.add(new THREE.AmbientLight(0xffffff, 0.9));
+            const dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
+            dirLight.position.set(100, 100, 100);
+            gScene.add(dirLight);
+
+            function latLonToVector3(lat, lon, r) {
+                const phi = (90 - lat) * (Math.PI / 180);
+                const theta = (lon + 180) * (Math.PI / 180);
+                return new THREE.Vector3(
+                    -(r * Math.sin(phi) * Math.cos(theta)),
+                    r * Math.cos(phi),
+                    r * Math.sin(phi) * Math.sin(theta)
+                );
+            }
+
+            const pinsGroup = new THREE.Group();
+            globeLocations.forEach(loc => {
+                const pos = latLonToVector3(loc.lat, loc.lon, radius + 1.5);
+                const pinMesh = new THREE.Mesh(
+                    new THREE.SphereGeometry(2.5, 16, 16),
+                    new THREE.MeshBasicMaterial({ color: 0x1C1C1A })
+                );
+                pinMesh.position.copy(pos);
+                pinMesh.userData = loc;
+                pinsGroup.add(pinMesh);
+            });
+            gGroup.add(pinsGroup);
+
+            raycaster = new THREE.Raycaster();
+            mouse = new THREE.Vector2();
+
+            container.addEventListener('click', (e) => {
+                const rect = gRenderer.domElement.getBoundingClientRect();
+                mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+                mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+                raycaster.setFromCamera(mouse, gCamera);
+                const intersects = raycaster.intersectObjects(pinsGroup.children);
+                if (intersects.length > 0 && intersects[0].object.userData.name) {
+                    const data = intersects[0].object.userData;
+                    document.getElementById('globe-title').innerText = data.name;
+                    document.getElementById('globe-tag').innerText = data.tag;
+                    document.getElementById('globe-desc').innerText = data.desc;
+                }
+            });
+
+            function animateGlobe() {
+                requestAnimationFrame(animateGlobe);
+                gGroup.rotation.y += 0.003;
+                gRenderer.render(gScene, gCamera);
+            }
+            animateGlobe();
+        }
+
+        /* -------------------------------------------------------------
+         * 3. ROUTER & MODAL UTILITIES
+         * ------------------------------------------------------------- */
+        const projectsData = [
+            { id: 1, title: "NEURAL AURA FIELD", categoryBadge: "FINE ART", image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000", story: "BIOFEEDBACK SPECTRAL LIGHT INSTALLATION AT VENICE BIENNALE." },
+            { id: 2, title: "QUATERNION MESH", categoryBadge: "FINE ART", image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1000", story: "SUSPENDED KINETIC FIBER OPTIC STRUCTURE AT TATE MODERN." },
+            { id: 3, title: "LUMEN CANOPY", categoryBadge: "FINE ART", image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000", story: "ACOUSTIC MOVEMENT CEILING CANOPY AT MORI ART MUSEUM." },
+            { id: 4, title: "CRYSTALLINE PORCELAIN URN", categoryBadge: "CERAMICS", image: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=1000", story: "ZINC SILICATE REDUCTION GLAZE PORCELAIN VESSEL." },
+            { id: 5, title: "SHIGARAKI ASH VESSEL", categoryBadge: "CERAMICS", image: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=1000", story: "ANAGAMA KILN WOOD-FIRED STONEWARE FORM." },
+            { id: 6, title: "RESONANT CERAMIC SPEAKER", categoryBadge: "CERAMICS", image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=1000", story: "ACOUSTIC CLAY CHAMBER WITH CONTACT SENSORS." }
+        ];
+
+        function toggleWorksMenu() {
+            const menu = document.getElementById('works-menu');
+            const arrow = document.getElementById('works-arrow');
+            if (!menu) return;
+            const isHidden = menu.classList.contains('hidden');
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                menu.classList.add('flex');
+                if (arrow) arrow.style.transform = 'rotate(180deg) scale(1.2)';
+            } else {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+                if (arrow) arrow.style.transform = 'rotate(0deg) scale(1)';
+            }
+        }
+
+        function navigateTo(pageId) {
+            const validPages = ['home', 'art', 'ceramics', 'photo-video', 'dance', 'journals', 'about', 'contact'];
+            const worksPages = ['art', 'ceramics', 'photo-video', 'dance', 'journals'];
+            let target = pageId.replace('#', '');
+            if (target === '' || !validPages.includes(target)) target = 'home';
+
+            document.querySelectorAll('.page-view').forEach(el => el.classList.add('hidden'));
+            
+            // Auto expand works dropdown if target is a work sub-item
+            const worksMenu = document.getElementById('works-menu');
+            const worksArrow = document.getElementById('works-arrow');
+            if (worksPages.includes(target) && worksMenu) {
+                worksMenu.classList.remove('hidden');
+                worksMenu.classList.add('flex');
+                if (worksArrow) worksArrow.style.transform = 'rotate(180deg) scale(1.2)';
+            }
+        }
+
+        function navigateTo(pageId) {
+            const validPages = ['home', 'art', 'ceramics', 'photo-video', 'dance', 'journals', 'about', 'contact'];
+            const worksPages = ['art', 'ceramics', 'photo-video', 'dance', 'journals'];
+            let target = pageId.replace('#', '');
+            if (target === '' || !validPages.includes(target)) target = 'home';
+
+            document.querySelectorAll('.page-view').forEach(el => el.classList.add('hidden'));
+            
+            // Auto expand works dropdown if target is a work sub-item
+            const worksMenu = document.getElementById('works-menu');
+            const worksArrow = document.getElementById('works-arrow');
+            if (worksPages.includes(target) && worksMenu) {
+                worksMenu.classList.remove('hidden');
+                worksMenu.classList.add('flex');
+                if (worksArrow) worksArrow.style.transform = 'rotate(180deg)';
+            }
+
+            // Highlight active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.getAttribute('href') === `#${target}`) {
+                    link.classList.add('text-[#D5EE10]');
+                } else {
+                    link.classList.remove('text-[#D5EE10]');
+                }
+            });
+
+            const activePage = document.getElementById(`page-${target}`);
+            if (activePage) {
+                activePage.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'instant' });
+            }
+
+            if (target === 'home') setTimeout(init3DLetters, 50);
+            if (target === 'about') setTimeout(init3DGlobe, 100);
+        }
+
+        window.addEventListener('hashchange', () => navigateTo(window.location.hash || 'home'));
+
+        function openModal(id) {
+            const p = projectsData.find(x => x.id === id);
+            if (!p) return;
+            document.getElementById('modal-content').innerHTML = `
+                <div class="h-72 bg-zinc-900 rounded-2xl overflow-hidden">
+                    <img src="${p.image}" class="w-full h-full object-cover">
+                </div>
+                <div class="space-y-2">
+                    <span class="bg-[#D5EE10] px-3 py-1 rounded-full text-xs text-zinc-900 uppercase">${p.categoryBadge}</span>
+                    <h2 class="text-3xl text-zinc-900 uppercase">${p.title}</h2>
+                    <p class="text-xs text-studio-muted uppercase">${p.story}</p>
+                </div>
+            `;
+            document.getElementById('project-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openJournalModal(id) {
+            document.getElementById('modal-content').innerHTML = `
+                <span class="bg-[#D5EE10] px-3 py-1 rounded-full text-xs text-zinc-900 uppercase">FIELD NOTE</span>
+                <h2 class="text-3xl text-zinc-900 uppercase">ZINC SILICATE REDUCTION RESEARCH</h2>
+                <p class="text-xs text-studio-muted uppercase leading-relaxed pt-2">
+                    BALANCING ZINC OXIDE AND SILICA RATIOS DURING KILN COOLING AT 1050°C FOR CRYSTAL FORMATION.
+                </p>
+            `;
+            document.getElementById('project-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('project-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function popShape(el) {
+            if (el && el.classList) {
+                el.classList.add('animate-bounce');
+                setTimeout(() => el.classList.remove('animate-bounce'), 600);
+            }
+            // Trigger audio chime note on interaction
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                const freqs = [523.25, 659.25, 783.99, 1046.50, 1318.51];
+                osc.frequency.value = freqs[Math.floor(Math.random() * freqs.length)];
+                gain.gain.setValueAtTime(0.15, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.3);
+            } catch(e) {}
+        }
+
+        /* -------------------------------------------------------------
+         * 4. AUDIO SYNTH & FORMS
+         * ------------------------------------------------------------- */
+        let synthAudioCtx = null, isSynthActive = false;
+        function toggleSynth() {
+            try {
+                if (!synthAudioCtx) synthAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const icon = document.getElementById('synth-icon');
+                const wave = document.getElementById('sound-wave');
+                if (synthAudioCtx.state === 'suspended') {
+                    synthAudioCtx.resume();
+                    isSynthActive = true;
+                    if (icon) icon.className = 'fa-solid fa-volume-high text-zinc-900';
+                    if (wave) { wave.classList.remove('hidden'); wave.classList.add('flex'); }
+                } else {
+                    synthAudioCtx.suspend();
+                    isSynthActive = false;
+                    if (icon) icon.className = 'fa-solid fa-volume-xmark text-studio-muted';
+                    if (wave) { wave.classList.add('hidden'); wave.classList.remove('flex'); }
+                }
+            } catch (e) {}
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const toast = document.getElementById('toast');
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 3500);
+            document.getElementById('contact-form').reset();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            navigateTo(window.location.hash || 'home');
+        });
+    </script>
+</body>
+</html>
