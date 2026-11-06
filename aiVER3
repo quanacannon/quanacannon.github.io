@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Three.js for 3D Globe & 3D 'Q' -->
+    <!-- Three.js for 3D Globe & Interactive Letters -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
     <!-- CURATED AESTHETIC FONTS FOR FLOATING LETTERS -->
@@ -79,12 +79,25 @@
             100% { transform: scaleY(1); }
         }
 
-        /* Floating Animation for Work Bubbles around 3D Q */
+        /* Floating Animation for Work Bubbles & Accent Shapes */
         @keyframes floatOrbit1 {
             0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
             50% { transform: translate(-15px, -20px) rotate(8deg) scale(1.08); }
         }
         @keyframes floatOrbit2 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            50% { transform: translate(15px, 20px) rotate(-8deg) scale(0.95); }
+        }
+        @keyframes floatOrbit3 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-10px, 15px) rotate(12deg); }
+        }
+
+        .orbit-bubble-1 { animation: floatOrbit1 6s ease-in-out infinite; }
+        .orbit-bubble-2 { animation: floatOrbit2 7s ease-in-out infinite; }
+        .orbit-bubble-3 { animation: floatOrbit3 8s ease-in-out infinite; }
+    </style>
+</head>
 <body class="bg-studio-bg text-studio-text antialiased min-h-screen flex flex-col md:flex-row selection:bg-[#D5EE10] selection:text-zinc-900 relative overflow-x-hidden">
 
     <!-- FLOATING GRAPHIC ACCENT SHAPES -->
@@ -151,8 +164,8 @@
 
     </div>
 
-    <!-- PERMANENT LEFT-HAND MENU SIDEBAR (LARGE TEXT) -->
-    <aside class="w-full md:w-80 lg:w-96 md:fixed md:left-0 md:top-0 md:bottom-0 p-8 md:p-12 flex flex-col justify-between z-40 bg-studio-bg border-b md:border-b-0 md:border-r border-zinc-200/40">
+    <!-- PERMANENT LEFT-HAND MENU SIDEBAR (BORDERLESS SEAMLESS BACKGROUND) -->
+    <aside class="w-full md:w-80 lg:w-96 md:fixed md:left-0 md:top-0 md:bottom-0 p-8 md:p-12 flex flex-col justify-between z-40 bg-studio-bg">
         <div class="space-y-10">
             <!-- Brand Logo -->
             <a href="#home" class="block group space-y-2">
@@ -175,7 +188,7 @@
                 <div class="relative flex flex-col">
                     <button id="works-dropdown-btn" onclick="toggleWorksMenu()" class="w-full flex items-center justify-between text-zinc-800 hover:text-[#D5EE10] hover:translate-x-2 transition-all uppercase text-left py-1">
                         <span>WORKS</span>
-                        <i class="fa-solid fa-star text-base text-black transition-transform duration-300" id="works-arrow"></i>
+                        <span id="works-arrow" class="text-base text-black transition-transform duration-300 inline-block select-none">✦</span>
                     </button>
                     <div id="works-menu" class="hidden flex-col gap-3 pl-5 pt-3 text-xl lg:text-2xl text-zinc-600">
                         <a href="#art" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">ART</a>
@@ -486,33 +499,40 @@
         let qScene, qCamera, qRenderer, isQMouseDown = false, qPrevMouse = { x: 0, y: 0 };
         let letterObjects = [];
         let bubbleObjects = [];
+        let cloverObjects = [];
         let mouseWorldPos = new THREE.Vector3(999, 999, 0);
         let orderFactor = 0; // 0 = scrambled initial state, 1 = ordered into "QUANA CANNON"
 
-        // UNIFORM FONT THICKNESS AND SIZE (900 Weight, 175px Size) ACROSS FLOATING LETTERS
+        // COMPACT TIGHT SPACING WITH PROMINENT LEAD 'Q' AND 'C'
         const lettersData = [
-            // QUANA (Top Row)
-            { char: 'Q', font: '900 175px "Cormorant Garamond", serif', homeX: -56, homeY: 18 },
-            { char: 'U', font: '900 175px "Syne", sans-serif', homeX: -28, homeY: 18 },
-            { char: 'A', font: '900 175px "Instrument Serif", serif', homeX:   0, homeY: 18 },
-            { char: 'N', font: '900 175px "Archivo Black", sans-serif', homeX:  28, homeY: 18 },
-            { char: 'A', font: '900 175px "Bodoni Moda", serif', homeX:  56, homeY: 18 },
-            // CANNON (Bottom Row)
-            { char: 'C', font: '900 175px "Cormorant Garamond", serif', homeX: -70, homeY: -18 },
-            { char: 'A', font: '900 175px "Space Grotesk", sans-serif', homeX: -42, homeY: -18 },
-            { char: 'N', font: '900 175px "Playfair Display", serif', homeX: -14, homeY: -18 },
-            { char: 'N', font: '900 175px "Cinzel", serif', homeX:  14, homeY: -18 },
-            { char: 'O', font: '900 175px "Syne", sans-serif', homeX:  42, homeY: -18 },
-            { char: 'N', font: '900 175px "Instrument Serif", serif', homeX:  70, homeY: -18 }
+            // QUANA (Top Row) - Tightened horizontal spacing
+            { char: 'Q', font: '900 220px "Cormorant Garamond", serif', homeX: -48, homeY: 14, isBig: true, scale: 1.25, radius: 13.5 },
+            { char: 'U', font: '900 165px "Syne", sans-serif', homeX: -24, homeY: 14, radius: 9.5 },
+            { char: 'A', font: '900 165px "Instrument Serif", serif', homeX:  -3, homeY: 14, radius: 9.5 },
+            { char: 'N', font: '900 165px "Archivo Black", sans-serif', homeX:  18, homeY: 14, radius: 9.5 },
+            { char: 'A', font: '900 165px "Bodoni Moda", serif', homeX:  39, homeY: 14, radius: 9.5 },
+            // CANNON (Bottom Row) - Tightened horizontal spacing
+            { char: 'C', font: '900 220px "Cormorant Garamond", serif', homeX: -58, homeY: -14, isBig: true, scale: 1.25, radius: 13.5 },
+            { char: 'A', font: '900 165px "Space Grotesk", sans-serif', homeX: -36, homeY: -14, radius: 9.5 },
+            { char: 'N', font: '900 165px "Playfair Display", serif', homeX: -15, homeY: -14, radius: 9.5 },
+            { char: 'N', font: '900 165px "Cinzel", serif', homeX:   6, homeY: -14, radius: 9.5 },
+            { char: 'O', font: '900 165px "Syne", sans-serif', homeX:  27, homeY: -14, radius: 9.5 },
+            { char: 'N', font: '900 165px "Instrument Serif", serif', homeX:  48, homeY: -14, radius: 9.5 }
         ];
 
-        // SPREAD OUT WORK CIRCLES DATA (IN-PLANE WITH 3D SCENE)
+        // SPREAD OUT WORK CIRCLES DATA (COMPACT POSITIONS + MATCHING SUBTLE GLOW COLORS)
         const workBubblesData = [
-            { id: 1, img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600", homeX: -115, homeY: 48 },
-            { id: 4, img: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=600", homeX: 115, homeY: 52 },
-            { id: 5, img: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=600", homeX: -125, homeY: -48 },
-            { id: 2, img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=600", homeX: 120, homeY: -45 },
-            { id: 3, img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600", homeX: 0, homeY: 65 }
+            { id: 1, img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600", homeX: -72, homeY: 38, glowColor: 0x818CF8 },
+            { id: 4, img: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=600", homeX: 72, homeY: 42, glowColor: 0xFBBF24 },
+            { id: 5, img: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=600", homeX: -78, homeY: -38, glowColor: 0xF87171 },
+            { id: 2, img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=600", homeX: 78, homeY: -35, glowColor: 0x38BDF8 },
+            { id: 3, img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600", homeX: 0, homeY: 46, glowColor: 0x34D399 }
+        ];
+
+        // FLOATING 3D CLOVERS DATA (IN-PLANE WITH SCENE FOR REALTIME COLLISIONS)
+        const cloversData = [
+            { homeX: -70, homeY: -8, radius: 12 },
+            { homeX: 70, homeY: 10, radius: 12 }
         ];
 
         function createLetterTexture(item) {
@@ -521,15 +541,58 @@
             canvas.height = 256;
             const ctx = canvas.getContext('2d');
 
-            // Transparent background - isolate text without box background
             ctx.clearRect(0, 0, 256, 256);
 
-            // Saturated Lemon Green (#D5EE10) isolated text with uniform font size & weight
+            // SOFT SLIGHT GLOW PASS
+            ctx.shadowColor = '#D5EE10';
+            ctx.shadowBlur = 22;
             ctx.fillStyle = '#D5EE10';
-            ctx.font = item.font || '900 175px "Archivo Black", sans-serif';
+            ctx.font = item.font || '900 165px "Archivo Black", sans-serif';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
+            
+            // Draw glow layer then solid letter layer
             ctx.fillText(item.char, 128, 134);
+            ctx.shadowBlur = 0;
+            ctx.fillText(item.char, 128, 134);
+
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.needsUpdate = true;
+            return texture;
+        }
+
+        function createCloverTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 256;
+            canvas.height = 256;
+            const ctx = canvas.getContext('2d');
+
+            ctx.clearRect(0, 0, 256, 256);
+
+            // Subtle glow around clover
+            ctx.shadowColor = '#D5EE10';
+            ctx.shadowBlur = 18;
+
+            ctx.fillStyle = '#D5EE10';
+            ctx.translate(128, 128);
+
+            // Draw 4 leaves
+            for (let i = 0; i < 4; i++) {
+                ctx.beginPath();
+                ctx.arc(0, -32, 28, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.rotate(Math.PI / 2);
+            }
+
+            // Stem
+            ctx.shadowBlur = 0;
+            ctx.strokeStyle = '#D5EE10';
+            ctx.lineWidth = 10;
+            ctx.lineCap = 'round';
+            ctx.beginPath();
+            ctx.moveTo(0, 10);
+            ctx.quadraticCurveTo(-15, 55, -25, 75);
+            ctx.stroke();
 
             const texture = new THREE.CanvasTexture(canvas);
             texture.needsUpdate = true;
@@ -561,12 +624,11 @@
             qRenderer.setPixelRatio(window.devicePixelRatio);
             container.appendChild(qRenderer.domElement);
 
-            // Lighting setup
             const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
             qScene.add(ambientLight);
 
             // 1. Build 2D Flat Isolated Letter Planes
-            const geo = new THREE.PlaneGeometry(26, 26);
+            const baseGeo = new THREE.PlaneGeometry(26, 26);
 
             letterObjects = lettersData.map((item) => {
                 const frontTex = createLetterTexture(item);
@@ -577,12 +639,15 @@
                     side: THREE.DoubleSide 
                 });
 
+                // Scale geometry larger for Q and C
+                const scaleVal = item.scale || 1.0;
+                const geo = item.isBig ? new THREE.PlaneGeometry(26 * scaleVal, 26 * scaleVal) : baseGeo;
+
                 const mesh = new THREE.Mesh(geo, mat);
                 qScene.add(mesh);
 
-                // Scrambled Initial Positions across canvas space
-                const scrambleX = (Math.random() - 0.5) * 320;
-                const scrambleY = (Math.random() - 0.5) * 220;
+                const scrambleX = (Math.random() - 0.5) * 340;
+                const scrambleY = (Math.random() - 0.5) * 230;
                 const scrambleZ = 0;
 
                 const scrambleRot = new THREE.Euler(0, 0, (Math.random() - 0.5) * 2.8);
@@ -599,20 +664,19 @@
                     currPos: new THREE.Vector3(scrambleX, scrambleY, scrambleZ),
                     velocity: new THREE.Vector3(0, 0, 0),
                     rotVelocity: new THREE.Vector3(0, 0, (Math.random() - 0.5) * 0.04),
-                    radius: 13
+                    radius: item.radius || 11
                 };
             });
 
-            // Re-render letter canvas textures when Google Web Fonts finish loading
             if (document.fonts && document.fonts.ready) {
                 document.fonts.ready.then(() => {
                     setTimeout(updateAllLetterTextures, 150);
                 });
             }
 
-            // 2. Build In-Plane Work Image Circles (Same Scene Plane z=0)
+            // 2. Build In-Plane Work Image Circles (Borderless)
             const textureLoader = new THREE.TextureLoader();
-            const circleGeo = new THREE.CircleGeometry(16, 64);
+            const circleGeo = new THREE.CircleGeometry(15, 64);
 
             bubbleObjects = workBubblesData.map((item) => {
                 const texture = textureLoader.load(item.img);
@@ -625,20 +689,50 @@
                 mesh.userData = { id: item.id };
                 qScene.add(mesh);
 
+                const homePos = new THREE.Vector3(item.homeX, item.homeY, 0);
+                // Scramble start position further out so circles get drawn inward
+                const scramblePos = homePos.clone().multiplyScalar(1.85).add(new THREE.Vector3((Math.random() - 0.5) * 60, (Math.random() - 0.5) * 60, 0));
+                
+                mesh.position.copy(scramblePos);
+
+                return {
+                    mesh: mesh,
+                    id: item.id,
+                    homePos: homePos,
+                    scramblePos: scramblePos,
+                    currPos: scramblePos.clone(),
+                    velocity: new THREE.Vector3(0, 0, 0),
+                    radius: 15
+                };
+            });
+
+            // 3. Build In-Plane Interactive 3D Clovers
+            const cloverTex = createCloverTexture();
+            const cloverGeo = new THREE.PlaneGeometry(28, 28);
+            
+            cloverObjects = cloversData.map((item) => {
+                const mat = new THREE.MeshBasicMaterial({
+                    map: cloverTex,
+                    transparent: true,
+                    alphaTest: 0.05,
+                    side: THREE.DoubleSide
+                });
+                const mesh = new THREE.Mesh(cloverGeo, mat);
+                qScene.add(mesh);
+
                 const initPos = new THREE.Vector3(item.homeX, item.homeY, 0);
                 mesh.position.copy(initPos);
 
                 return {
                     mesh: mesh,
-                    id: item.id,
                     homePos: initPos.clone(),
                     currPos: initPos.clone(),
                     velocity: new THREE.Vector3(0, 0, 0),
-                    radius: 16
+                    radius: item.radius || 12
                 };
             });
 
-            // Track Mouse to align "QUANA CANNON" and push objects
+            // Track Mouse to slowly align "QUANA CANNON" and apply repulsion
             container.addEventListener('mousemove', (e) => {
                 const rect = container.getBoundingClientRect();
                 const mouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
@@ -650,9 +744,9 @@
                 const distance = -qCamera.position.z / dir.z;
                 mouseWorldPos.copy(qCamera.position).add(dir.multiplyScalar(distance));
 
-                orderFactor = Math.min(1.0, orderFactor + 0.06);
+                // SLOWER UNSCRAMBLE INCREMENT PER MOUSE MOVE
+                orderFactor = Math.min(1.0, orderFactor + 0.008);
 
-                // Raycast for hover pointer on circles
                 const raycaster = new THREE.Raycaster();
                 const mouseVec = new THREE.Vector2(mouseX, mouseY);
                 raycaster.setFromCamera(mouseVec, qCamera);
@@ -679,54 +773,53 @@
                 }
             });
 
-            // Physics & In-Plane Collisions Animation Loop
+            // Physics & Collisions Animation Loop
             function animateLetters() {
                 requestAnimationFrame(animateLetters);
 
-                orderFactor = Math.min(1.0, orderFactor + 0.0015);
+                // NATURAL IDLE UNSCRAMBLE
+                orderFactor = Math.min(1.0, orderFactor + 0.0002);
 
                 // A. Individual Letter Dynamics
                 letterObjects.forEach((obj, idx) => {
                     const targetPos = new THREE.Vector3().lerpVectors(obj.scramblePos, obj.homePos, orderFactor);
 
-                    const time = Date.now() * 0.0025 + idx;
-                    targetPos.y += Math.sin(time) * 3.5;
-                    targetPos.x += Math.cos(time * 0.8) * 2.5;
+                    const time = Date.now() * 0.002 + idx;
+                    targetPos.y += Math.sin(time) * 3.0;
+                    targetPos.x += Math.cos(time * 0.7) * 2.0;
 
-                    const springForce = targetPos.clone().sub(obj.currPos).multiplyScalar(0.05);
+                    const springForce = targetPos.clone().sub(obj.currPos).multiplyScalar(0.025);
                     obj.velocity.add(springForce);
-                    obj.velocity.multiplyScalar(0.86);
+                    obj.velocity.multiplyScalar(0.88);
 
-                    // Mouse Repulsion Force
                     const distToMouse = obj.currPos.distanceTo(mouseWorldPos);
-                    if (distToMouse < 40 && distToMouse > 0.1) {
+                    if (distToMouse < 36 && distToMouse > 0.1) {
                         const pushDir = obj.currPos.clone().sub(mouseWorldPos).normalize();
-                        const force = (40 - distToMouse) * 0.5;
+                        const force = (36 - distToMouse) * 0.40;
                         obj.velocity.add(pushDir.multiplyScalar(force));
                     }
 
                     obj.currPos.add(obj.velocity);
                     obj.mesh.position.copy(obj.currPos);
 
-                    obj.mesh.rotation.z += (0 - obj.mesh.rotation.z) * (0.05 * orderFactor) + obj.rotVelocity.z * (1 - orderFactor);
+                    obj.mesh.rotation.z += (0 - obj.mesh.rotation.z) * (0.03 * orderFactor) + obj.rotVelocity.z * (1 - orderFactor);
                 });
 
-                // B. Individual Work Circle Dynamics
+                // B. Individual Work Circle Dynamics (Drawn inward alongside letters)
                 bubbleObjects.forEach((bubble, idx) => {
-                    const targetPos = bubble.homePos.clone();
+                    const targetPos = new THREE.Vector3().lerpVectors(bubble.scramblePos, bubble.homePos, orderFactor);
                     const time = Date.now() * 0.002 + idx * 1.5;
-                    targetPos.y += Math.sin(time) * 4;
-                    targetPos.x += Math.cos(time * 0.7) * 3;
+                    targetPos.y += Math.sin(time) * 3.5;
+                    targetPos.x += Math.cos(time * 0.7) * 2.5;
 
-                    const springForce = targetPos.sub(bubble.currPos).multiplyScalar(0.04);
+                    const springForce = targetPos.sub(bubble.currPos).multiplyScalar(0.03);
                     bubble.velocity.add(springForce);
                     bubble.velocity.multiplyScalar(0.88);
 
-                    // Mouse Repulsion Force on Circles
                     const distToMouse = bubble.currPos.distanceTo(mouseWorldPos);
-                    if (distToMouse < 45 && distToMouse > 0.1) {
+                    if (distToMouse < 40 && distToMouse > 0.1) {
                         const pushDir = bubble.currPos.clone().sub(mouseWorldPos).normalize();
-                        const force = (45 - distToMouse) * 0.6;
+                        const force = (40 - distToMouse) * 0.45;
                         bubble.velocity.add(pushDir.multiplyScalar(force));
                     }
 
@@ -734,7 +827,30 @@
                     bubble.mesh.position.copy(bubble.currPos);
                 });
 
-                // C. Inter-Letter Collision Physics
+                // C. In-Plane Clover Dynamics
+                cloverObjects.forEach((clover, idx) => {
+                    const targetPos = clover.homePos.clone();
+                    const time = Date.now() * 0.0022 + idx * 2.0;
+                    targetPos.y += Math.sin(time) * 4;
+                    targetPos.x += Math.cos(time * 0.6) * 3;
+
+                    const springForce = targetPos.sub(clover.currPos).multiplyScalar(0.03);
+                    clover.velocity.add(springForce);
+                    clover.velocity.multiplyScalar(0.88);
+
+                    const distToMouse = clover.currPos.distanceTo(mouseWorldPos);
+                    if (distToMouse < 36 && distToMouse > 0.1) {
+                        const pushDir = clover.currPos.clone().sub(mouseWorldPos).normalize();
+                        const force = (36 - distToMouse) * 0.45;
+                        clover.velocity.add(pushDir.multiplyScalar(force));
+                    }
+
+                    clover.currPos.add(clover.velocity);
+                    clover.mesh.position.copy(clover.currPos);
+                    clover.mesh.rotation.z += 0.005;
+                });
+
+                // D. Inter-Letter Collision Physics
                 for (let i = 0; i < letterObjects.length; i++) {
                     for (let j = i + 1; j < letterObjects.length; j++) {
                         const l1 = letterObjects[i];
@@ -747,48 +863,62 @@
                             const collideDir = l1.currPos.clone().sub(l2.currPos).normalize();
                             l1.currPos.add(collideDir.clone().multiplyScalar(overlap));
                             l2.currPos.sub(collideDir.clone().multiplyScalar(overlap));
-                            l1.velocity.add(collideDir.clone().multiplyScalar(overlap * 0.35));
-                            l2.velocity.sub(collideDir.clone().multiplyScalar(overlap * 0.35));
+                            l1.velocity.add(collideDir.clone().multiplyScalar(overlap * 0.3));
+                            l2.velocity.sub(collideDir.clone().multiplyScalar(overlap * 0.3));
                         }
                     }
                 }
 
-                // D. In-Plane DIRECT Collision Physics Between Letters & Work Circles
+                // E. Letter <-> Work Circle Collisions
                 for (let i = 0; i < letterObjects.length; i++) {
                     for (let j = 0; j < bubbleObjects.length; j++) {
                         const letter = letterObjects[i];
                         const bubble = bubbleObjects[j];
                         const dist = letter.currPos.distanceTo(bubble.currPos);
-                        const minDist = letter.radius + bubble.radius + 2;
+                        const minDist = letter.radius + bubble.radius + 1.5;
 
                         if (dist < minDist && dist > 0.1) {
                             const overlap = (minDist - dist);
                             const collideDir = letter.currPos.clone().sub(bubble.currPos).normalize();
-                            
                             letter.currPos.add(collideDir.clone().multiplyScalar(overlap * 0.5));
                             bubble.currPos.sub(collideDir.clone().multiplyScalar(overlap * 0.5));
-
-                            letter.velocity.add(collideDir.clone().multiplyScalar(overlap * 0.4));
-                            bubble.velocity.sub(collideDir.clone().multiplyScalar(overlap * 0.4));
+                            letter.velocity.add(collideDir.clone().multiplyScalar(overlap * 0.35));
+                            bubble.velocity.sub(collideDir.clone().multiplyScalar(overlap * 0.35));
                         }
                     }
                 }
 
-                // E. Inter-Bubble Collision Physics
-                for (let i = 0; i < bubbleObjects.length; i++) {
-                    for (let j = i + 1; j < bubbleObjects.length; j++) {
-                        const b1 = bubbleObjects[i];
-                        const b2 = bubbleObjects[j];
-                        const dist = b1.currPos.distanceTo(b2.currPos);
-                        const minDist = b1.radius + b2.radius;
+                // F. Letter <-> Clover & Circle <-> Clover Collisions
+                for (let i = 0; i < cloverObjects.length; i++) {
+                    const clover = cloverObjects[i];
 
+                    // Clover vs Letters
+                    for (let j = 0; j < letterObjects.length; j++) {
+                        const letter = letterObjects[j];
+                        const dist = clover.currPos.distanceTo(letter.currPos);
+                        const minDist = clover.radius + letter.radius;
                         if (dist < minDist && dist > 0.1) {
-                            const overlap = (minDist - dist) * 0.5;
-                            const collideDir = b1.currPos.clone().sub(b2.currPos).normalize();
-                            b1.currPos.add(collideDir.clone().multiplyScalar(overlap));
-                            b2.currPos.sub(collideDir.clone().multiplyScalar(overlap));
-                            b1.velocity.add(collideDir.clone().multiplyScalar(overlap * 0.3));
-                            b2.velocity.sub(collideDir.clone().multiplyScalar(overlap * 0.3));
+                            const overlap = (minDist - dist);
+                            const dir = clover.currPos.clone().sub(letter.currPos).normalize();
+                            clover.currPos.add(dir.clone().multiplyScalar(overlap * 0.5));
+                            letter.currPos.sub(dir.clone().multiplyScalar(overlap * 0.5));
+                            clover.velocity.add(dir.clone().multiplyScalar(overlap * 0.35));
+                            letter.velocity.sub(dir.clone().multiplyScalar(overlap * 0.35));
+                        }
+                    }
+
+                    // Clover vs Work Circles
+                    for (let k = 0; k < bubbleObjects.length; k++) {
+                        const bubble = bubbleObjects[k];
+                        const dist = clover.currPos.distanceTo(bubble.currPos);
+                        const minDist = clover.radius + bubble.radius;
+                        if (dist < minDist && dist > 0.1) {
+                            const overlap = (minDist - dist);
+                            const dir = clover.currPos.clone().sub(bubble.currPos).normalize();
+                            clover.currPos.add(dir.clone().multiplyScalar(overlap * 0.5));
+                            bubble.currPos.sub(dir.clone().multiplyScalar(overlap * 0.5));
+                            clover.velocity.add(dir.clone().multiplyScalar(overlap * 0.3));
+                            bubble.velocity.sub(dir.clone().multiplyScalar(overlap * 0.3));
                         }
                     }
                 }
@@ -935,24 +1065,6 @@
                 menu.classList.add('hidden');
                 menu.classList.remove('flex');
                 if (arrow) arrow.style.transform = 'rotate(0deg) scale(1)';
-            }
-        }
-
-        function navigateTo(pageId) {
-            const validPages = ['home', 'art', 'ceramics', 'photo-video', 'dance', 'journals', 'about', 'contact'];
-            const worksPages = ['art', 'ceramics', 'photo-video', 'dance', 'journals'];
-            let target = pageId.replace('#', '');
-            if (target === '' || !validPages.includes(target)) target = 'home';
-
-            document.querySelectorAll('.page-view').forEach(el => el.classList.add('hidden'));
-            
-            // Auto expand works dropdown if target is a work sub-item
-            const worksMenu = document.getElementById('works-menu');
-            const worksArrow = document.getElementById('works-arrow');
-            if (worksPages.includes(target) && worksMenu) {
-                worksMenu.classList.remove('hidden');
-                worksMenu.classList.add('flex');
-                if (worksArrow) worksArrow.style.transform = 'rotate(180deg) scale(1.2)';
             }
         }
 
