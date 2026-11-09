@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quana Cannon — Multimedia Artist Portfolio</title>
+<meta name="description" content="Portfolio of Quana Cannon, multimedia artist working across fine art, design, ceramics, photo, video, audio, writing and dance.">
+<meta property="og:type" content="website"><meta property="og:title" content="Quana Cannon — Multimedia Artist">
+<meta property="og:description" content="Fine art, design, ceramics, lens media, writing and dance.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>window.THREE || document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"><\/script>');</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@500;700&family=Bodoni+Moda:ital,opsz,wght@1,6..96,900&family=Cinzel:wght@900&family=Cormorant+Garamond:ital,wght@0,700;1,700&family=Instrument+Serif:ital@0;1&family=Playfair+Display:ital,wght@1,900&family=Space+Grotesk:wght@700&family=Syne:wght@800&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: { colors: { studio: { bg: '#FAF8F5', text: '#1C1C1A', muted: '#7A7974', accent: '#D5EE10' } } } } }
+</script>
+<style>
+/* Archivo Black for titles/labels, DM Sans for reading text; <i> icons untouched */
+body { font-family: 'DM Sans', system-ui, sans-serif; }
+h1,h2,h3,h4,h5,nav,nav *,button,label,span,a,figcaption { font-family: 'Archivo Black', sans-serif; }
+input, textarea { font-family: 'DM Sans', system-ui, sans-serif; }
+p { text-transform: none !important; line-height: 1.65; font-weight: 500; }
+:focus-visible { outline: 2px solid #1C1C1A; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  .orbit-bubble-1, .orbit-bubble-2, .orbit-bubble-3, .sound-bar { animation: none !important; }
+  html { scroll-behavior: auto !important; }
+}
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #FAF8F5; }
+::-webkit-scrollbar-thumb { background: #D5EE10; border-radius: 9999px; }
+.page-view.hidden { display: none !important; }
+.sound-bar { width: 4px; background: #1C1C1A; border-radius: 9999px; animation: soundWave .8s ease-in-out infinite alternate; }
+.sound-bar:nth-child(1) { height: 35%; animation-delay: .1s; }
+.sound-bar:nth-child(2) { height: 85%; animation-delay: .3s; }
+.sound-bar:nth-child(3) { height: 55%; animation-delay: .2s; }
+@keyframes soundWave { 0% { transform: scaleY(.2); } 100% { transform: scaleY(1); } }
+@keyframes floatOrbit1 { 0%,100% { transform: translate(0,0) rotate(0) scale(1); } 50% { transform: translate(-15px,-20px) rotate(8deg) scale(1.08); } }
+@keyframes floatOrbit2 { 0%,100% { transform: translate(0,0) rotate(0) scale(1); } 50% { transform: translate(15px,20px) rotate(-8deg) scale(.95); } }
+@keyframes floatOrbit3 { 0%,100% { transform: translate(0,0) rotate(0); } 50% { transform: translate(-10px,15px) rotate(12deg); } }
+.orbit-bubble-1 { animation: floatOrbit1 6s ease-in-out infinite; }
+.orbit-bubble-2 { animation: floatOrbit2 7s ease-in-out infinite; }
+.orbit-bubble-3 { animation: floatOrbit3 8s ease-in-out infinite; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+</head>
+<body class="bg-studio-bg text-studio-text antialiased min-h-screen flex flex-col md:flex-row selection:bg-[#D5EE10] selection:text-zinc-900 relative overflow-x-hidden">
+
+<!-- MOBILE TOP BAR -->
+<header class="md:hidden fixed top-0 inset-x-0 z-[45] bg-studio-bg/95 backdrop-blur px-5 py-4 flex items-center justify-between border-b border-zinc-200">
+  <a href="#home" class="flex items-center gap-2 text-xl uppercase text-zinc-900"><span class="w-3 h-3 bg-[#D5EE10] rounded-full"></span>QUANA CANNON</a>
+  <button onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false" id="menu-btn" class="w-11 h-11 rounded-full bg-zinc-900 text-white flex items-center justify-center"><i class="fa-solid fa-bars"></i></button>
+</header>
+
+<!-- FLOATING ACCENT SHAPES (generated in JS) -->
+<div id="playful-shapes" class="fixed inset-0 pointer-events-none z-10 overflow-hidden select-none max-sm:hidden"></div>
+
+<!-- LEFT SIDEBAR -->
+<aside id="sidebar" class="hidden md:flex max-md:fixed max-md:inset-0 max-md:overflow-y-auto w-full md:w-80 lg:w-96 md:fixed md:left-0 md:top-0 md:bottom-0 p-8 max-md:pt-24 md:p-12 flex-col justify-between z-40 bg-studio-bg">
+  <div class="space-y-8">
+    <a href="#home" class="block space-y-2">
+      <div class="flex items-center gap-3">
+        <span class="w-4 h-4 bg-[#D5EE10] rounded-full"></span>
+        <span class="text-3xl lg:text-4xl tracking-tight text-zinc-900 uppercase">QUANA CANNON</span>
+      </div>
+      <span class="text-xs text-studio-muted uppercase tracking-widest block">MULTIMEDIA STUDIO</span>
+    </a>
+
+    <nav class="flex flex-col gap-4 text-2xl lg:text-3xl tracking-tight text-zinc-800 uppercase">
+      <a href="#home" class="nav-link hover:text-[#D5EE10] hover:translate-x-2 transition-all">HOME</a>
+      <div class="relative flex flex-col">
+        <button id="works-dropdown-btn" onclick="toggleWorksMenu()" class="w-full flex items-center justify-between text-zinc-800 hover:text-[#D5EE10] hover:translate-x-2 transition-all uppercase text-left py-1">
+          <span>WORKS</span>
+          <span id="works-arrow" class="text-base text-black transition-transform duration-300 inline-block select-none">✦</span>
+        </button>
+        <div id="works-menu" class="hidden flex-col gap-3 pl-5 pt-3 text-xl lg:text-2xl text-zinc-600">
+          <a href="#fineart" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">FINE ART</a>
+          <a href="#design" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">DESIGN</a>
+          <a href="#ceramics" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">CERAMICS</a>
+          <a href="#media" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">PHOTO/VIDEO/AUDIO</a>
+          <a href="#dance" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">DANCE</a>
+          <a href="#writing" class="nav-link hover:text-[#D5EE10] hover:translate-x-1 transition-all block">WRITING</a>
+        </div>
+      </div>
+      <a href="#about" class="nav-link hover:text-[#D5EE10] hover:translate-x-2 transition-all">ABOUT</a>
+      <a href="#contact" class="nav-link hover:text-[#D5EE10] hover:translate-x-2 transition-all">CONTACT</a>
+    </nav>
+
+    <!-- SOCIAL ICONS: directly under the tabs. Swap in your real profile URLs. -->
+    <div class="flex items-center gap-4 pt-1">
+      <a href="https://www.instagram.com/YOUR_HANDLE" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"
+         class="w-11 h-11 rounded-full bg-zinc-900 text-white flex items-center justify-center hover:bg-[#D5EE10] hover:text-zinc-900 hover:scale-110 transition-all">
+        <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/YOUR_PROFILE" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"
+         class="w-11 h-11 rounded-full bg-zinc-900 text-white flex items-center justify-center hover:bg-[#D5EE10] hover:text-zinc-900 hover:scale-110 transition-all">
+        <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9.75h4V21H3V9.75zM9.75 9.75h3.83v1.54h.06c.53-1 1.84-2.05 3.79-2.05 4.05 0 4.8 2.67 4.8 6.13V21h-4v-4.9c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.58V21h-4V9.75z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="pt-8 space-y-4">
+    <button id="synth-btn" onclick="toggleSynth()" class="flex items-center gap-3 bg-white px-5 py-3 rounded-full text-xs uppercase tracking-wider text-zinc-800 hover:bg-[#D5EE10] transition-all">
+      <i class="fa-solid fa-volume-xmark text-studio-muted" id="synth-icon"></i>
+      <span>SOUNDSCAPE SYNTH</span>
+      <div id="sound-wave" class="hidden items-center gap-1 h-3"><div class="sound-bar"></div><div class="sound-bar"></div><div class="sound-bar"></div></div>
+    </button>
+    <div class="text-[10px] uppercase text-studio-muted">BERLIN / TOKYO / BOSTON</div>
+  </div>
+</aside>
+
+<main class="flex-grow md:ml-80 lg:ml-96 min-h-screen relative p-6 pt-24 md:p-12">
+
+  <!-- HOME -->
+  <section id="page-home" class="page-view relative w-full h-[85vh] min-h-[500px] flex flex-col justify-center items-center overflow-hidden">
+    <div id="q-canvas-container" class="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing"></div>
+    <p class="absolute bottom-3 left-4 md:left-8 text-[10px] tracking-[0.25em] text-studio-muted/60 pointer-events-none z-20">MOVE CURSOR TO UNSCRAMBLE</p>
+  </section>
+
+  <!-- FINE ART -->
+  <section id="page-fineart" class="page-view hidden max-w-6xl mx-auto space-y-10 pb-16">
+    <div class="space-y-2"><span class="text-xs text-studio-muted uppercase tracking-widest block">FINE ART</span>
+    <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">CHOOSE A MEDIUM</h1></div>
+    <div id="grid-fineart" class="grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
+  </section>
+
+  <!-- FINE ART CATEGORY -->
+  <section id="page-fineartcat" class="page-view hidden max-w-6xl mx-auto space-y-10 pb-16">
+    <a href="#fineart" class="inline-block text-xs uppercase text-zinc-900 hover:text-studio-muted">← BACK TO FINE ART</a>
+    <div class="space-y-2"><span class="text-xs text-studio-muted uppercase tracking-widest block">FINE ART</span>
+    <h1 id="cat-title" class="text-4xl md:text-6xl text-zinc-900 uppercase"></h1>
+    <p id="cat-blurb" class="text-sm text-zinc-700 max-w-2xl"></p></div>
+    <div id="grid-fineartcat" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+  </section>
+
+  <!-- DESIGN -->
+  <section id="page-design" class="page-view hidden max-w-6xl mx-auto space-y-10 pb-16">
+    <div class="space-y-2"><span class="text-xs text-studio-muted uppercase tracking-widest block">DESIGN</span>
+    <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">DESIGN PROJECTS</h1></div>
+    <div id="grid-design" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+  </section>
+
+  <!-- CERAMICS -->
+  <section id="page-ceramics" class="page-view hidden max-w-6xl mx-auto space-y-10 pb-16">
+    <div class="space-y-2"><span class="text-xs text-studio-muted uppercase tracking-widest block">CERAMIC STUDIO</span>
+    <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">PORCELAIN & STONEWARE</h1></div>
+    <div id="grid-ceramics" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+  </section>
+
+  <!-- PHOTO / VIDEO / AUDIO -->
+  <section id="page-media" class="page-view hidden max-w-6xl mx-auto space-y-16 pb-16">
+    <div class="space-y-2"><span class="text-xs text-studio-muted uppercase tracking-widest block">LENS MEDIA, MOVING IMAGE & SOUND</span>
+    <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">PHOTO/VIDEO/AUDIO</h1></div>
+
+    <div class="space-y-6">
+      <div class="space-y-2 border-b border-zinc-200 pb-4">
+        <span class="bg-[#D5EE10] text-zinc-900 text-xs px-3 py-1 uppercase">PHOTOGRAPHY</span>
+        <h2 class="text-2xl md:text-3xl text-zinc-900 uppercase mt-2">PHOTO SERIES — CLICK A COVER TO OPEN THE FULL SET</h2>
+      </div>
+      <div class="overflow-x-auto no-scrollbar pb-4 scroll-smooth"><div id="photo-scroller" class="flex gap-8 w-max"></div></div>
+    </div>
+
+    <div class="space-y-6">
+      <div class="space-y-2 border-b border-zinc-200 pb-4">
+        <span class="bg-[#D5EE10] text-zinc-900 text-xs px-3 py-1 uppercase">MOVING IMAGE</span>
+        <h2 class="text-2xl md:text-3xl text-zinc-900 uppercase mt-2">VIDEO INSTALLATIONS & PERFORMANCE FILMS</h2>
+      </div>
+      <div class="overflow-x-auto no-scrollbar pb-4 scroll-smooth"><div id="video-scroller" class="flex gap-8 w-max"></div></div>
+    </div>
+
+    <!-- AUDIO PLAYER (moved here from Projects) -->
+    <div class="bg-white p-8 md:p-10 border border-zinc-200/80 shadow-md space-y-6">
+      <div class="flex items-center justify-between flex-wrap gap-4">
+        <div class="space-y-1">
+          <span class="bg-[#D5EE10] text-zinc-900 text-xs px-3 py-1 uppercase">AUDIO PODCAST</span>
+          <h2 class="text-3xl md:text-4xl text-zinc-900 uppercase mt-2">THE RESONANT OBJECT — EP. 04</h2>
+          <p class="text-xs text-studio-muted uppercase">FEATURING QUANA CANNON & DR. CLARA VANE ON TACTILE ACOUSTICS</p>
+        </div>
+        <div class="w-14 h-14 bg-zinc-900 text-[#D5EE10] flex items-center justify-center text-2xl"><i class="fa-solid fa-podcast"></i></div>
+      </div>
+      <div class="bg-studio-bg p-6 space-y-4 border border-zinc-200/60">
+        <audio id="podcast-audio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
+        <div class="flex items-center gap-4">
+          <button onclick="togglePodcastPlay()" class="w-12 h-12 bg-[#D5EE10] text-zinc-900 flex items-center justify-center text-lg hover:scale-105 transition-transform" aria-label="Play or pause"><i class="fa-solid fa-play ml-0.5" id="podcast-play-icon"></i></button>
+          <div class="flex-grow space-y-1">
+            <div class="flex justify-between text-xs text-studio-muted uppercase"><span id="podcast-time-curr">0:00</span><span id="podcast-time-dur">0:00</span></div>
+            <input type="range" id="podcast-seek" min="0" value="0" step="0.1" oninput="seekPodcast(this.value)" class="w-full accent-[#D5EE10] cursor-pointer">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT DETAIL (fine art + design) -->
+  <section id="page-work" class="page-view hidden max-w-6xl mx-auto space-y-10 pb-16"><div id="work-detail" class="space-y-10"></div></section>
+
+  <!-- WRITING -->
+  <section id="page-writing" class="page-view hidden max-w-6xl mx-auto space-y-10 pb-16">
+    <div class="space-y-2"><span class="text-xs text-studio-muted uppercase tracking-widest block">RESEARCH & FIELDWORK</span>
+    <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">WRITING</h1></div>
+    <div id="writing-list" class="space-y-3"></div>
+  </section>
+
+  <!-- DANCE -->
+  <section id="page-dance" class="page-view hidden max-w-6xl mx-auto space-y-10 pb-16">
+    <div class="space-y-2"><span class="text-xs text-studio-muted uppercase tracking-widest block">MOVEMENT</span>
+    <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">DANCE</h1></div>
+    <div class="space-y-6">
+      <div class="h-96 overflow-hidden bg-zinc-200"><img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=1200" class="w-full h-full object-cover" alt=""></div>
+      <div class="space-y-2">
+        <span class="bg-[#D5EE10] text-zinc-900 px-3 py-1 text-xs uppercase">FEATURED PERFORMANCE</span>
+        <h2 class="text-3xl md:text-5xl text-zinc-900 uppercase">BODY SIGNAL RESONANCE</h2>
+        <p class="text-sm text-studio-muted uppercase max-w-2xl">35-MINUTE SOLO PERFORMANCE AT KRAFTWERK LEIPZIG USING CONDUCTIVE SYNTHESIZER ACCELEROMETERS.</p>
+      </div>
+    </div>
+    <div class="space-y-6 pt-6">
+      <div class="space-y-2 border-b border-zinc-200 pb-4"><span class="bg-[#D5EE10] text-zinc-900 text-xs px-3 py-1 uppercase">MOVING IMAGE</span>
+      <h2 class="text-2xl md:text-3xl text-zinc-900 uppercase mt-2">DANCE FILMS & REHEARSAL FOOTAGE</h2></div>
+      <div class="overflow-x-auto no-scrollbar pb-4 scroll-smooth"><div id="dance-scroller" class="flex gap-8 w-max"></div></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="page-about" class="page-view hidden max-w-6xl mx-auto space-y-14 pb-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
+      <!-- HEADSHOT: save your photo as headshot.jpg next to this file (or change the src) -->
+      <div class="md:col-span-1">
+        <div class="relative aspect-[4/5] bg-zinc-200 overflow-hidden flex items-center justify-center">
+          <span class="text-6xl text-zinc-400 select-none">QC</span>
+          <img src="headshot.jpg" alt="Portrait of Quana Cannon" class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()">
+        </div>
+        <p class="text-[10px] text-studio-muted uppercase mt-2">QUANA CANNON / PORTRAIT</p>
+      </div>
+      <div class="md:col-span-2 space-y-4">
+        <span class="text-xs text-studio-muted uppercase tracking-widest block">BIOGRAPHY</span>
+        <h1 class="text-3xl md:text-4xl text-zinc-900 uppercase leading-tight">QUANA CANNON IS A MULTIMEDIA ARTIST WORKING ACROSS FINE ART, DESIGN, CERAMICS, LENS MEDIA, WRITING, AND CHOREOGRAPHY.</h1>
+        <p class="text-sm text-studio-muted uppercase leading-relaxed">MFA UDK BERLIN / B.S. RISD. EXHIBITED AT VENICE BIENNALE, TATE MODERN, SHIGARAKI CERAMIC PARK JAPAN, INDONESIA, MALAYSIA, AND MORI ART MUSEUM TOKYO.</p>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl md:text-4xl text-zinc-900 uppercase">GLOBAL FIELDWORK MAP</h2>
+        <span class="text-xs text-studio-muted uppercase tracking-wider hidden sm:inline">HOVER A DOT TO EXPLORE / DRAG TO SPIN</span>
+      </div>
+      <!-- same background as the site, no border -->
+      <div id="globe-container" class="w-full h-[450px] md:h-[560px] relative overflow-hidden bg-studio-bg cursor-grab select-none">
+        <div id="globe-tooltip" class="absolute bottom-4 left-4 right-4 md:right-auto md:max-w-sm bg-white/95 backdrop-blur-md p-5 shadow-2xl border border-zinc-100 z-10 pointer-events-none">
+          <div class="flex items-center gap-3">
+            <img id="globe-img" src="" class="w-14 h-14 object-cover flex-shrink-0 bg-zinc-200" alt="">
+            <div>
+              <span id="globe-tag" class="bg-[#D5EE10] text-zinc-900 text-[10px] px-2.5 py-0.5 uppercase">HOVER A DOT</span>
+              <h3 id="globe-title" class="text-xl text-zinc-900 uppercase mt-1 leading-tight">9 FIELDWORK LOCATIONS</h3>
+            </div>
+          </div>
+          <p id="globe-desc" class="text-xs text-studio-muted uppercase mt-3 pt-2 border-t border-zinc-100 leading-relaxed">MOVE YOUR CURSOR OVER ANY GLOWING DOT.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-6 pt-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl md:text-4xl text-zinc-900 uppercase">TIMELINE & MILESTONES</h2>
+        <div class="flex items-center gap-2">
+          <button onclick="scrollTimeline(-1)" class="w-10 h-10 bg-white text-zinc-900 flex items-center justify-center hover:bg-[#D5EE10] transition-colors" aria-label="Scroll left"><i class="fa-solid fa-arrow-left text-xs"></i></button>
+          <button onclick="scrollTimeline(1)" class="w-10 h-10 bg-white text-zinc-900 flex items-center justify-center hover:bg-[#D5EE10] transition-colors" aria-label="Scroll right"><i class="fa-solid fa-arrow-right text-xs"></i></button>
+        </div>
+      </div>
+      <div id="timeline-container" class="overflow-x-auto no-scrollbar pb-6 scroll-smooth">
+        <div id="timeline-items" class="flex gap-6 min-w-[1250px] relative pt-6">
+          <div class="absolute top-1/2 left-0 right-0 h-0.5 bg-zinc-300 -translate-y-1/2 z-0"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="page-contact" class="page-view hidden max-w-4xl mx-auto space-y-8">
+    <div class="space-y-2"><span class="text-xs text-studio-muted uppercase tracking-widest block">INQUIRIES</span>
+    <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">CONTACT STUDIO</h1></div>
+    <p class="text-sm text-zinc-700">Or email directly: <a id="contact-mail" class="underline"></a></p>
+    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div><label class="block text-xs uppercase text-zinc-900 mb-2">NAME *</label>
+        <input type="text" required name="name" placeholder="ELENA ROSTOVA" class="w-full bg-white rounded-2xl px-5 py-4 text-sm uppercase text-zinc-900 focus:outline-none border border-zinc-200/80"></div>
+        <div><label class="block text-xs uppercase text-zinc-900 mb-2">EMAIL *</label>
+        <input type="email" required name="email" placeholder="ELENA@GALLERY.COM" class="w-full bg-white rounded-2xl px-5 py-4 text-sm uppercase text-zinc-900 focus:outline-none border border-zinc-200/80"></div>
+      </div>
+      <div><label class="block text-xs uppercase text-zinc-900 mb-2">PROJECT BRIEF *</label>
+      <textarea required rows="4" name="message" placeholder="EXHIBITION / COMMISSION DETAILS..." class="w-full bg-white rounded-2xl px-5 py-4 text-sm uppercase text-zinc-900 focus:outline-none border border-zinc-200/80"></textarea></div>
+      <button type="submit" class="w-full py-4 bg-zinc-900 text-white rounded-full text-xs uppercase tracking-widest hover:bg-[#D5EE10] hover:text-zinc-900 transition-colors">TRANSMIT INQUIRY →</button>
+    </form>
+  </section>
+</main>
+
+<!-- WORK MODAL -->
+<div id="project-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-zinc-900/60 backdrop-blur-sm" onclick="closeModal()"></div>
+  <div class="relative w-full max-w-3xl bg-white rounded-3xl p-6 sm:p-10 z-10 space-y-6 shadow-2xl">
+    <button onclick="closeModal()" class="absolute top-6 right-6 z-10 w-10 h-10 bg-studio-bg rounded-full flex items-center justify-center text-zinc-900 hover:bg-zinc-900 hover:text-white transition-colors" aria-label="Close"><i class="fa-solid fa-xmark text-sm"></i></button>
+    <div id="modal-content" class="space-y-4"></div>
+  </div>
+</div>
+
+<!-- PHOTO SERIES PAGE (full-screen) -->
+<div id="album-view" class="fixed inset-0 z-[60] hidden bg-studio-bg overflow-y-auto">
+  <div class="sticky top-0 z-10 bg-studio-bg/95 backdrop-blur px-6 md:px-12 py-5 flex items-center justify-between border-b border-zinc-200">
+    <div><span id="album-meta" class="text-xs text-studio-muted uppercase tracking-widest block"></span>
+    <h2 id="album-title" class="text-2xl md:text-4xl text-zinc-900 uppercase"></h2></div>
+    <button onclick="closeAlbum()" class="px-5 py-3 bg-zinc-900 text-white rounded-full text-xs uppercase hover:bg-[#D5EE10] hover:text-zinc-900 transition-colors">← BACK</button>
+  </div>
+  <div id="album-photos" class="px-6 md:px-12 py-10 grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-[1600px] mx-auto"></div>
+</div>
+
+<!-- VIDEO PLAYER (full-screen) -->
+<div id="video-view" class="fixed inset-0 z-[60] hidden bg-zinc-900/95 flex items-center justify-center p-4 md:p-10">
+  <button onclick="closeVideo()" class="absolute top-6 right-6 w-12 h-12 bg-white rounded-full flex items-center justify-center text-zinc-900 hover:bg-[#D5EE10] transition-colors" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+  <div class="w-full max-w-6xl space-y-4">
+    <video id="video-el" controls playsinline class="w-full max-h-[75vh] bg-black"></video>
+    <h3 id="video-title" class="text-2xl md:text-4xl text-white uppercase"></h3>
+    <p id="video-desc" class="text-xs text-zinc-300 uppercase"></p>
+  </div>
+</div>
+
+<div id="toast" class="fixed bottom-8 right-8 z-[70] hidden bg-zinc-900 text-white px-6 py-4 rounded-2xl shadow-xl items-center gap-4 text-xs uppercase tracking-wider">
+  <i class="fa-solid fa-check text-[#D5EE10]"></i><div>OPENING YOUR EMAIL APP</div>
+</div>
+
+<script>
+/* ================= CONTENT: edit this file to update the site ================= */
+const CONTACT_EMAIL = 'hello@example.com'; // replace with your email
+
+
+const U = (id, w = 1200) => `https://images.unsplash.com/${id}?q=80&w=${w}`;
+
+// Works used by the grids and the home-page bubbles
+const works = [
+  { id: 1, sec: 'fineart', cat: 'digital', title: 'NEURAL AURA FIELD', badge: 'LIGHT', sub: 'VENICE BIENNALE / LIGHT', img: U('photo-1618005182384-a83a8bd57fbe'), story: 'EXHIBITED AT VENICE BIENNALE / ARSENALE. SPECTRAL LIGHT REFRACTION FIELD.' },
+  { id: 2, sec: 'fineart', cat: 'drawing', title: 'QUATERNION MESH', badge: 'FIBER', sub: 'TATE MODERN / FIBER', img: U('photo-1635070041078-e363dbe005cb'), story: 'TATE MODERN INSTALLATION FEATURING CONDUCTIVE WOVEN FIBER NETWORKS.' },
+  { id: 3, sec: 'fineart', cat: 'digital', title: 'LUMEN CANOPY', badge: 'SENSORS', sub: 'MORI ART MUSEUM / SENSORS', img: U('photo-1550684848-fac1c5b4e853'), story: 'MORI ART MUSEUM TOKYO. KINETIC LIGHT CEILING SENSITIVE TO AUDIENCE MOVEMENT.' },
+  { id: 10, sec: 'fineart', cat: 'painting', title: 'SPECTRAL REFRACTION', badge: 'PRISMS', sub: 'BERLIN KRAFTWERK / PRISMS', img: U('photo-1579783900882-c0d3dad7b119'), story: 'PRISM ARRAY SPLITTING DAYLIGHT ACROSS A DISUSED POWER STATION HALL.' },
+  { id: 11, sec: 'fineart', cat: 'painting', title: 'CHROMATIC RESONANCE', badge: 'SOUND', sub: 'HAUS DER KULTUREN / SOUND', img: U('photo-1541701494587-cb58502866ab'), story: 'COLOR FIELDS THAT SHIFT WITH LIVE ACOUSTIC INPUT.' },
+  { id: 12, sec: 'fineart', cat: 'drawing', title: 'TENSION FIELD #09', badge: 'BRASS + LEDS', sub: 'HYBRID BRASS & LEDS', img: U('photo-1507676184212-d03ab07a01bf'), story: 'TENSIONED BRASS WIRE AND LED HYBRID SCULPTURE.' },
+  { id: 13, sec: 'fineart', cat: 'sketchbook', title: 'KILN NOTES SKETCHBOOK', badge: 'SKETCHBOOK', sub: 'SKETCHBOOK 2025', img: U('photo-1541701494587-cb58502866ab'), story: 'PLACEHOLDER: PAGES FROM A WORKING SKETCHBOOK.' },
+  { id: 14, sec: 'fineart', cat: 'sketchbook', title: 'FIELD SKETCHBOOK', badge: 'SKETCHBOOK', sub: 'SKETCHBOOK 2024', img: U('photo-1618005182384-a83a8bd57fbe'), story: 'PLACEHOLDER: TRAVEL AND FIELDWORK STUDIES.' },
+  /* DESIGN: placeholder entries, replace with your own */
+  { id: 7, sec: 'design', title: 'SPAM', badge: 'DESIGN', sub: 'DESIGN PROJECT', img: U('photo-1541701494587-cb58502866ab'), story: 'PLACEHOLDER: ADD A DESCRIPTION OF THIS PROJECT.' },
+  { id: 8, sec: 'design', title: 'ZINES', badge: 'PRINT', sub: 'DESIGN PROJECT', img: U('photo-1579783900882-c0d3dad7b119'), story: 'PLACEHOLDER: ADD A DESCRIPTION OF THIS PROJECT.' },
+  { id: 9, sec: 'design', title: 'WEAVING', badge: 'TEXTILE', sub: 'DESIGN PROJECT', img: U('photo-1596422846543-75c6fc197f07'), story: 'PLACEHOLDER: ADD A DESCRIPTION OF THIS PROJECT.' },
+  { id: 20, sec: 'design', title: 'FA’ASAMOA', badge: 'CULTURAL', sub: 'DESIGN PROJECT', img: U('photo-1518770660439-4636190af475'), story: 'PLACEHOLDER: ADD A DESCRIPTION OF THIS PROJECT.' },
+  { id: 21, sec: 'design', title: 'SEWING', badge: 'TEXTILE', sub: 'DESIGN PROJECT', img: U('photo-1537996194471-e657df975ab4'), story: 'PLACEHOLDER: ADD A DESCRIPTION OF THIS PROJECT.' },
+  { id: 22, sec: 'design', title: 'GAME DESIGN PROJECT 1', badge: 'GAME', sub: 'DESIGN PROJECT', img: U('photo-1550684848-fac1c5b4e853'), story: 'PLACEHOLDER: ADD A DESCRIPTION OF THIS PROJECT.' },
+  { id: 23, sec: 'design', title: 'GAME DESIGN PROJECT 2', badge: 'GAME', sub: 'DESIGN PROJECT', img: U('photo-1635070041078-e363dbe005cb'), story: 'PLACEHOLDER: ADD A DESCRIPTION OF THIS PROJECT.' },
+  { id: 24, sec: 'design', title: 'VERTIGO LITERARY MAGAZINE LAYOUT', badge: 'EDITORIAL', sub: 'DESIGN PROJECT', img: U('photo-1507676184212-d03ab07a01bf'), story: 'PLACEHOLDER: ADD A DESCRIPTION OF THIS PROJECT.' },
+  { id: 25, sec: 'design', title: 'LOGO DESIGN', badge: 'BRANDING', sub: 'DESIGN PROJECT', img: U('photo-1561070791-2526d30994b8'), story: 'PLACEHOLDER: ADD A DESCRIPTION OF THIS PROJECT.' },
+  { id: 4, sec: 'ceramics', title: 'CRYSTALLINE URN', badge: 'PORCELAIN', sub: 'PORCELAIN / ZINC GLAZE', img: U('photo-1578749556568-bc2c40e68b61'), story: 'HIGH-ALUMINA PORCELAIN WITH ZINC SILICATE CRYSTALLINE GLAZE.' },
+  { id: 5, sec: 'ceramics', title: 'SHIGARAKI ASH VESSEL', badge: 'ANAGAMA', sub: 'ANAGAMA WOOD FIRE', img: U('photo-1565193566173-7a0ee3dbe261'), story: 'WOOD-FIRED FOR 7 DAYS AT SHIGARAKI CERAMIC CULTURAL PARK JAPAN.' },
+  { id: 6, sec: 'ceramics', title: 'RESONANT SPEAKER', badge: 'ACOUSTIC CLAY', sub: 'ACOUSTIC CLAY CHAMBER', img: U('photo-1579783902614-a3fb3927b675'), story: 'PORCELAIN ACOUSTIC RESONANCE CHAMBER FOR ANALOG SYNTHESIZER OSCILLATIONS.' }
+];
+
+// Fine art media boxes. `cover` is optional; it defaults to the first work in that medium.
+const fineArtCats = [
+  { key: 'painting', title: 'PAINTING', blurb: 'Add a short statement about your painting practice here.' },
+  { key: 'drawing', title: 'DRAWING', blurb: 'Add a short statement about your drawing practice here.' },
+  { key: 'digital', title: 'DIGITAL', blurb: 'Add a short statement about your digital work here.' },
+  { key: 'sketchbook', title: 'SKETCHBOOK', blurb: 'Add a short statement about your sketchbooks here.' }
+];
+
+// Photo series: the first image is the cover shown in the scroller. Add or swap photos freely.
+const albums = [
+  { title: 'BERLIN & URBAN MONOCHROME', meta: 'HASSELBLAD 500C / 35MM', photos: [
+    ['photo-1511671782779-c97d3d27a1d4', 'KRAFTWERK SHADOWS'], ['photo-1492691527719-9d1e07e534b4', 'SILVER GELATIN GRAIN'],
+    ['photo-1508700115892-45ecd05ae2ad', 'SPREE CANAL REFLECTION'], ['photo-1541701494587-cb58502866ab', 'BRUTALIST STRUCTURE #04'] ] },
+  { title: 'SHIGARAKI & KILN FOG STUDY', meta: 'MEDIUM FORMAT DIGITAL', photos: [
+    ['photo-1565193566173-7a0ee3dbe261', 'ANAGAMA ASH DUST'], ['photo-1578749556568-bc2c40e68b61', 'CERAMIC PARK MOUNTAIN'],
+    ['photo-1579783902614-a3fb3927b675', 'FLAME EMBEDDED CLAY'], ['photo-1500462918059-b1a0cb512f1d', 'MORNING MIST IN SHIGARAKI'] ] },
+  { title: 'JAVA & SOUTHEAST ASIA LOGS', meta: 'YOGYAKARTA & KUALA LUMPUR', photos: [
+    ['photo-1537996194471-e657df975ab4', 'YOGYAKARTA VOLCANIC CLAY'], ['photo-1596422846543-75c6fc197f07', 'KL TEXTILE ACOUSTICS'],
+    ['photo-1518770660439-4636190af475', 'BATIK WAX RESONANCE'], ['photo-1618005182384-a83a8bd57fbe', 'TROPICAL CANOPY LIGHT'] ] },
+  { title: 'MOTION & CHOREOGRAPHY STILLS', meta: '16MM HIGH-SPEED REHEARSALS', photos: [
+    ['photo-1508700115892-45ecd05ae2ad', 'KINESPHERE TRACE #01'], ['photo-1550684848-fac1c5b4e853', 'BODY ACCELEROMETER'],
+    ['photo-1635070041078-e363dbe005cb', 'CLAY DUST IMPACT'], ['photo-1507676184212-d03ab07a01bf', 'TENSION REHEARSAL'] ] }
+];
+
+// Videos: swap `src` for your own files or hosted links.
+const SAMPLE_VIDEO = 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4';
+const videos = [
+  { title: 'DIFFRACTION LOOP', badge: '4K PROJECTION', img: U('photo-1634017839464-5c339ebe3cb4'), src: SAMPLE_VIDEO, desc: '12-CHANNEL GENERATIVE VIDEO INSTALLATION AT VENICE BIENNALE' },
+  { title: 'KINESPHERE CHOREOGRAPHY', badge: 'PERFORMANCE FILM', img: U('photo-1508700115892-45ecd05ae2ad'), src: SAMPLE_VIDEO, desc: 'EXPERIMENTAL SHORT FILM / DANCE IN CLAY IN KRAFTWERK BERLIN' },
+  { title: 'RESONANT ECHOES JAVA', badge: 'ACOUSTIC DANCE', img: U('photo-1550684848-fac1c5b4e853'), src: SAMPLE_VIDEO, desc: 'BATIK SYNTHESIZER & VOLCANIC ASH SOUNDSCAPE FILM' }
+];
+
+const danceVideos = [
+  { title: 'BODY SIGNAL RESONANCE', badge: 'FULL PERFORMANCE', img: U('photo-1508700115892-45ecd05ae2ad'), src: SAMPLE_VIDEO, desc: 'SOLO WORK WITH ACCELEROMETER SYNTHESIS, KRAFTWERK LEIPZIG' },
+  { title: 'KINESPHERE TRACE', badge: 'REHEARSAL', img: U('photo-1550684848-fac1c5b4e853'), src: SAMPLE_VIDEO, desc: 'HIGH-SPEED STUDIO REHEARSAL FOOTAGE' },
+  { title: 'DANCE IN CLAY', badge: 'SHORT FILM', img: U('photo-1507676184212-d03ab07a01bf'), src: SAMPLE_VIDEO, desc: 'MOVEMENT STUDY WITH WET PORCELAIN' }
+];
+
+// icon: drop a small square image at that path to replace the placeholder
+const writing = [
+  { icon: 'icons/glaze-log.png', tag: 'GLAZE LOG', title: 'ZINC SILICATE CRYSTAL FORMATIONS', date: 'OCT 2026', body: 'COOLING SCHEDULE: RAPID DROP FROM 1260°C TO 1080°C, HELD FOR 4 HOURS. LARGE ZINC CRYSTAL ROSETTES DEVELOPED ON HIGH-ALUMINA PORCELAIN BODIES.', img: U('photo-1578749556568-bc2c40e68b61', 600) },
+  { icon: 'icons/essay.png', tag: 'ESSAY', title: 'TACTILE INERTIA & KINESPHERE', date: 'AUG 2026', body: 'EXPLORING HOW RESISTANCE IN DENSE STONEWARE CLAY DIRECTLY MIRRORS MUSCULAR INERTIA DURING CHOREOGRAPHIC IMPROVISATION.' },
+  { icon: 'icons/acoustics.png', tag: 'ACOUSTICS', title: 'RESONANT FREQUENCY OF UNFIRED CLAY', date: 'MAY 2026', body: 'MEASURING ACOUSTIC ABSORPTION SPECTRA ACROSS LEATHER-HARD VS BONE-DRY CLAY CHAMBERS FOR AUDIO SYNTH RESONATORS.' }
+];
+
+const timeline = [
+  ['2026 GRANT', 'OCT 2026', 'NEA EMERGING ARTIST', 'AWARDED FOR ADVANCING RESEARCH IN ACOUSTIC CLAY INSTRUMENTATION & SONIC SCULPTURE.'],
+  ['2025 FELLOW', 'JUN 2025', 'STUDIO OLAFUR ELIASSON', 'BERLIN RESIDENCY FOCUSING ON IMMERSIVE LIGHT DYNAMICS & KINETIC CANOPY INSTALLATIONS.'],
+  ['2024 RESIDENCY', 'NOV 2024', 'SHIGARAKI PARK JAPAN', 'WOOD-FIRED ANAGAMA KILN FELLOWSHIP EXPLORING NATURAL ASH GLAZES ON PORCELAIN.'],
+  ['2023 EXHIBITION', 'MAY 2023', 'VENICE BIENNALE', 'DEBUTED "NEURAL AURA FIELD" SPECTRAL INSTALLATION IN ARSENALE PAVILION.']
+];
+
+
+/* ================= RENDERERS ================= */
+function renderAll() {
+  // Work grids
+  ['design', 'ceramics'].forEach(sec => {
+    document.getElementById('grid-' + sec).innerHTML = works.filter(w => w.sec === sec).map(w => `
+      <div class="space-y-3 cursor-pointer group" onclick="${w.sec === 'ceramics' ? `openModal(${w.id})` : `location.hash='#work-${w.id}'`}">
+        <div class="h-80 overflow-hidden bg-zinc-200"><img src="${w.img}" alt="${w.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></div>
+        <h3 class="text-2xl text-zinc-900 uppercase">${w.title}</h3>
+        <p class="text-xs text-studio-muted uppercase">${w.sub}</p>
+      </div>`).join('');
+  });
+
+  // Fine art: four large medium boxes
+  document.getElementById('grid-fineart').innerHTML = fineArtCats.map(c => {
+    const list = works.filter(w => w.cat === c.key), cover = c.cover || (list[0] && list[0].img) || '';
+    return `<div class="relative h-72 md:h-96 overflow-hidden bg-zinc-800 cursor-pointer group" onclick="location.hash='#fineart-${c.key}'">
+      <img src="${cover}" alt="" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+      <span class="absolute top-5 right-5 bg-[#D5EE10] text-zinc-900 text-[10px] px-3 py-1 uppercase">${list.length} ${list.length === 1 ? 'WORK' : 'WORKS'}</span>
+      <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between"><h2 class="text-3xl md:text-5xl text-white uppercase">${c.title}</h2>
+      <span class="w-11 h-11 rounded-full bg-white text-zinc-900 flex items-center justify-center group-hover:bg-[#D5EE10] transition-colors"><i class="fa-solid fa-arrow-right text-sm"></i></span></div>
+    </div>`;
+  }).join('');
+
+  // Large photo-series scroller (cover images)
+  document.getElementById('photo-scroller').innerHTML = albums.map((a, i) => `
+    <div class="w-[88vw] md:w-[640px] flex-shrink-0 space-y-3 cursor-pointer group" onclick="openAlbum(${i})">
+      <div class="h-[420px] md:h-[520px] overflow-hidden bg-zinc-200 relative">
+        <img src="${U(a.photos[0][0], 1400)}" alt="${a.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        <span class="absolute bottom-4 left-4 bg-[#D5EE10] text-zinc-900 text-[10px] px-3 py-1 uppercase">${a.photos.length} PHOTOS — OPEN SERIES</span>
+      </div>
+      <div class="flex items-center justify-between gap-4"><h3 class="text-xl md:text-2xl text-zinc-900 uppercase">0${i + 1}. ${a.title}</h3>
+      <span class="text-xs text-studio-muted uppercase text-right">${a.meta}</span></div>
+    </div>`).join('');
+
+  // Large video scroller
+  document.getElementById('video-scroller').innerHTML = videos.map((v, i) => `
+    <div class="w-[88vw] md:w-[760px] flex-shrink-0 space-y-3 cursor-pointer group" onclick="openVideo(${i})">
+      <div class="h-[300px] md:h-[430px] overflow-hidden bg-zinc-900 relative flex items-center justify-center">
+        <img src="${v.img}" alt="${v.title}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+        <div class="absolute w-20 h-20 bg-[#D5EE10] text-zinc-900 flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform"><i class="fa-solid fa-play ml-1"></i></div>
+      </div>
+      <span class="bg-[#D5EE10] text-zinc-900 text-[10px] px-2.5 py-0.5 uppercase">${v.badge}</span>
+      <h3 class="text-2xl md:text-3xl text-zinc-900 uppercase">${v.title}</h3>
+      <p class="text-xs text-studio-muted uppercase">${v.desc}</p>
+    </div>`).join('');
+
+  document.getElementById('dance-scroller').innerHTML = danceVideos.map((v, i) => `
+    <div class="w-[88vw] md:w-[640px] flex-shrink-0 space-y-3 cursor-pointer group" onclick="openVideo(${i}, 'dance')">
+      <div class="h-[280px] md:h-[360px] overflow-hidden bg-zinc-900 relative flex items-center justify-center">
+        <img src="${v.img}" alt="${v.title}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+        <div class="absolute w-16 h-16 bg-[#D5EE10] text-zinc-900 flex items-center justify-center text-xl shadow-lg group-hover:scale-110 transition-transform"><i class="fa-solid fa-play ml-1"></i></div>
+      </div>
+      <span class="bg-[#D5EE10] text-zinc-900 text-[10px] px-2.5 py-0.5 uppercase">${v.badge}</span>
+      <h3 class="text-2xl text-zinc-900 uppercase">${v.title}</h3><p class="text-xs text-studio-muted uppercase">${v.desc}</p>
+    </div>`).join('');
+
+  // Writing accordion
+  document.getElementById('writing-list').innerHTML = writing.map(w => `
+    <div class="journal-accordion-item border border-zinc-200 bg-white overflow-hidden">
+      <button onclick="toggleJournalAccordion(this)" class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-zinc-50 transition-colors">
+        <div class="flex items-center gap-4 flex-wrap"><span class="relative w-11 h-11 bg-[#D5EE10] flex items-center justify-center flex-shrink-0 overflow-hidden">✦<img src="${w.icon}" alt="" class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()"></span><span class="bg-[#D5EE10] text-zinc-900 text-[10px] px-2.5 py-1 uppercase">${w.tag}</span>
+        <span class="text-xl md:text-2xl text-zinc-900 uppercase">${w.title}</span></div>
+        <div class="flex items-center gap-4"><span class="text-xs text-studio-muted uppercase hidden sm:inline">${w.date}</span>
+        <i class="fa-solid fa-chevron-down text-zinc-600 transition-transform duration-300"></i></div>
+      </button>
+      <div class="accordion-content hidden px-6 pb-6 pt-2 border-t border-zinc-100 text-xs text-studio-muted uppercase leading-relaxed space-y-3">
+        <p>${w.body}</p>${w.img ? `<div class="h-48 bg-zinc-100 overflow-hidden max-w-md"><img src="${w.img}" alt="" class="w-full h-full object-cover"></div>` : ''}
+      </div>
+    </div>`).join('');
+
+  // Timeline
+  document.getElementById('timeline-items').insertAdjacentHTML('beforeend', timeline.map((t, i) => `
+    <div class="w-80 bg-white p-6 space-y-3 relative z-10 border border-zinc-100/80 flex-shrink-0 hover:-translate-y-1 transition-transform">
+      <div class="flex items-center justify-between"><span class="${i % 2 ? 'bg-zinc-200' : 'bg-[#D5EE10]'} text-zinc-900 text-[10px] px-2.5 py-0.5 uppercase">${t[0]}</span>
+      <span class="text-xs text-studio-muted">${t[1]}</span></div>
+      <h3 class="text-xl text-zinc-900 uppercase">${t[2]}</h3>
+      <p class="text-xs text-studio-muted uppercase leading-relaxed">${t[3]}</p>
+    </div>`).join(''));
+
+  // Floating shapes
+  const star4 = 'M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z';
+  const heart = 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z';
+  const star5 = 'M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z';
+  const burst = 'M50 5 L58 28 L82 18 L72 40 L95 50 L72 60 L82 82 L58 72 L50 95 L42 72 L18 82 L28 60 L5 50 L28 40 L18 18 L42 28 Z';
+  const clover = 'M50 50 C35 25 15 35 30 50 C15 65 35 75 50 50 C65 75 85 65 70 50 C85 35 65 25 50 50 Z';
+  const shapes = [
+    ['top-10 right-12', 1, 24, star4, '#F472B6', 10, ''], ['top-1/3 left-6 md:left-10', 3, 24, star4, '#FDE047', 8, ''],
+    ['top-20 left-1/4', 2, 24, heart, '#FCA5A5', 9, 'hidden md:block'], ['bottom-28 left-8 md:left-14', 1, 100, clover, '#D5EE10', 11, ''],
+    ['top-24 right-1/4', 2, 100, clover, '#D5EE10', 10, 'hidden sm:block'], ['top-2/3 right-8 md:right-16', 3, 100, clover, '#D5EE10', 12, ''],
+    ['bottom-12 right-1/3', 3, 24, star5, '#C4B5FD', 10, 'hidden sm:block'], ['bottom-16 right-12 md:right-16', 2, 100, burst, '#7DD3FC', 12, '']
+  ];
+  document.getElementById('playful-shapes').innerHTML = shapes.map(s => `
+    <div class="absolute ${s[0]} orbit-bubble-${s[1]} pointer-events-auto cursor-pointer ${s[6]}" onclick="popShape(this)">
+      <svg viewBox="0 0 ${s[2]} ${s[2]}" class="fill-[${s[4]}] opacity-85 transition-transform duration-300 hover:scale-125 drop-shadow-sm" style="width:${s[5] * 4}px;height:${s[5] * 4}px;fill:${s[4]}"><path d="${s[3]}"/></svg>
+    </div>`).join('');
+}
+
+/* ================= PHOTO / VIDEO VIEWS ================= */
+function openAlbum(i) {
+  const a = albums[i];
+  document.getElementById('album-title').innerText = a.title;
+  document.getElementById('album-meta').innerText = a.meta;
+  document.getElementById('album-photos').innerHTML = a.photos.map(p => `
+    <figure class="space-y-2"><div class="bg-zinc-200 overflow-hidden"><img loading="lazy" src="${U(p[0], 1600)}" alt="${p[1]}" class="w-full h-auto object-cover"></div>
+    <figcaption class="text-xs text-studio-muted uppercase">${p[1]}</figcaption></figure>`).join('');
+  const v = document.getElementById('album-view');
+  v.classList.remove('hidden'); v.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+function closeAlbum() { document.getElementById('album-view').classList.add('hidden'); document.body.style.overflow = 'auto'; }
+function openVideo(i, set) {
+  const v = (set === 'dance' ? danceVideos : videos)[i], el = document.getElementById('video-el');
+  el.poster = v.img; el.src = v.src;
+  document.getElementById('video-title').innerText = v.title;
+  document.getElementById('video-desc').innerText = v.desc;
+  document.getElementById('video-view').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeVideo() {
+  const el = document.getElementById('video-el');
+  el.pause(); el.removeAttribute('src'); el.load();
+  document.getElementById('video-view').classList.add('hidden');
+  document.body.style.overflow = 'auto';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeAlbum(); closeVideo(); closeModal(); } });
+
+/* ================= HOME: FLOATING LETTERS ================= */
+let qScene, qCamera, qRenderer, letterObjects = [], bubbleObjects = [], cloverObjects = [];
+let mouseWorldPos = null, orderFactor = 0;
+
+const fontPool = ['900 165px "Cormorant Garamond", serif', '900 165px "Syne", sans-serif', '900 165px "Instrument Serif", serif', '900 165px "Archivo Black", sans-serif',
+  '900 165px "Bodoni Moda", serif', '900 165px "Space Grotesk", sans-serif', '900 165px "Playfair Display", serif', '900 165px "Cinzel", serif'];
+const getRandomFont = big => { const f = fontPool[Math.floor(Math.random() * fontPool.length)]; return big ? f.replace('165px', '220px') : f; };
+
+const lettersData = [
+  { char: 'Q', homeX: -48, homeY: 14, isBig: true, scale: 1.25, radius: 13.5 }, { char: 'U', homeX: -24, homeY: 14, radius: 9.5 },
+  { char: 'A', homeX: -3, homeY: 14, radius: 9.5 }, { char: 'N', homeX: 18, homeY: 14, radius: 9.5 }, { char: 'A', homeX: 39, homeY: 14, radius: 9.5 },
+  { char: 'C', homeX: -58, homeY: -14, isBig: true, scale: 1.25, radius: 13.5 }, { char: 'A', homeX: -36, homeY: -14, radius: 9.5 },
+  { char: 'N', homeX: -15, homeY: -14, radius: 9.5 }, { char: 'N', homeX: 6, homeY: -14, radius: 9.5 }, { char: 'O', homeX: 27, homeY: -14, radius: 9.5 },
+  { char: 'N', homeX: 48, homeY: -14, radius: 9.5 }
+];
+const workBubblesData = [
+  { id: 1, homeX: -72, homeY: 38 }, { id: 4, homeX: 72, homeY: 42 }, { id: 5, homeX: -78, homeY: -38 }, { id: 2, homeX: 78, homeY: -35 }, { id: 3, homeX: 0, homeY: 46 }
+];
+const cloversData = [{ homeX: -70, homeY: -8, radius: 12 }, { homeX: 70, homeY: 10, radius: 12 }];
+
+function makeCanvas() { const c = document.createElement('canvas'); c.width = c.height = 256; return [c, c.getContext('2d')]; }
+function fallbackBubbleTexture(id) {
+  const [c, ctx] = makeCanvas(), g = ctx.createLinearGradient(0, 0, 256, 256), cols = ['#38BDF8', '#F472B6', '#FBBF24', '#34D399', '#A78BFA'];
+  g.addColorStop(0, cols[(id - 1) % cols.length]); g.addColorStop(1, '#1E293B');
+  ctx.fillStyle = g; ctx.beginPath(); ctx.arc(128, 128, 128, 0, Math.PI * 2); ctx.fill();
+  return new THREE.CanvasTexture(c);
+}
+function createLetterTexture(item) {
+  const [c, ctx] = makeCanvas();
+  ctx.shadowColor = '#D5EE10'; ctx.shadowBlur = 22; ctx.fillStyle = '#D5EE10';
+  ctx.font = item.font || '900 165px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(item.char, 128, 134); ctx.shadowBlur = 0; ctx.fillText(item.char, 128, 134);
+  return new THREE.CanvasTexture(c);
+}
+function createCloverTexture() {
+  const [c, ctx] = makeCanvas();
+  ctx.shadowColor = '#D5EE10'; ctx.shadowBlur = 18; ctx.fillStyle = '#D5EE10'; ctx.translate(128, 128);
+  for (let i = 0; i < 4; i++) { ctx.beginPath(); ctx.arc(0, -32, 28, 0, Math.PI * 2); ctx.fill(); ctx.rotate(Math.PI / 2); }
+  ctx.shadowBlur = 0; ctx.strokeStyle = '#D5EE10'; ctx.lineWidth = 10; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(0, 10); ctx.quadraticCurveTo(-15, 55, -25, 75); ctx.stroke();
+  return new THREE.CanvasTexture(c);
+}
+function updateAllLetterTextures() {
+  letterObjects.forEach(o => { const old = o.mesh.material.map; o.mesh.material.map = createLetterTexture(o.itemData); o.mesh.material.needsUpdate = true; if (old) old.dispose(); });
+}
+
+function init3DLetters() {
+  const container = document.getElementById('q-canvas-container');
+  if (!container || container.querySelector('canvas')) return;
+  const width = container.clientWidth || 800, height = container.clientHeight || 600;
+  mouseWorldPos = new THREE.Vector3(999, 999, 0);
+  qScene = new THREE.Scene();
+  qCamera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000); qCamera.position.z = 170;
+  qRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  qRenderer.setSize(width, height); qRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  container.appendChild(qRenderer.domElement);
+
+  const baseGeo = new THREE.PlaneGeometry(26, 26);
+  letterObjects = lettersData.map(item => {
+    item.font = getRandomFont(item.isBig);
+    const mat = new THREE.MeshBasicMaterial({ map: createLetterTexture(item), transparent: true, alphaTest: 0.05, side: THREE.DoubleSide });
+    const s = item.scale || 1, mesh = new THREE.Mesh(item.isBig ? new THREE.PlaneGeometry(26 * s, 26 * s) : baseGeo, mat);
+    qScene.add(mesh);
+    const sx = (Math.random() - 0.5) * 340, sy = (Math.random() - 0.5) * 230;
+    mesh.position.set(sx, sy, 0);
+    return { mesh, itemData: item, homePos: new THREE.Vector3(item.homeX, item.homeY, 0), scramblePos: new THREE.Vector3(sx, sy, 0),
+      currPos: new THREE.Vector3(sx, sy, 0), velocity: new THREE.Vector3(), rotVelocity: (Math.random() - 0.5) * 0.04, radius: item.radius || 11 };
+  });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => setTimeout(updateAllLetterTextures, 150)).catch(() => {});
+
+  const loader = new THREE.TextureLoader(); loader.crossOrigin = 'anonymous';
+  const circleGeo = new THREE.CircleGeometry(15, 64);
+  bubbleObjects = workBubblesData.map(item => {
+    const mat = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide }), mesh = new THREE.Mesh(circleGeo, mat);
+    mesh.userData = { id: item.id }; qScene.add(mesh);
+    const w = works.find(x => x.id === item.id);
+    loader.load(U(w.img.split('/').pop().split('?')[0], 600), t => { mat.map = t; mat.needsUpdate = true; }, undefined,
+      () => { mat.map = fallbackBubbleTexture(item.id); mat.needsUpdate = true; });
+    const homePos = new THREE.Vector3(item.homeX, item.homeY, 0);
+    const scramblePos = homePos.clone().multiplyScalar(1.85).add(new THREE.Vector3((Math.random() - 0.5) * 60, (Math.random() - 0.5) * 60, 0));
+    mesh.position.copy(scramblePos);
+    return { mesh, homePos, scramblePos, currPos: scramblePos.clone(), velocity: new THREE.Vector3() };
+  });
+
+  const cloverTex = createCloverTexture(), cloverGeo = new THREE.PlaneGeometry(28, 28);
+  cloverObjects = cloversData.map(item => {
+    const mesh = new THREE.Mesh(cloverGeo, new THREE.MeshBasicMaterial({ map: cloverTex, transparent: true, alphaTest: 0.05, side: THREE.DoubleSide }));
+    qScene.add(mesh);
+    const p = new THREE.Vector3(item.homeX, item.homeY, 0); mesh.position.copy(p);
+    return { mesh, homePos: p.clone(), currPos: p.clone(), velocity: new THREE.Vector3() };
+  });
+
+  const raycaster = new THREE.Raycaster();
+  const ndc = e => { const r = container.getBoundingClientRect(); return r.width ? new THREE.Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1) : null; };
+  container.addEventListener('mousemove', e => {
+    const m = ndc(e); if (!m) return;
+    const v = new THREE.Vector3(m.x, m.y, 0.5).unproject(qCamera), dir = v.sub(qCamera.position).normalize();
+    mouseWorldPos.copy(qCamera.position).add(dir.multiplyScalar(-qCamera.position.z / dir.z));
+    orderFactor = Math.min(1, orderFactor + 0.008);
+    raycaster.setFromCamera(m, qCamera);
+    container.style.cursor = raycaster.intersectObjects(bubbleObjects.map(b => b.mesh)).length ? 'pointer' : 'grab';
+  });
+  container.addEventListener('click', e => {
+    const m = ndc(e); if (!m) return;
+    raycaster.setFromCamera(m, qCamera);
+    const hit = raycaster.intersectObjects(bubbleObjects.map(b => b.mesh));
+    if (hit.length) openModal(hit[0].object.userData.id);
+  });
+
+  (function animate() {
+    requestAnimationFrame(animate);
+    if (document.hidden || document.getElementById('page-home').classList.contains('hidden')) return;
+    orderFactor = Math.min(1, orderFactor + 0.0002);
+    const now = Date.now();
+    letterObjects.forEach((o, i) => {
+      const t = new THREE.Vector3().lerpVectors(o.scramblePos, o.homePos, orderFactor), ph = now * 0.002 + i;
+      t.y += Math.sin(ph) * 3; t.x += Math.cos(ph * 0.7) * 2;
+      o.velocity.add(t.sub(o.currPos).multiplyScalar(0.025)).multiplyScalar(0.88);
+      const d = o.currPos.distanceTo(mouseWorldPos);
+      if (d < 30 && d > 0.1) o.velocity.add(o.currPos.clone().sub(mouseWorldPos).normalize().multiplyScalar((30 - d) * 0.25));
+      o.currPos.add(o.velocity); o.mesh.position.copy(o.currPos);
+      o.mesh.rotation.z += (0 - o.mesh.rotation.z) * (0.03 * orderFactor) + o.rotVelocity * (1 - orderFactor);
+    });
+    bubbleObjects.forEach((b, i) => {
+      const t = new THREE.Vector3().lerpVectors(b.scramblePos, b.homePos, orderFactor), ph = now * 0.002 + i * 1.5;
+      t.y += Math.sin(ph) * 3.5; t.x += Math.cos(ph * 0.7) * 2.5;
+      b.velocity.add(t.sub(b.currPos).multiplyScalar(0.03)).multiplyScalar(0.88);
+      const d = b.currPos.distanceTo(mouseWorldPos);
+      if (d < 35 && d > 0.1) b.velocity.add(b.currPos.clone().sub(mouseWorldPos).normalize().multiplyScalar((35 - d) * 0.3));
+      b.currPos.add(b.velocity); b.mesh.position.copy(b.currPos);
+    });
+    cloverObjects.forEach((c, i) => {
+      const t = c.homePos.clone(), ph = now * 0.0022 + i * 2;
+      t.y += Math.sin(ph) * 4; t.x += Math.cos(ph * 0.6) * 3;
+      c.velocity.add(t.sub(c.currPos).multiplyScalar(0.03)).multiplyScalar(0.88);
+      c.currPos.add(c.velocity); c.mesh.position.copy(c.currPos); c.mesh.rotation.z += 0.005;
+    });
+    for (let i = 0; i < letterObjects.length; i++) for (let j = i + 1; j < letterObjects.length; j++) {
+      const a = letterObjects[i], b = letterObjects[j], d = a.currPos.distanceTo(b.currPos), min = a.radius + b.radius;
+      if (d < min && d > 0.1) {
+        const push = a.currPos.clone().sub(b.currPos).normalize().multiplyScalar((min - d) * 0.5);
+        a.currPos.add(push); b.currPos.sub(push);
+      }
+    }
+    qRenderer.render(qScene, qCamera);
+  })();
+
+  if (window.ResizeObserver) new ResizeObserver(() => window.dispatchEvent(new Event('resize'))).observe(container);
+  window.addEventListener('resize', () => {
+    const w = container.clientWidth, h = container.clientHeight;
+    if (w > 0 && h > 0) { qCamera.aspect = w / h; qCamera.updateProjectionMatrix(); qRenderer.setSize(w, h); }
+  });
+}
+
+/* ================= ABOUT: 3D GLOBE (real Natural Earth coastlines) ================= */
+// Lat/lon are real GPS coordinates; pins use the same projection as the texture.
+const globeLocations = [
+  { name: 'LUBBOCK, TX', lat: 33.5779, lon: -101.8552, tag: 'RESIDENCY', desc: 'COTTON BELT CLAY FIELDWORK.', img: U('photo-1578749556568-bc2c40e68b61', 300) },
+  { name: 'XISHUANGBANNA TROPICAL BOTANICAL GARDEN, CHINA', lat: 21.9167, lon: 101.2500, tag: 'BIO-ART', desc: 'TROPICAL BOTANICAL GARDEN ACOUSTICS.', img: U('photo-1618005182384-a83a8bd57fbe', 300) },
+  { name: 'CHICAGOLAND, IL', lat: 41.8781, lon: -87.6298, tag: 'EXHIBITION', desc: 'KINETIC CANOPY INSTALLATION.', img: U('photo-1550684848-fac1c5b4e853', 300) },
+  { name: 'WELLESLEY / BOSTON, MA', lat: 42.2968, lon: -71.2924, tag: 'RESEARCH', desc: 'PORCELAIN GLAZE ACOUSTICS.', img: U('photo-1565193566173-7a0ee3dbe261', 300) },
+  { name: 'TAIPEI, TAIWAN', lat: 25.0330, lon: 121.5654, tag: 'RESIDENCY', desc: 'HIGH-FIRE CERAMICS STUDIO.', img: U('photo-1635070041078-e363dbe005cb', 300) },
+  { name: 'KUALA LUMPUR, MALAYSIA', lat: 3.1390, lon: 101.6869, tag: 'ACOUSTICS', desc: 'TROPICAL RESONANCE & TEXTILE WEAVING.', img: U('photo-1596422846543-75c6fc197f07', 300) },
+  { name: 'JINGDEZHEN, CHINA', lat: 29.2686, lon: 117.1786, tag: 'CERAMICS', desc: 'PORCELAIN WHEEL THROWING STUDY.', img: U('photo-1579783902614-a3fb3927b675', 300) },
+  { name: 'SUKADANA, INDONESIA', lat: -1.2500, lon: 110.0000, tag: 'FIELDWORK', desc: 'WEST KALIMANTAN CLAY & RAINFOREST SOUNDSCAPES.', img: U('photo-1537996194471-e657df975ab4', 300) },
+  { name: 'SHANGHAI, CHINA', lat: 31.2304, lon: 121.4737, tag: 'EXHIBITION', desc: 'MEDIA ART BIENNALE INSTALLATION.', img: U('photo-1508700115892-45ecd05ae2ad', 300) }
+];
+const LAND_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.0/land-50m.json';
+let gScene, gCamera, gRenderer, gGroup, gPins, globeReady = false;
+
+function drawEarth(ctx, W, H, land) {
+  ctx.fillStyle = '#6F9FB5'; ctx.fillRect(0, 0, W, H);
+  ctx.strokeStyle = 'rgba(255,255,255,0.16)'; ctx.lineWidth = 1;
+  for (let lon = -180; lon <= 180; lon += 30) { const x = (lon + 180) / 360 * W; ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+  for (let lat = -90; lat <= 90; lat += 30) { const y = (90 - lat) / 180 * H; ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+  if (!land) return;
+  const feats = land.type === 'FeatureCollection' ? land.features : [land];
+  ctx.fillStyle = '#9DB07F'; ctx.strokeStyle = '#6F8559'; ctx.lineWidth = 0.9; ctx.lineJoin = 'round';
+  feats.forEach(f => {
+    const g = f.geometry, polys = g.type === 'Polygon' ? [g.coordinates] : g.coordinates;
+    polys.forEach(rings => {
+      ctx.beginPath();
+      rings.forEach(ring => ring.forEach((p, i) => { const x = (p[0] + 180) / 360 * W, y = (90 - p[1]) / 180 * H; i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }));
+      ctx.fill('evenodd'); ctx.stroke();
+    });
+  });
+}
+
+function init3DGlobe() {
+  const container = document.getElementById('globe-container');
+  if (!container || globeReady) return;
+  globeReady = true;
+  const width = container.clientWidth || 800, height = container.clientHeight || 450;
+  gScene = new THREE.Scene();
+  gCamera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000); gCamera.position.z = 210;
+  gRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  gRenderer.setSize(width, height); gRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  container.insertBefore(gRenderer.domElement, container.firstChild);
+
+  gGroup = new THREE.Group(); gScene.add(gGroup);
+  const R = 65, cv = document.createElement('canvas'); cv.width = 2048; cv.height = 1024;
+  const cctx = cv.getContext('2d'); drawEarth(cctx, 2048, 1024, null);
+  const tex = new THREE.CanvasTexture(cv); tex.anisotropy = 8;
+  const globe = new THREE.Mesh(new THREE.SphereGeometry(R, 96, 96), new THREE.MeshLambertMaterial({ map: tex }));
+  gGroup.add(globe);
+  fetch(LAND_URL).then(r => r.json()).then(topo => {
+    drawEarth(cctx, 2048, 1024, topojson.feature(topo, topo.objects.land)); tex.needsUpdate = true;
+  }).catch(() => console.warn('Could not load coastline data'));
+
+  gScene.add(new THREE.AmbientLight(0xffffff, 1.0));
+  const sun = new THREE.DirectionalLight(0xfff4e0, 0.22); sun.position.set(-120, 90, 160); gScene.add(sun);
+  // soft atmosphere halo
+  gScene.add(new THREE.Mesh(new THREE.SphereGeometry(R + 2.5, 48, 48), new THREE.MeshBasicMaterial({ color: 0xA9C4D0, transparent: true, opacity: 0.2, side: THREE.BackSide })));
+
+  // Same convention as three.js SphereGeometry UVs: u = (lon + 180) / 360 starting at -180 lon.
+  const toVec = (lat, lon, r) => {
+    const phi = (90 - lat) * Math.PI / 180, th = (lon + 180) * Math.PI / 180;
+    return new THREE.Vector3(-r * Math.sin(phi) * Math.cos(th), r * Math.cos(phi), r * Math.sin(phi) * Math.sin(th));
+  };
+  gPins = new THREE.Group();
+  // Deep accent colors with a white halo so the dots read clearly
+  const pinColors = [0xDB2777, 0x7C3AED, 0x0284C7, 0xE8590C, 0x8CAB00, 0xCA8A04];
+  globeLocations.forEach((loc, i) => {
+    const col = pinColors[i % pinColors.length], pos = toVec(loc.lat, loc.lon, R + 1.2);
+    const halo = new THREE.Mesh(new THREE.SphereGeometry(4.3, 20, 20), new THREE.MeshBasicMaterial({ color: 0xFFFFFF, side: THREE.BackSide }));
+    const dot = new THREE.Mesh(new THREE.SphereGeometry(3.2, 20, 20), new THREE.MeshBasicMaterial({ color: col }));
+    [halo, dot].forEach(m => m.position.copy(pos));
+    [halo, dot].forEach(m => { m.userData = loc; gPins.add(m); });
+  });
+  gGroup.add(gPins);
+  gGroup.rotation.y = 0.2; gGroup.rotation.x = 0.35;
+
+  const ray = new THREE.Raycaster(), mouse = new THREE.Vector2();
+  let dragging = false, prev = { x: 0, y: 0 }, vel = { x: 0, y: 0.003 }, hoverUntil = 0;
+  const pt = e => (e.touches && e.touches[0]) || e;
+
+  function hover(e) {
+    const r = gRenderer.domElement.getBoundingClientRect(), p = pt(e);
+    mouse.set(((p.clientX - r.left) / r.width) * 2 - 1, -((p.clientY - r.top) / r.height) * 2 + 1);
+    ray.setFromCamera(mouse, gCamera);
+    // include the globe so dots on the far side can't be hit through it
+    const hit = ray.intersectObjects([globe, ...gPins.children])[0];
+    if (hit && hit.object.userData.name) {
+      const d = hit.object.userData;
+      document.getElementById('globe-title').innerText = d.name;
+      document.getElementById('globe-tag').innerText = d.tag;
+      document.getElementById('globe-desc').innerText = d.desc;
+      document.getElementById('globe-img').src = d.img;
+      container.style.cursor = 'pointer'; hoverUntil = Date.now() + 400;
+    } else container.style.cursor = dragging ? 'grabbing' : 'grab';
+  }
+  container.addEventListener('mousedown', e => { dragging = true; prev = { x: e.clientX, y: e.clientY }; });
+  window.addEventListener('mouseup', () => dragging = false);
+  container.addEventListener('mousemove', e => {
+    hover(e);
+    if (!dragging) return;
+    vel.y = (e.clientX - prev.x) * 0.005; vel.x = (e.clientY - prev.y) * 0.005;
+    gGroup.rotation.y += vel.y; gGroup.rotation.x = Math.max(-1.2, Math.min(1.2, gGroup.rotation.x + vel.x));
+    prev = { x: e.clientX, y: e.clientY };
+  });
+  container.addEventListener('click', hover);
+  const fitGlobe = () => { const w = container.clientWidth, h = container.clientHeight; if (w > 0 && h > 0) { gCamera.aspect = w / h; gCamera.updateProjectionMatrix(); gRenderer.setSize(w, h); } };
+  if (window.ResizeObserver) new ResizeObserver(fitGlobe).observe(container); else window.addEventListener('resize', fitGlobe);
+  container.addEventListener('touchstart', e => { dragging = true; prev = { x: pt(e).clientX, y: pt(e).clientY }; hover(e); }, { passive: true });
+  container.addEventListener('touchmove', e => {
+    const p = pt(e); vel.y = (p.clientX - prev.x) * 0.005; vel.x = (p.clientY - prev.y) * 0.005;
+    gGroup.rotation.y += vel.y; gGroup.rotation.x = Math.max(-1.2, Math.min(1.2, gGroup.rotation.x + vel.x)); prev = { x: p.clientX, y: p.clientY };
+  }, { passive: true });
+  window.addEventListener('touchend', () => dragging = false);
+
+  (function animate() {
+    requestAnimationFrame(animate);
+    if (document.hidden || document.getElementById('page-about').classList.contains('hidden')) return;
+    if (!dragging) {
+      // pause the spin briefly while a dot is hovered so the blurb stays readable
+      if (Date.now() > hoverUntil) { gGroup.rotation.y += vel.y; vel.y *= 0.95; if (Math.abs(vel.y) < 0.002) vel.y = 0.0025; }
+    }
+    gRenderer.render(gScene, gCamera);
+  })();
+}
+
+/* ================= ROUTER & UI ================= */
+function toggleWorksMenu() {
+  const m = document.getElementById('works-menu'), a = document.getElementById('works-arrow'), hidden = m.classList.contains('hidden');
+  m.classList.toggle('hidden', !hidden); m.classList.toggle('flex', hidden); a.style.transform = hidden ? 'rotate(180deg)' : 'rotate(0)';
+}
+function scrollTimeline(d) { document.getElementById('timeline-container').scrollBy({ left: d * 320, behavior: 'smooth' }); }
+function toggleJournalAccordion(btn) {
+  const p = btn.closest('.journal-accordion-item'), c = p.querySelector('.accordion-content'), i = p.querySelector('.fa-chevron-down');
+  const open = c.classList.toggle('hidden') === false; i.style.transform = open ? 'rotate(180deg)' : 'rotate(0)';
+}
+function togglePodcastPlay() {
+  const a = document.getElementById('podcast-audio'), i = document.getElementById('podcast-play-icon');
+  if (a.paused) { a.play().catch(() => {}); i.className = 'fa-solid fa-pause'; } else { a.pause(); i.className = 'fa-solid fa-play ml-0.5'; }
+}
+function seekPodcast(v) { document.getElementById('podcast-audio').currentTime = v; }
+const fmt = s => isNaN(s) ? '0:00' : `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+const audioEl = document.getElementById('podcast-audio');
+audioEl.addEventListener('timeupdate', () => {
+  const seek = document.getElementById('podcast-seek');
+  seek.max = audioEl.duration || 100; seek.value = audioEl.currentTime;
+  document.getElementById('podcast-time-curr').innerText = fmt(audioEl.currentTime);
+  if (audioEl.duration) document.getElementById('podcast-time-dur').innerText = fmt(audioEl.duration);
+});
+audioEl.addEventListener('ended', () => document.getElementById('podcast-play-icon').className = 'fa-solid fa-play ml-0.5');
+
+function renderFineArtCat(c) {
+  document.getElementById('cat-title').innerText = c.title;
+  document.getElementById('cat-blurb').innerText = c.blurb;
+  const list = works.filter(w => w.cat === c.key);
+  document.getElementById('grid-fineartcat').innerHTML = list.length ? list.map(w => `
+    <div class="space-y-3 cursor-pointer group" onclick="location.hash='#work-${w.id}'">
+      <div class="h-80 overflow-hidden bg-zinc-200"><img src="${w.img}" alt="${w.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></div>
+      <h3 class="text-2xl text-zinc-900 uppercase">${w.title}</h3><p class="text-xs text-studio-muted uppercase">${w.sub}</p>
+    </div>`).join('') : '<p class="text-sm text-zinc-700">No works added yet.</p>';
+  makeKeyboardFriendly();
+}
+
+function renderWork(w) {
+  const sib = works.filter(x => x.sec === w.sec && (!w.cat || x.cat === w.cat)), i = sib.indexOf(w);
+  const nx = sib[(i + 1) % sib.length], pv = sib[(i - 1 + sib.length) % sib.length];
+  const gallery = w.gallery || sib.filter(x => x !== w).slice(0, 3).map(x => x.img);
+  const meta = [['YEAR', w.year || '2025'], ['MEDIUM', w.medium || w.badge], ['VENUE / CONTEXT', w.place || w.sub]];
+  document.getElementById('work-detail').innerHTML = `
+    <a href="#${w.cat ? 'fineart-' + w.cat : w.sec}" class="inline-block text-xs uppercase text-zinc-900 hover:text-studio-muted">← BACK TO ${w.cat ? w.cat.toUpperCase() : 'DESIGN'}</a>
+    <div class="space-y-3"><span class="bg-[#D5EE10] text-zinc-900 text-xs px-3 py-1 uppercase">${w.badge}</span>
+    <h1 class="text-4xl md:text-6xl text-zinc-900 uppercase">${w.title}</h1></div>
+    <div class="h-[60vh] min-h-[320px] overflow-hidden bg-zinc-200"><img src="${w.img}" alt="${w.title}" class="w-full h-full object-cover"></div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="space-y-5">${meta.map(m => `<div><span class="text-[10px] text-studio-muted uppercase tracking-widest block">${m[0]}</span><span class="text-sm text-zinc-900 uppercase">${m[1]}</span></div>`).join('')}</div>
+      <div class="md:col-span-2 space-y-4 text-sm text-zinc-800 uppercase leading-relaxed">
+        <p>${w.text || w.story}</p>
+        <p class="text-studio-muted">ADD A LONGER DESCRIPTION HERE: CONCEPT, PROCESS, MATERIALS, COLLABORATORS AND CREDITS.</p>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">${gallery.map(g => `<div class="h-72 overflow-hidden bg-zinc-200"><img src="${g}" alt="" class="w-full h-full object-cover"></div>`).join('')}</div>
+    <div class="flex justify-between border-t border-zinc-200 pt-6 text-xs uppercase">
+      <a href="#work-${pv.id}" class="hover:text-studio-muted">← ${pv.title}</a><a href="#work-${nx.id}" class="hover:text-studio-muted">${nx.title} →</a>
+    </div>`;
+}
+
+// On a fresh load the Tailwind CDN applies its styles a moment after the page starts, so the 3D
+// containers can measure 0 px at first. Wait until they have a real size before creating the canvas.
+function safeInit(fn, id) {
+  try {
+    if (!window.THREE) throw new Error('the three.js library did not load');
+    const c = document.createElement('canvas');
+    if (!(c.getContext('webgl') || c.getContext('experimental-webgl'))) throw new Error('WebGL is turned off');
+    fn();
+  } catch (e) {
+    console.error(e);
+    if (id === 'globe-container') globeReady = false;
+    const box = document.getElementById(id);
+    if (box) box.insertAdjacentHTML('beforeend', `<p class="absolute inset-x-4 bottom-3 text-center text-[11px] text-studio-muted pointer-events-none z-20">3D view unavailable: ${e.message}. In Chrome: Settings → System → turn on "Use graphics acceleration when available", then reload.</p>`);
+  }
+}
+function whenSized(id, fn, tries = 0) {
+  const el = document.getElementById(id);
+  if (el && el.clientWidth > 50 && el.clientHeight > 50) fn();
+  else if (tries < 100) setTimeout(() => whenSized(id, fn, tries + 1), 50);
+}
+
+function navigateTo(pageId) {
+  const valid = ['home', 'fineart', 'design', 'ceramics', 'media', 'writing', 'dance', 'about', 'contact'];
+  const worksPages = ['fineart', 'design', 'ceramics', 'media', 'writing', 'dance'];
+  let t = pageId.replace('#', ''), nav = t;
+  const cat = fineArtCats.find(c => 'fineart-' + c.key === t);
+  if (cat) { renderFineArtCat(cat); t = 'fineartcat'; nav = 'fineart'; }
+  else if (t.startsWith('work-')) {
+    const w = works.find(x => x.id === +t.slice(5));
+    if (w && w.sec !== 'ceramics') { renderWork(w); t = 'work'; nav = w.sec; } else t = nav = 'home';
+  } else if (!valid.includes(t)) t = nav = 'home';
+  document.querySelectorAll('.page-view').forEach(el => el.classList.add('hidden'));
+  if (worksPages.includes(nav)) {
+    const m = document.getElementById('works-menu'); m.classList.remove('hidden'); m.classList.add('flex');
+    document.getElementById('works-arrow').style.transform = 'rotate(180deg)';
+  }
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.toggle('text-[#D5EE10]', l.getAttribute('href') === '#' + nav));
+  document.getElementById('page-' + t).classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  closeAlbum(); closeVideo(); toggleMenu(false);
+  const names = { home: '', fineart: 'Fine Art', design: 'Design', ceramics: 'Ceramics', media: 'Photo/Video/Audio', writing: 'Writing', dance: 'Dance', about: 'About', contact: 'Contact' };
+  const label = t === 'fineartcat' ? cat.title : t === 'work' ? works.find(x => x.id === +pageId.replace('#work-', '')).title : names[t];
+  document.title = (label ? label + ' — ' : '') + 'Quana Cannon';
+  if (t === 'home') whenSized('q-canvas-container', () => safeInit(init3DLetters, 'q-canvas-container'));
+  if (t === 'about') whenSized('globe-container', () => safeInit(init3DGlobe, 'globe-container'));
+}
+window.addEventListener('hashchange', () => navigateTo(location.hash || 'home'));
+
+function openModal(id) {
+  const p = works.find(x => x.id === id); if (!p) return;
+  document.getElementById('modal-content').innerHTML = `
+    <div class="h-72 bg-zinc-900 rounded-2xl overflow-hidden"><img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover"></div>
+    <div class="space-y-2"><span class="bg-[#D5EE10] px-3 py-1 rounded-full text-xs text-zinc-900 uppercase">${p.badge}</span>
+    <h2 class="text-3xl text-zinc-900 uppercase">${p.title}</h2><p class="text-xs text-studio-muted uppercase">${p.story}</p></div>`;
+  document.getElementById('project-modal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() { document.getElementById('project-modal').classList.add('hidden'); document.body.style.overflow = 'auto'; }
+
+let sharedAudioCtx = null;
+function getAudioCtx() {
+  try {
+    if (!sharedAudioCtx) { const C = window.AudioContext || window.webkitAudioContext; if (C) sharedAudioCtx = new C(); }
+    if (sharedAudioCtx && sharedAudioCtx.state === 'suspended') sharedAudioCtx.resume().catch(() => {});
+  } catch (e) {}
+  return sharedAudioCtx;
+}
+function popShape(el) {
+  el.classList.add('animate-bounce'); setTimeout(() => el.classList.remove('animate-bounce'), 600);
+  try {
+    const ctx = getAudioCtx(); if (!ctx || ctx.state !== 'running') return;
+    const o = ctx.createOscillator(), g = ctx.createGain(), f = [523.25, 659.25, 783.99, 1046.5, 1318.51];
+    o.type = 'sine'; o.frequency.value = f[Math.floor(Math.random() * f.length)];
+    g.gain.setValueAtTime(0.08, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.25);
+    o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime + 0.25);
+  } catch (e) {}
+}
+let synth = null;
+function toggleSynth() {
+  try {
+    const ctx = getAudioCtx(); if (!ctx) return;
+    if (!synth) { // soft evolving drone: four sine tones with slow volume drift
+      const master = ctx.createGain(); master.gain.value = 0; master.connect(ctx.destination);
+      [130.81, 196, 261.63, 329.63].forEach((f, i) => {
+        const o = ctx.createOscillator(), g = ctx.createGain(), l = ctx.createOscillator(), lg = ctx.createGain();
+        o.type = 'sine'; o.frequency.value = f; g.gain.value = 0.05 / (1 + i * 0.3);
+        l.frequency.value = 0.05 + i * 0.03; lg.gain.value = 0.02; l.connect(lg); lg.connect(g.gain);
+        o.connect(g); g.connect(master); o.start(); l.start();
+      });
+      synth = { master, on: false };
+    }
+    synth.on = !synth.on;
+    synth.master.gain.setTargetAtTime(synth.on ? 1 : 0, ctx.currentTime, 0.8);
+    document.getElementById('synth-icon').className = synth.on ? 'fa-solid fa-volume-high text-zinc-900' : 'fa-solid fa-volume-xmark text-studio-muted';
+    const wave = document.getElementById('sound-wave'); wave.classList.toggle('hidden', !synth.on); wave.classList.toggle('flex', synth.on);
+  } catch (e) {}
+}
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Inquiry from ' + f.get('name'))}&body=${encodeURIComponent(f.get('message') + '\n\n' + f.get('name') + ' <' + f.get('email') + '>')}`;
+  const t = document.getElementById('toast'); t.classList.remove('hidden'); t.classList.add('flex');
+  setTimeout(() => { t.classList.add('hidden'); t.classList.remove('flex'); }, 3500);
+  e.target.reset();
+}
+function toggleMenu(force) {
+  const sb = document.getElementById('sidebar'), open = force === undefined ? sb.classList.contains('hidden') : force;
+  sb.classList.toggle('hidden', !open); sb.classList.toggle('flex', open);
+  const btn = document.getElementById('menu-btn');
+  btn.setAttribute('aria-expanded', open); btn.innerHTML = `<i class="fa-solid ${open ? 'fa-xmark' : 'fa-bars'}"></i>`;
+}
+function makeKeyboardFriendly() {
+  document.querySelectorAll('[onclick].cursor-pointer').forEach(el => {
+    el.tabIndex = 0; el.setAttribute('role', 'button');
+    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); } });
+  });
+  document.querySelectorAll('img').forEach(i => { if (!i.closest('#globe-container')) i.loading = 'lazy'; });
+}
+function setContactMail() {
+  const m = document.getElementById('contact-mail'); m.href = 'mailto:' + CONTACT_EMAIL; m.textContent = CONTACT_EMAIL;
+}
+
+document.addEventListener('DOMContentLoaded', () => { renderAll(); setContactMail(); makeKeyboardFriendly(); navigateTo(location.hash || 'home'); });
+
+</script>
+</body>
+</html>
